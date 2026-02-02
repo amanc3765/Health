@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Planner & Macro Tracker</title>
+    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header / User Profile -->
+        <header class="app-header">
+            <div class="header-main">
+                <h1>Meal Planner</h1>
+                <div class="header-actions">
+
+                    <button id="btn-reset" class="icon-btn danger-icon-btn" aria-label="Reset Planner"
+                        title="Reset Planner">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                        </svg>
+                    </button>
+                    <button id="toggle-settings" class="icon-btn" aria-label="Toggle Settings">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path
+                                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+                            </path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="settings-panel" class="settings-panel hidden">
+                <div class="settings-grid">
+                    <div class="input-group">
+                        <label>Weight (kg)</label>
+                        <input type="number" id="user-weight" value="86">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (cm)</label>
+                        <input type="number" id="user-height" value="172">
+                    </div>
+                    <div class="input-group">
+                        <label>Age</label>
+                        <input type="number" id="user-age" value="30">
+                    </div>
+                    <div class="input-group">
+                        <label>Gender</label>
+                        <select id="user-gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Activity</label>
+                        <select id="user-activity">
+                            <option value="1.2">Sedentary</option>
+                            <option value="1.375">Light Active</option>
+                            <option value="1.55">Mod Active</option>
+                            <option value="1.725">Very Active</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Goal</label>
+                        <select id="user-goal">
+                            <option value="cut">Cut (-500)</option>
+                            <option value="maintain">Maintain</option>
+                            <option value="bulk">Bulk (+300)</option>
+                        </select>
+                    </div>
+                    <button id="btn-calculate" class="action-btn">Calculate Macros</button>
+                </div>
+            </div>
+
+            <div class="user-inputs">
+                <div class="input-group">
+                    <label>Calories</label>
+                    <input type="number" id="goal-calories" value="2130">
+                </div>
+                <div class="input-group">
+                    <label>Protein</label>
+                    <input type="number" id="goal-protein" value="130">
+                </div>
+                <div class="input-group">
+                    <label>Carbs</label>
+                    <input type="number" id="goal-carbs" value="284">
+                </div>
+                <div class="input-group">
+                    <label>Fat</label>
+                    <input type="number" id="goal-fat" value="61">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-layout">
+            <!-- Food List (Left) -->
+            <section class="panel food-list-panel">
+                <h2>Foods</h2>
+                <div id="food-list" class="food-list-container">
+                    <!-- Food items injected here -->
+                </div>
+            </section>
+
+            <!-- Meal Planner (Center) -->
+            <section class="panel meal-planner-panel">
+                <div class="meal-column" data-meal="breakfast">
+                    <h3>Breakfast</h3>
+                    <div class="meal-items" id="meal-breakfast"></div>
+                    <div class="meal-totals" id="total-breakfast">
+                        <span>0 kcal</span>
+                    </div>
+                </div>
+                <div class="meal-column" data-meal="lunch">
+                    <h3>Lunch</h3>
+                    <div class="meal-items" id="meal-lunch"></div>
+                    <div class="meal-totals" id="total-lunch">
+                        <span>0 kcal</span>
+                    </div>
+                </div>
+                <div class="meal-column" data-meal="snacks">
+                    <h3>Snacks</h3>
+                    <div class="meal-items" id="meal-snacks"></div>
+                    <div class="meal-totals" id="total-snacks">
+                        <span>0 kcal</span>
+                    </div>
+                </div>
+                <div class="meal-column" data-meal="dinner">
+                    <h3>Dinner</h3>
+                    <div class="meal-items" id="meal-dinner"></div>
+                    <div class="meal-totals" id="total-dinner">
+                        <span>0 kcal</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Totals (Right) -->
+            <section class="panel totals-panel">
+                <h2>Daily Totals</h2>
+                <div class="daily-summary">
+                    <div class="macro-row" id="summary-calories">
+                        <span class="label">Calories</span>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill"></div>
+                        </div>
+                        <span class="value">0 / 2000</span>
+                    </div>
+                    <div class="macro-row" id="summary-protein">
+                        <span class="label">Protein</span>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill"></div>
+                        </div>
+                        <span class="value">0 / 150g</span>
+                    </div>
+                    <div class="macro-row" id="summary-carbs">
+                        <span class="label">Carbs</span>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill"></div>
+                        </div>
+                        <span class="value">0 / 200g</span>
+                    </div>
+                    <div class="macro-row" id="summary-fat">
+                        <span class="label">Fat</span>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill"></div>
+                        </div>
+                        <span class="value">0 / 65g</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Drag Image (Hidden) -->
+    <div id="drag-ghost" class="drag-ghost"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
