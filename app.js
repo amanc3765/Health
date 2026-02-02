@@ -189,12 +189,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Rendering
     function renderFoodList() {
-        elements.foodList.innerHTML = state.foods.map(food => `
+        const foodUsage = {};
+
+        // Calculate total usage per food across all meals
+        Object.values(state.meals).forEach(mealFoods => {
+            mealFoods.forEach(item => {
+                if (!foodUsage[item.foodId]) foodUsage[item.foodId] = 0;
+                foodUsage[item.foodId] += item.weight;
+            });
+        });
+
+        elements.foodList.innerHTML = state.foods.map(food => {
+            const usage = foodUsage[food.id] || 0;
+            const usageChip = usage > 0
+                ? `<div class="food-usage-chip">${Math.round(usage)}g used</div>`
+                : '';
+
+            return `
             <div class="food-item" draggable="true" data-id="${food.id}">
-                <div class="food-item-name">${food.name}</div>
-                <div class="food-item-macros">${food.calories} kcal / 100g</div>
+                <div class="food-item-header">
+                    <div class="food-item-name">${food.name}</div>
+                    ${usageChip}
+                </div>
+                <div class="food-item-macros">${food.calories} kcal / ${food.protein}g P</div>
             </div>
-        `).join('');
+            `;
+        }).join('');
 
         // Add drag listeners to new items
         document.querySelectorAll('.food-item').forEach(item => {
@@ -215,33 +235,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const card = document.createElement('div');
                 card.className = 'meal-food-card';
-                // Drag start for reordering/copying could be added here
+                // Drag start for reordering / copying
                 card.draggable = true;
+
                 // We transmit indices to allow checking source
                 card.dataset.meal = mealType;
                 card.dataset.index = index;
 
                 card.innerHTML = `
-                    <div class="meal-food-header">
-                        <span class="meal-food-name">${food.name}</span>
-                        <div style="display: flex; align-items: center; gap: 4px;">
-                             <button class="copy-handle icon-btn" title="Duplicate (Click) or Copy to other meal (Drag)">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <div class="meal-food-row-1">
+                        <span class="meal-food-name" title="${food.name}">${food.name}</span>
+                        <div class="meal-food-actions">
+                             <button class="copy-handle icon-btn" title="Copy">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                              </button>
                              <button class="remove-btn icon-btn danger-icon-btn" onclick="removeFood('${mealType}', ${index})" title="Remove">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                              </button>
                         </div>
                     </div>
-                    <div class="meal-food-inputs">
+                        <div class="meal-food-row-2">
                         <input type="number" value="${item.weight}" min="0" onchange="updateFoodWeight('${mealType}', ${index}, this.value)">
-                        <span>g</span>
-                    </div>
-                    <div class="meal-food-stats">
-                        <div class="chip chip-cal">${Math.round(macros.calories)}</div>
-                        <div class="chip chip-pro">${Math.round(macros.protein)}P</div>
-                        <div class="chip chip-carb">${Math.round(macros.carbs)}C</div>
-                        <div class="chip chip-fat">${Math.round(macros.fat)}F</div>
+                                <span class="unit-label">g</span>
                     </div>
                 `;
 
@@ -366,6 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveToLocalStorage();
         renderMeals();
         updateTotals();
+        renderFoodList();
     };
 
     window.updateFoodWeight = (mealType, index, weight) => {
@@ -374,6 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveToLocalStorage();
         renderMeals(); // Re-render to update macro text on card
         updateTotals();
+        renderFoodList();
     };
 
 
@@ -498,6 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     saveToLocalStorage();
                     renderMeals();
                     updateTotals();
+                    renderFoodList();
                 }
 
             });
@@ -512,15 +530,6 @@ document.addEventListener('DOMContentLoaded', () => {
         saveToLocalStorage();
         renderMeals();
         updateTotals();
-    }
-
-    function addFoodToMeal(foodId, mealType) {
-        state.meals[mealType].push({
-            foodId,
-            weight: 100 // Default weight
-        });
-        saveToLocalStorage();
-        renderMeals();
-        updateTotals();
+        renderFoodList();
     }
 });

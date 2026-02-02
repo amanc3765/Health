@@ -1,13 +1,5 @@
 [
   {
-    "id": "sattoo",
-    "name": "Sattoo",
-    "calories": 397.0,
-    "protein": 22.5,
-    "carbs": 66.1,
-    "fat": 4.8
-  },
-  {
     "id": "soyabean",
     "name": "Soyabean",
     "calories": 354.1,
@@ -24,12 +16,28 @@
     "fat": 7.0
   },
   {
-    "id": "fat",
-    "name": "Fat",
-    "calories": 897.0,
-    "protein": 0.0,
-    "carbs": 0.0,
-    "fat": 99.7
+    "id": "yoghurt",
+    "name": "Yoghurt",
+    "calories": 96.3,
+    "protein": 11.2,
+    "carbs": 9.5,
+    "fat": 1.5
+  },
+  {
+    "id": "dal",
+    "name": "Dal",
+    "calories": 350.0,
+    "protein": 22.0,
+    "carbs": 65.0,
+    "fat": 1.0
+  },
+  {
+    "id": "sattoo",
+    "name": "Sattoo",
+    "calories": 397.0,
+    "protein": 22.5,
+    "carbs": 66.1,
+    "fat": 4.8
   },
   {
     "id": "aata",
@@ -40,6 +48,14 @@
     "fat": 1.9
   },
   {
+    "id": "vegetable",
+    "name": "Vegetable",
+    "calories": 110,
+    "protein": 3.5,
+    "carbs": 13,
+    "fat": 5
+  },
+  {
     "id": "rice",
     "name": "Rice",
     "calories": 360.0,
@@ -48,19 +64,11 @@
     "fat": 1.0
   },
   {
-    "id": "yoghurt",
-    "name": "Yoghurt",
-    "calories": 96.3,
-    "protein": 11.2,
-    "carbs": 9.5,
-    "fat": 1.5
-  },
-  {
-    "id": "vegetable",
-    "name": "Vegetable",
-    "calories": 110,
-    "protein": 3.5,
-    "carbs": 13,
-    "fat": 5
+    "id": "fat",
+    "name": "Fat",
+    "calories": 897.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 99.7
   }
 ]
