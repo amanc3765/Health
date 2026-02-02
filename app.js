@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveToLocalStorage();
         renderMeals();
         updateTotals();
+        renderFoodList();
     }
 
     // Logic: Calculate Goals

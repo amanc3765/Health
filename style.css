@@ -411,8 +411,8 @@ body {
 .meal-food-card {
     background: var(--bg-element);
     border: 1px solid var(--border-subtle);
-    padding: 6px 8px;
-        /* Compact padding */
+    padding: 10px 10px;
+        /* Increased padding for ~20% more height */
     border-radius: var(--radius-md);
     position: relative;
     box-shadow: var(--shadow-inner);
@@ -421,7 +421,8 @@ body {
     display: flex;
         flex-direction: column;
         /* 2 Rows */
-        gap: 4px;
+        gap: 6px;
+            /* Increased gap slightly */
     }
     
     .meal-food-row-1 {
@@ -562,14 +563,14 @@ body {
     background: rgba(15, 23, 42, 0.3);
     /* Darker tint */
     border-top: 1px solid var(--border-subtle);
-    display: flex;
-        justify-content: flex-end;
+    display: grid;
+        grid-template-columns: 1fr 1fr;
     gap: 8px;
 }
 
 /* CHIPS */
 .chip {
-    padding: 2px 8px;
+    padding: 4px 8px;
     border-radius: var(--radius-pill);
     font-size: 0.75rem;
     font-weight: var(--font-weight-medium);
@@ -586,6 +587,12 @@ body {
     border: 1px solid transparent;
 }
 
+.meal-totals .chip {
+    font-size: 0.9rem;
+    /* 20% increased from 0.75rem */
+    padding: 6px 4px;
+    width: 100%;
+}
 .meal-food-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -614,6 +621,7 @@ body {
     color: var(--macro-fat);
 }
 
+/* Totals Panel (Right) */
 /* Totals Panel (Right) */
 .daily-summary {
     padding: var(--space-4);
