@@ -320,25 +320,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 const f = Math.round(macros.fat);
 
                 card.innerHTML = `
-                    <div class="meal-food-row-1">
+                    <div class="meal-food-name-row">
                         <span class="meal-food-name" title="${food.name}">${food.name}</span>
-                        <div class="meal-food-actions">
-                             <button class="icon-btn" onclick="toggleMacroPopover(event, 'meal-${mealType}-${index}', ${cals}, ${p}, ${c}, ${f})" title="Macro Info">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                             </button>
-                             <button class="copy-handle icon-btn" title="Copy">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                             </button>
-                             <button class="remove-btn icon-btn danger-icon-btn" onclick="removeFood('${mealType}', ${index})" title="Remove">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                             </button>
+                    </div>
+
+                    <div class="meal-food-quantity-row">
+                        <div class="meal-food-input-group">
+                            <input type="number" value="${item.weight}" min="0" onchange="updateFoodWeight('${mealType}', ${index}, this.value)">
+                            <span class="unit-label">g</span>
                         </div>
                     </div>
 
-                    </div>
-                        <div class="meal-food-row-2">
-                        <input type="number" value="${item.weight}" min="0" onchange="updateFoodWeight('${mealType}', ${index}, this.value)">
-                                <span class="unit-label">g</span>
+                    <div class="meal-food-actions-row">
+                         <button class="icon-btn" onclick="toggleMacroPopover(event, 'meal-${mealType}-${index}', ${cals}, ${p}, ${c}, ${f})" title="Macro Info">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                         </button>
+                         <button class="copy-handle icon-btn" title="Copy">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                         </button>
+                         <button class="remove-btn icon-btn danger-icon-btn" onclick="removeFood('${mealType}', ${index})" title="Remove">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                         </button>
                     </div>
                 `;
 
