@@ -27,7 +27,14 @@
                     <h1>Meal Planner</h1>
                 </div>
                 <div class="header-actions">
-
+                    <button id="btn-save-plan" class="icon-btn" aria-label="Save Plan" title="Save Plan">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                    </button>
                     <button id="btn-reset" class="icon-btn danger-icon-btn" aria-label="Reset Planner"
                         title="Reset Planner">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -154,7 +161,9 @@
 
             <!-- Totals (Right) -->
             <section class="panel totals-panel">
-                <h2>Daily Totals</h2>
+                <div class="panel-header-row">
+                    <h2>Daily Totals</h2>
+                    </div>
                 <div class="daily-summary">
                     <div class="macro-row" id="summary-calories">
                         <span class="label">Calories</span>
@@ -185,12 +194,47 @@
                         <span class="value">0 / 65g</span>
                     </div>
                 </div>
+<div class="saved-plans-divider"></div>
+
+<div class="saved-plans-section">
+    <h2>Saved Plans</h2>
+    <div id="saved-plans-list" class="saved-plans-list">
+        <!-- Plans injected here -->
+    </div>
+</div>
             </section>
         </main>
     </div>
 
     <!-- Drag Image (Hidden) -->
     <div id="drag-ghost" class="drag-ghost"></div>
+
+    <!-- Save Plan Modal -->
+    <div id="save-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Save Meal Plan</h3>
+            <div class="input-group">
+                <label for="plan-name-input">Plan Name</label>
+                <input type="text" id="plan-name-input" placeholder="e.g. Bulking Day 1">
+            </div>
+            <div class="modal-actions">
+                <button id="btn-cancel-save" class="icon-btn">Cancel</button>
+                <button id="btn-confirm-save" class="action-btn">Save</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Confirm Action</h3>
+            <p id="confirm-message" style="color: var(--text-secondary); margin-bottom: var(--space-2);">Are you sure?</p>
+            <div class="modal-actions">
+                <button id="btn-cancel-confirm" class="icon-btn">Cancel</button>
+                <button id="btn-do-confirm" class="action-btn" style="background: var(--danger);">Yes, Proceed</button>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js?v=2"></script>
 </body>

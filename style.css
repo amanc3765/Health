@@ -593,6 +593,109 @@ body {
     padding: 6px 4px;
     width: 100%;
 }
+/* Panel Header Row (for Save Button alignment) */
+.panel-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(15, 23, 42, 0.3);
+}
+
+.panel-header-row h2 {
+    border-bottom: none;
+    background: transparent;
+    flex: 1;
+}
+
+.panel-header-row .icon-btn {
+    margin-right: var(--space-3);
+    color: var(--accent-primary);
+}
+
+.panel-header-row .icon-btn:hover {
+    background: var(--accent-primary);
+    color: white;
+}
+
+/* Saved Plans Section */
+.saved-plans-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: 0 var(--space-4);
+}
+
+.saved-plans-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.saved-plans-section h2 {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    padding: var(--space-3);
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(15, 23, 42, 0.3);
+}
+
+.saved-plans-list {
+    padding: var(--space-3);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+/* Plan Card */
+.plan-card {
+    background: var(--bg-element);
+    padding: 10px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-inner);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plan-card:hover {
+    background: var(--bg-surface-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-1);
+    border-color: var(--accent-primary);
+}
+
+.plan-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.plan-name {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.plan-date {
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+}
+
+.plan-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
 .meal-food-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -691,15 +794,58 @@ body {
     color: var(--macro-fat);
 }
 
-.macro-row .value {
-    font-size: var(--font-size-sm);
-    color: var(--text-primary);
-    text-align: right;
-    font-weight: var(--font-weight-medium);
-    margin-top: 2px;
-    font-variant-numeric: tabular-nums;
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.2s;
 }
 
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-float);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transform: translateY(0);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: translateY(20px);
+}
+
+.modal-content h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+}
 .value.exceeded {
     color: var(--danger);
 }

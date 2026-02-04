@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // State
     const state = {
+        savedPlans: [], // List of saved plans
+        isIsolated: false, // If true, we are viewing a saved plan (no auto-save to main)
+        currentPlanName: null,
         foods: [],
         meals: {
             breakfast: [],
@@ -51,10 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
         btnCalculate: document.getElementById('btn-calculate'),
         btnReset: document.getElementById('btn-reset'),
         toggleSettings: document.getElementById('toggle-settings'),
-        settingsPanel: document.getElementById('settings-panel')
+        settingsPanel: document.getElementById('settings-panel'),
+        btnSavePlan: document.getElementById('btn-save-plan'),
+        savedPlansList: document.getElementById('saved-plans-list'),
+        // Modal
+        saveModal: document.getElementById('save-modal'),
+        planNameInput: document.getElementById('plan-name-input'),
+        btnCancelSave: document.getElementById('btn-cancel-save'),
+        btnConfirmSave: document.getElementById('btn-confirm-save'),
+        // Confirm Modal
+        confirmModal: document.getElementById('confirm-modal'),
+        confirmMessage: document.getElementById('confirm-message'),
+        btnCancelConfirm: document.getElementById('btn-cancel-confirm'),
+        btnDoConfirm: document.getElementById('btn-do-confirm')
     };
 
     // Initialization
+    let pendingConfirmResolve = null; // For handling confirm promise
     init();
 
     async function init() {
@@ -63,11 +79,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         await loadFoods();
         setupEventListeners();
-        loadFromLocalStorage(); // Load saved state
+
+        loadSavedPlans(); // Load list of saved plans
+
+        // Check for URL param ?plan=...
+        const urlParams = new URLSearchParams(window.location.search);
+        const planName = urlParams.get('plan');
+
+        if (planName) {
+            state.isIsolated = true;
+            state.currentPlanName = planName;
+            document.title = `${planName} - Meal Planner`;
+            loadPlanFromStorage(planName);
+            // We now ALLOW saving in isolated mode to enable editing
+        } else {
+            loadFromLocalStorage(); // Load saved state (Main)
+        }
+
         // calculateAndSetGoals(); // Disabled to respect manual defaults
         renderFoodList();
         renderMeals();
         updateTotals();
+        renderSavedPlans();
     }
 
     async function loadFoods() {
@@ -83,6 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Storage Logic
     function saveToLocalStorage() {
+        if (state.isIsolated) return; // Don't overwrite main state if viewing a saved plan
+
         localStorage.setItem('mealPlannerState', JSON.stringify({
             meals: state.meals,
             goals: state.goals,
@@ -95,27 +130,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (saved) {
             try {
                 const parsed = JSON.parse(saved);
-                if (parsed.meals) state.meals = parsed.meals;
-                if (parsed.goals) state.goals = parsed.goals;
-                if (parsed.profile) state.profile = parsed.profile;
-
-                // Restore profile inputs
-                if (elements.profileInputs.weight) elements.profileInputs.weight.value = state.profile.weight;
-                if (elements.profileInputs.height) elements.profileInputs.height.value = state.profile.height;
-                if (elements.profileInputs.age) elements.profileInputs.age.value = state.profile.age;
-                if (elements.profileInputs.gender) elements.profileInputs.gender.value = state.profile.gender;
-                if (elements.profileInputs.activity) elements.profileInputs.activity.value = state.profile.activity;
-                if (elements.profileInputs.goal) elements.profileInputs.goal.value = state.profile.goalType;
-
-                // Restore goal inputs
-                if (elements.inputs.calories) elements.inputs.calories.value = state.goals.calories;
-                if (elements.inputs.protein) elements.inputs.protein.value = state.goals.protein;
-                if (elements.inputs.carbs) elements.inputs.carbs.value = state.goals.carbs;
-                if (elements.inputs.fat) elements.inputs.fat.value = state.goals.fat;
+                applyState(parsed);
             } catch (e) {
                 console.error('Failed to load state', e);
             }
         }
+    }
+
+    function applyState(parsed) {
+        if (parsed.meals) state.meals = parsed.meals;
+        if (parsed.goals) state.goals = parsed.goals;
+        if (parsed.profile) state.profile = parsed.profile;
+
+        // Restore profile inputs
+        if (elements.profileInputs.weight) elements.profileInputs.weight.value = state.profile.weight;
+        if (elements.profileInputs.height) elements.profileInputs.height.value = state.profile.height;
+        if (elements.profileInputs.age) elements.profileInputs.age.value = state.profile.age;
+        if (elements.profileInputs.gender) elements.profileInputs.gender.value = state.profile.gender;
+        if (elements.profileInputs.activity) elements.profileInputs.activity.value = state.profile.activity;
+        if (elements.profileInputs.goal) elements.profileInputs.goal.value = state.profile.goalType;
+
+        // Restore goal inputs
+        if (elements.inputs.calories) elements.inputs.calories.value = state.goals.calories;
+        if (elements.inputs.protein) elements.inputs.protein.value = state.goals.protein;
+        if (elements.inputs.carbs) elements.inputs.carbs.value = state.goals.carbs;
+        if (elements.inputs.fat) elements.inputs.fat.value = state.goals.fat;
     }
 
     function resetPlanner() {
@@ -443,6 +482,33 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.btnReset.addEventListener('click', resetPlanner);
         }
 
+        if (elements.btnSavePlan) {
+            elements.btnSavePlan.addEventListener('click', openSaveModal);
+        }
+
+        // Modal Listeners
+        if (elements.btnCancelSave) elements.btnCancelSave.addEventListener('click', closeSaveModal);
+        if (elements.btnConfirmSave) elements.btnConfirmSave.addEventListener('click', confirmSave);
+        if (elements.saveModal) {
+            elements.saveModal.addEventListener('click', (e) => {
+                if (e.target === elements.saveModal) closeSaveModal();
+            });
+        }
+        if (elements.planNameInput) {
+            elements.planNameInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') confirmSave();
+                if (e.key === 'Escape') closeSaveModal();
+            });
+        }
+
+        // Confirm Modal Listeners
+        if (elements.btnCancelConfirm) elements.btnCancelConfirm.addEventListener('click', () => closeConfirmModal(false));
+        if (elements.btnDoConfirm) elements.btnDoConfirm.addEventListener('click', () => closeConfirmModal(true));
+        // Allow clicking overlay to cancel
+        if (elements.confirmModal) elements.confirmModal.addEventListener('click', (e) => {
+            if (e.target === elements.confirmModal) closeConfirmModal(false);
+        });
+
         // Drop Zones
         elements.mealColumns.forEach(col => {
             col.addEventListener('dragover', (e) => {
@@ -533,4 +599,174 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotals();
         renderFoodList();
     }
+
+
+    // --- Saved Plans Logic ---
+
+    function loadSavedPlans() {
+        const saved = localStorage.getItem('mealPlannerSavedPlans');
+        if (saved) {
+            try {
+                state.savedPlans = JSON.parse(saved);
+            } catch (e) {
+                console.error('Failed to load saved plans', e);
+                state.savedPlans = [];
+            }
+        }
+    }
+
+    function openSaveModal() {
+        const defaultName = state.currentPlanName || "My Plan";
+        if (elements.planNameInput) {
+            elements.planNameInput.value = defaultName;
+            elements.planNameInput.focus();
+        }
+        if (elements.saveModal) elements.saveModal.classList.remove('hidden');
+        // Auto-focus input
+        setTimeout(() => elements.planNameInput && elements.planNameInput.focus(), 50);
+    }
+
+    function closeSaveModal() {
+        if (elements.saveModal) elements.saveModal.classList.add('hidden');
+    }
+
+    function confirmSave() {
+        const name = elements.planNameInput.value.trim();
+        if (!name) {
+            alert("Please enter a plan name");
+            return;
+        }
+
+        closeSaveModal();
+        saveCurrentPlan(name);
+    }
+
+    function saveCurrentPlan(name) {
+        // Check if exists
+        const existingIndex = state.savedPlans.findIndex(p => p.name === name);
+        if (existingIndex >= 0) {
+            showConfirmModal(`Plan "${name}" already exists. Overwrite?`, (confirmed) => {
+                if (confirmed) {
+                    executeSave(name, existingIndex);
+                } else {
+                    // Re-open save modal to allow name change
+                    openSaveModal();
+                }
+            });
+            return;
+        }
+
+        executeSave(name, -1);
+    }
+
+    function executeSave(name, existingIndex) {
+        const newPlan = {
+            name: name,
+            date: new Date().toISOString(),
+            meals: state.meals,
+            goals: state.goals,
+            profile: state.profile
+        };
+
+        if (existingIndex >= 0) {
+            state.savedPlans[existingIndex] = newPlan;
+        } else {
+            state.savedPlans.push(newPlan);
+        }
+
+        localStorage.setItem('mealPlannerSavedPlans', JSON.stringify(state.savedPlans));
+
+        // If we just overwrote the plan we are currently viewing, update state name
+        if (state.isIsolated && state.currentPlanName === name) {
+            // Consistent
+        } else if (state.isIsolated) {
+            state.currentPlanName = name;
+            document.title = `${name} - Meal Planner`;
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('plan', name);
+            window.history.pushState({}, '', newUrl);
+        }
+
+        renderSavedPlans();
+    }
+
+    function renderSavedPlans() {
+        if (!elements.savedPlansList) return;
+
+        if (state.savedPlans.length === 0) {
+            elements.savedPlansList.innerHTML = '<div style="color: var(--text-tertiary); font-size: 0.8rem; text-align: center; padding: 10px;">No saved plans</div>';
+            return;
+        }
+
+        elements.savedPlansList.innerHTML = state.savedPlans.map(plan => {
+            const dateStr = new Date(plan.date).toLocaleDateString();
+            return `
+            <div class="plan-card" onclick="openPlan('${plan.name}')">
+                <div class="plan-info">
+                    <span class="plan-name">${plan.name}</span>
+                    <span class="plan-date">${dateStr}</span>
+                </div>
+                <div class="plan-actions">
+                    <button class="icon-btn danger-icon-btn" onclick="deletePlan(event, '${plan.name}')" title="Delete Plan">
+                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                    <button class="icon-btn" onclick="openPlan('${plan.name}')" title="Edit Plan">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    </button>
+                </div>
+            </div>
+            `;
+        }).join('');
+    }
+
+    window.openPlan = (name) => {
+        window.open(`?plan=${encodeURIComponent(name)}`, '_blank');
+    };
+
+    window.deletePlan = (e, name) => {
+        e.stopPropagation(); // Prevent opening
+        showConfirmModal(`Delete plan "${name}"?`, (confirmed) => {
+            if (confirmed) {
+                state.savedPlans = state.savedPlans.filter(p => p.name !== name);
+                localStorage.setItem('mealPlannerSavedPlans', JSON.stringify(state.savedPlans));
+                renderSavedPlans();
+            }
+        });
+    };
+
+    // --- Confirmation Modal Helpers ---
+    function showConfirmModal(message, callback) {
+        if (elements.confirmMessage) elements.confirmMessage.textContent = message;
+        if (elements.confirmModal) elements.confirmModal.classList.remove('hidden');
+
+        // Store callback
+        pendingConfirmResolve = callback;
+    }
+
+    function closeConfirmModal(result) {
+        if (elements.confirmModal) elements.confirmModal.classList.add('hidden');
+        if (pendingConfirmResolve) {
+            pendingConfirmResolve(result);
+            pendingConfirmResolve = null;
+        }
+    }
+
+    function loadPlanFromStorage(name) {
+        // We already loaded savedPlans in init
+        const plan = state.savedPlans.find(p => p.name === name);
+        if (plan) {
+            applyState(plan);
+        } else {
+            alert(`Plan "${name}" not found!`);
+        }
+    }
+
+    // Sync saved plans across tabs
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'mealPlannerSavedPlans') {
+            loadSavedPlans();
+            renderSavedPlans();
+        }
+    });
+
 });
