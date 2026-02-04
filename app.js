@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const el = document.getElementById(`total-${mealType}`);
             const m = mealTotals[mealType];
             el.innerHTML = `
-                <div class="chip chip-cal" title="Calories">${Math.round(m.calories)}</div>
+                <div class="chip chip-cal" title="Calories">${Math.round(m.calories)} 🔥</div>
                 <div class="chip chip-pro" title="Protein">${Math.round(m.protein)}P</div>
                 <div class="chip chip-carb" title="Carbs">${Math.round(m.carbs)}C</div>
                 <div class="chip chip-fat" title="Fat">${Math.round(m.fat)}F</div>
@@ -778,10 +778,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Content
         grid.innerHTML = `
-            <div class="chip chip-cal">${Math.round(cals)}</div>
-            <div class="chip chip-pro">${Math.round(p)}p</div>
-            <div class="chip chip-carb">${Math.round(c)}c</div>
-            <div class="chip chip-fat">${Math.round(f)}f</div>
+            <div class="chip chip-cal">${Math.round(cals)} 🔥</div>
+            <div class="chip chip-pro">${Math.round(p)}P</div>
+            <div class="chip chip-carb">${Math.round(c)}C</div>
+            <div class="chip chip-fat">${Math.round(f)}F</div>
         `;
 
         // Position
