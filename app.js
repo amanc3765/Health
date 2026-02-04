@@ -71,11 +71,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialization
     let pendingConfirmResolve = null; // For handling confirm promise
+    let globalPopover = null; // Global popover instance
     init();
+
+    function createGlobalPopover() {
+        if (document.getElementById('global-macro-popover')) return;
+
+        const div = document.createElement('div');
+        div.id = 'global-macro-popover';
+        div.className = 'macro-popover';
+        div.innerHTML = `
+            <div class="macro-grid" id="global-popover-grid">
+                <!-- Injected via JS -->
+            </div>
+        `;
+        document.body.appendChild(div);
+        globalPopover = div;
+    }
 
     async function init() {
         // Theme
         document.body.classList.add('dark-mode');
+        document.body.classList.add('dark-mode');
+        createGlobalPopover();
 
         await loadFoods();
         setupEventListeners();
@@ -241,17 +259,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         elements.foodList.innerHTML = state.foods.map(food => {
             const usage = foodUsage[food.id] || 0;
-            const usageChip = usage > 0
-                ? `<div class="food-usage-chip">${Math.round(usage)}g used</div>`
-                : '';
+
+            // Default macros (per 100g usually)
+            const cals = food.calories;
+            const p = food.protein;
+            const c = food.carbs;
+            const f = food.fat;
+
+            // Usage Chip (Bottom Right)
+            let usageLabel = '';
+            if (usage > 0) {
+                usageLabel = `<div class="food-usage-chip-abs">${Math.round(usage)}g used</div>`;
+            }
 
             return `
             <div class="food-item" draggable="true" data-id="${food.id}">
-                <div class="food-item-header">
-                    <div class="food-item-name">${food.name}</div>
-                    ${usageChip}
-                </div>
-                <div class="food-item-macros">${food.calories} kcal / ${food.protein}g P</div>
+                <div class="food-item-name">${food.name}</div>
+
+                <button class="food-info-btn-abs" onclick="toggleMacroPopover(event, '${food.id}', ${cals}, ${p}, ${c}, ${f})" title="Macro Info">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button>
+
+                ${usageLabel}
+
+                ${usageLabel}
             </div>
             `;
         }).join('');
@@ -282,10 +313,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.dataset.meal = mealType;
                 card.dataset.index = index;
 
+                // Calculate macros based on item.weight
+                const cals = Math.round(macros.calories);
+                const p = Math.round(macros.protein);
+                const c = Math.round(macros.carbs);
+                const f = Math.round(macros.fat);
+
                 card.innerHTML = `
                     <div class="meal-food-row-1">
                         <span class="meal-food-name" title="${food.name}">${food.name}</span>
                         <div class="meal-food-actions">
+                             <button class="icon-btn" onclick="toggleMacroPopover(event, 'meal-${mealType}-${index}', ${cals}, ${p}, ${c}, ${f})" title="Macro Info">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                             </button>
                              <button class="copy-handle icon-btn" title="Copy">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                              </button>
@@ -293,6 +333,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                              </button>
                         </div>
+                    </div>
+
                     </div>
                         <div class="meal-food-row-2">
                         <input type="number" value="${item.weight}" min="0" onchange="updateFoodWeight('${mealType}', ${index}, this.value)">
@@ -718,6 +760,67 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }).join('');
     }
+
+    window.toggleMacroPopover = (e, id, cals, p, c, f) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (!globalPopover) createGlobalPopover();
+
+        const grid = document.getElementById('global-popover-grid');
+        const isActive = globalPopover.classList.contains('visible') && globalPopover.dataset.activeId === id;
+
+        // If clicking same button, toggle off
+        if (isActive) {
+            hideGlobalPopover();
+            return;
+        }
+
+        // Update Content
+        grid.innerHTML = `
+            <div class="chip chip-cal">${Math.round(cals)}</div>
+            <div class="chip chip-pro">${Math.round(p)}p</div>
+            <div class="chip chip-carb">${Math.round(c)}c</div>
+            <div class="chip chip-fat">${Math.round(f)}f</div>
+        `;
+
+        // Position
+        const rect = e.currentTarget.getBoundingClientRect();
+        // Position to the right of the button usually, or below if space is tight
+        // Default: Bottom Left aligned with button
+        let top = rect.bottom + 8;
+        let left = rect.left - 180; // Align right edge approximately
+
+        // Check bounds (simple)
+        if (left < 10) left = 10;
+
+        // Better positioning: Anchor next to mouse/button
+        // Let's maximize visibility. Fixed positioning makes this easier.
+        // Center horizontally on button, then shift left
+        left = rect.left + (rect.width / 2) - 110; // Center 220px width
+
+        globalPopover.style.top = `${top}px`;
+        globalPopover.style.left = `${left}px`;
+        globalPopover.dataset.activeId = id;
+        globalPopover.classList.add('visible');
+    };
+
+    function hideGlobalPopover() {
+        if (globalPopover) {
+            globalPopover.classList.remove('visible');
+            globalPopover.dataset.activeId = '';
+        }
+    }
+
+    // Close popovers on click outside or scroll
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.info-btn') && !e.target.closest('.macro-popover') && !e.target.closest('.food-info-btn-abs')) {
+            hideGlobalPopover();
+        }
+    });
+
+    // Close on scroll (to avoid floating in wrong place)
+    window.addEventListener('scroll', hideGlobalPopover, true);
 
     window.openPlan = (name) => {
         window.open(`?plan=${encodeURIComponent(name)}`, '_blank');

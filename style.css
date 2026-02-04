@@ -9,15 +9,18 @@
     /* For backdrops */
 
     /* Borders & Bevels */
-    --border-subtle: rgba(148, 163, 184, 0.05);
+    --border-subtle: rgba(148, 163, 184, 0.1);
+        /* Slightly increased visibility */
     /* Very subtle */
-    --border-highlight: rgba(255, 255, 255, 0.05);
+    --border-highlight: rgba(255, 255, 255, 0.08);
     /* Top edge light */
     --border-focus: #3B82F6;
 
     /* Text */
     --text-primary: #F8FAFC;
-    --text-secondary: #94A3B8;
+        /* Off-white for comfort */
+        --text-secondary: #94A3B8;
+        /* Softened gray */
     --text-tertiary: #64748B;
 
     /* Semantic Macros */
@@ -37,23 +40,32 @@
     --danger-bg: rgba(239, 68, 68, 0.15);
 
     /* Typography */
-    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-size-xs: 0.75rem;
-    /* 12px */
-    --font-size-sm: 0.875rem;
-    /* 14px */
-    --font-size-base: 1rem;
-    /* 16px */
-    --font-size-lg: 1.125rem;
-    /* 18px */
-    --font-size-xl: 1.5rem;
-    /* 24px */
-    --font-size-2xl: 2rem;
-    /* 32px */
+    --font-heading: 'Barlow', system-ui, -apple-system, sans-serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    
+        --font-size-xs: 0.75rem;
+        /* 12px */
+        --font-size-sm: 0.875rem;
+        /* 14px */
+        --font-size-base: 1rem;
+        /* 16px */
+        --font-size-lg: 1.125rem;
+        /* 18px */
+        --font-size-xl: 1.5rem;
+        /* 24px */
+        --font-size-2xl: 2rem;
+        /* 32px */
+        --font-size-3xl: 2.5rem;
+            /* 40px */
 
     --font-weight-regular: 400;
     --font-weight-medium: 500;
     --font-weight-bold: 600;
+    --font-weight-black: 700;
+    
+        --lh-tight: 1.1;
+        --lh-normal: 1.5;
+        --lh-relaxed: 1.6;
 
     /* Shapes */
     --radius-sm: 8px;
@@ -90,16 +102,26 @@
 }
 
 body {
-    font-family: var(--font-family);
+    font-family: var(--font-body);
     background-color: var(--bg-main);
     color: var(--text-primary);
-    line-height: 1.5;
+    line-height: var(--lh-relaxed);
     font-size: var(--font-size-sm);
     -webkit-font-smoothing: antialiased;
     height: 100vh;
     overflow: hidden;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    line-height: var(--lh-tight);
+    color: var(--text-primary);
+}
 /* App Layout */
 .app-container {
     display: flex;
@@ -144,17 +166,19 @@ body {
     filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
 }
 .header-main h1 {
-    font-size: 2rem;
-        /* Significantly larger */
-        font-weight: 700;
+    font-size: 2.25rem;
+        font-weight: var(--font-weight-black);
     color: var(--text-primary);
     letter-spacing: -0.02em;
-        line-height: 1;
+    line-height: 1;
+    text-transform: uppercase;
+        /* Optional: adds to the "confident" feel */
 }
 
 .header-actions {
     display: flex;
     gap: var(--space-2);
+    align-items: center;
 }
 
 /* Inputs & Forms */
@@ -173,11 +197,13 @@ body {
 }
 
 .input-group label {
-    font-size: var(--font-size-xs);
+    font-size: 0.7rem;
+        font-family: var(--font-heading);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     color: var(--text-secondary);
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
+        margin-bottom: 2px;
 }
 
 .input-group input,
@@ -285,6 +311,7 @@ body {
 }
 
 .panel h2 {
+    font-family: var(--font-heading);
     font-size: var(--font-size-sm);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -307,50 +334,66 @@ body {
 
 .food-item {
     background: var(--bg-element);
-    padding: 8px;
-        /* Reduced from 12px */
+    padding: 12px;
     border-radius: var(--radius-md);
     cursor: grab;
     transition: all 0.2s ease;
     border: 1px solid var(--border-subtle);
     box-shadow: var(--shadow-inner);
     user-select: none;
-}
-
-.food-item-header {
+    position: relative;
+        min-height: 70px;
+        /* Sufficient height for top/bottom corner elements */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
+    flex-direction: column;
 }
 
-.food-usage-chip {
-    font-size: 0.7rem;
-    background: var(--accent-primary);
-    color: white;
-    padding: 1px 6px;
-    border-radius: var(--radius-pill);
-    font-weight: 600;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
 .food-item:hover {
     background: var(--bg-surface-hover);
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); REMOVED to prevent z-index flicker loop */
     box-shadow: var(--elevation-1);
     border-color: rgba(255, 255, 255, 0.1);
 }
 
 .food-item-name {
-    font-weight: var(--font-weight-regular);
+    font-family: var(--font-body);
+        font-weight: var(--font-weight-medium);
     color: var(--text-primary);
-    margin-bottom: 4px;
-}
-
-.food-item-macros {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
+        padding-right: 30px;
+        /* Space for info button */
+        margin-bottom: auto;
+        /* Push down content if needed, but we use absolute for bottom-right */
+        letter-spacing: 0.01em;
+    }
+        .food-usage-chip-abs {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+    
+        .food-info-btn-abs {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
     color: var(--text-tertiary);
-    font-variant-numeric: tabular-nums;
-    font-weight: var(--font-weight-regular);
+    padding: 4px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.2s ease, background 0.2s ease;
+    }
+    
+    .food-info-btn-abs:hover {
+        color: var(--text-primary);
+        background: var(--bg-surface-active);
 }
 
 /* Meal Planner (Center) */
@@ -382,14 +425,16 @@ body {
 /* Specific Border Accents for Columns (Optional subtle header tints) */
 .meal-column h3 {
     padding: var(--space-3);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: 0.05em;
+    font-family: var(--font-heading);
+        font-size: 0.8rem;
+        font-weight: var(--font-weight-black);
+        letter-spacing: 0.1em;
     text-transform: uppercase;
     text-align: center;
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border-subtle);
-    color: var(--text-primary);
+    color: var(--text-secondary);
+        /* Slightly softer than primary for labels */
 }
 
 .meal-items {
@@ -411,18 +456,18 @@ body {
 .meal-food-card {
     background: var(--bg-element);
     border: 1px solid var(--border-subtle);
-    padding: 10px 10px;
-        /* Increased padding for ~20% more height */
+    padding: 15px 12px;
+        /* Increased vertical padding */
     border-radius: var(--radius-md);
     position: relative;
     box-shadow: var(--shadow-inner);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(4px);
     display: flex;
-        flex-direction: column;
+    flex-direction: column;
         /* 2 Rows */
-        gap: 6px;
-            /* Increased gap slightly */
+    gap: 10px;
+        /* Increased gap */
     }
     
     .meal-food-row-1 {
@@ -481,7 +526,7 @@ body {
 
 .meal-food-card:hover {
     border-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px) scale(1.01);
+    /* transform: translateY(-3px) scale(1.01); REMOVED to prevent z-index flicker loop */
     box-shadow: var(--elevation-2);
     background: var(--bg-surface-hover);
     z-index: 2;
@@ -540,6 +585,8 @@ body {
     text-align: right;
     font-weight: var(--font-weight-medium);
     font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+        letter-spacing: 0.02em;
     transition: all 0.2s;
 }
 
@@ -564,8 +611,16 @@ body {
     /* Darker tint */
     border-top: 1px solid var(--border-subtle);
     display: grid;
-        grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
+    font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum";
+    }
+    
+    .meal-totals span {
+        font-weight: var(--font-weight-bold);
+        color: var(--text-secondary);
+        font-size: 0.8rem;
 }
 
 /* CHIPS */
@@ -669,7 +724,7 @@ body {
 
 .plan-card:hover {
     background: var(--bg-surface-hover);
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); REMOVED to prevent z-index flicker loop */
     box-shadow: var(--elevation-1);
     border-color: var(--accent-primary);
 }
@@ -751,9 +806,22 @@ body {
     height: 8px;
     background: var(--bg-main);
     border-radius: 4px;
+    border-radius: 4px;
     overflow: hidden;
 }
 
+.macro-row .value {
+    font-family: var(--font-body);
+    /* Or heading if preferred, but body is usually better for reading */
+    font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    text-align: right;
+    min-width: 80px;
+    /* alignment */
+}
 .progress-bar-fill {
     height: 100%;
     background: var(--text-primary);
@@ -816,6 +884,143 @@ body {
     pointer-events: none;
 }
 
+/* Food Item Card */
+.food-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    cursor: grab;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    position: relative;
+    /* For absolute positioning of info/weight */
+}
+
+.food-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.food-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-right: 24px;
+    /* Space for info button */
+}
+
+.food-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+}
+
+.food-calories {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+/* Info Button (Top Right) */
+.info-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--bg-subtle);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 2;
+}
+
+.info-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.info-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Weight/Action (Bottom Right) */
+.food-actions-bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: auto;
+    padding-top: var(--space-2);
+}
+
+.food-weight-input {
+    width: 60px;
+    padding: 4px;
+    font-size: var(--font-size-sm);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-app);
+    color: var(--text-primary);
+    text-align: right;
+}
+
+/* Macro Popover */
+/* Macro Popover (Global) */
+.macro-popover {
+    position: fixed;
+    /* Fixed to viewport to avoid clipping/z-index issues */
+    top: 0;
+    left: 0;
+    background: #1E293B;
+    /* Solid high contrast background (Slate 800) */
+    border: 1px solid var(--border-focus);
+    /* Highlight border */
+    border-radius: var(--radius-md);
+    padding: 12px;
+    /* Increased padding */
+    box-shadow: var(--shadow-float);
+    z-index: 9999;
+    /* Highest Z-Index */
+    width: 220px;
+    /* Increased width */
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+
+.macro-popover.visible {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.macro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    /* Increased gap */
+}
+
+/* Reusing .chip classes from global scope, ensuring they fit */
+.macro-popover .chip {
+    font-size: 0.9rem;
+    /* Larger text */
+    padding: 6px;
+    /* Larger chips */
+    width: 100%;
+    justify-content: center;
+    font-weight: 600;
+}
 .modal-content {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
