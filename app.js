@@ -634,9 +634,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addFoodToMeal(foodId, mealType) {
+        const food = state.foods.find(f => f.id === foodId);
+        const defaultWeight = food && food.default_weight ? food.default_weight : 100;
+
         state.meals[mealType].push({
             foodId,
-            weight: 100 // Default weight
+            weight: defaultWeight // Use the defined default weight
         });
         saveToLocalStorage();
         renderMeals();
