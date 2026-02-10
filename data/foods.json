@@ -27,7 +27,7 @@
     "carbs": 6.7,
     "fat": 7.0,
     "calorie_to_protein_ratio": 7.59,
-    "default_weight": 50
+    "default_weight": 100
   },
   {
     "id": "yoghurt",
@@ -108,5 +108,49 @@
     "fat": 99.7,
     "calorie_to_protein_ratio": null,
     "default_weight": 10
+  },
+  {
+    "id": "oats",
+    "name": "Oats",
+    "calories": 407.0,
+    "protein": 11.8,
+    "carbs": 68.5,
+    "fat": 9.5,
+    "fiber": 10.0,
+    "calorie_to_protein_ratio": 34.49,
+    "default_weight": 50
+  },
+  {
+    "id": "dry_fruits",
+    "name": "Dry Fruits",
+    "calories": 521.0,
+    "protein": 14.3,
+    "carbs": 36.3,
+    "fat": 39.8,
+    "fiber": 7.0,
+    "calorie_to_protein_ratio": 36.43,
+    "default_weight": 30
+  },
+  {
+    "id": "carrot",
+    "name": "Carrot",
+    "calories": 41.0,
+    "protein": 0.9,
+    "carbs": 9.6,
+    "fat": 0.2,
+    "fiber": 2.8,
+    "calorie_to_protein_ratio": 45.56,
+    "default_weight": 61
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber",
+    "calories": 15.0,
+    "protein": 0.65,
+    "carbs": 3.63,
+    "fat": 0.11,
+    "fiber": 0.5,
+    "calorie_to_protein_ratio": 23.08,
+    "default_weight": 301
   }
 ]
