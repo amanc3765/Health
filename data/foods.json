@@ -50,6 +50,17 @@
     "default_weight": 25
   },
   {
+    "id": "pintola_muesli",
+    "name": "Pintola High Protein Muesli",
+    "calories": 390.0,
+    "protein": 24.0,
+    "carbs": 56.0,
+    "fat": 8.0,
+    "fiber": 10.0,
+    "calorie_to_protein_ratio": 16.25,
+    "default_weight": 50
+  },
+  {
     "id": "besan",
     "name": "Besan",
     "calories": 383.64,
@@ -78,6 +89,16 @@
     "fat": 3.0,
     "calorie_to_protein_ratio": 18.125,
     "default_weight": 200
+  },
+  {
+    "id": "akshayakalpa_milk",
+    "name": "Akshayakalpa Organic Cow Milk",
+    "calories": 63.2,
+    "protein": 3.25,
+    "carbs": 4.45,
+    "fat": 3.6,
+    "calorie_to_protein_ratio": 19.45,
+    "default_weight": 100
   },
   {
     "id": "tomato",
