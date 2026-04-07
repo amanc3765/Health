@@ -70,6 +70,49 @@
     "default_weight": 75
   },
   {
+    "id": "amul_milk",
+    "name": "Milk",
+    "calories": 58.0,
+    "protein": 3.2,
+    "carbs": 4.7,
+    "fat": 3.0,
+    "calorie_to_protein_ratio": 18.125,
+    "default_weight": 200
+  },
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "calories": 18.0,
+    "protein": 0.9,
+    "carbs": 3.9,
+    "fat": 0.2,
+    "fiber": 1.2,
+    "calorie_to_protein_ratio": 20.0,
+    "default_weight": 50
+  },
+  {
+    "id": "peanuts",
+    "name": "Peanuts",
+    "calories": 567.0,
+    "protein": 25.8,
+    "carbs": 16.1,
+    "fat": 49.2,
+    "fiber": 8.5,
+    "calorie_to_protein_ratio": 21.97,
+    "default_weight": 30
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber",
+    "calories": 15.0,
+    "protein": 0.65,
+    "carbs": 3.63,
+    "fat": 0.11,
+    "fiber": 0.5,
+    "calorie_to_protein_ratio": 23.08,
+    "default_weight": 301
+  },
+  {
     "id": "aata",
     "name": "Aata",
     "calories": 336.0,
@@ -90,24 +133,15 @@
     "default_weight": 200
   },
   {
-    "id": "rice",
-    "name": "Rice",
-    "calories": 360.0,
-    "protein": 6.0,
-    "carbs": 80.0,
-    "fat": 1.0,
-    "calorie_to_protein_ratio": 60.0,
-    "default_weight": 100
-  },
-  {
-    "id": "fat",
-    "name": "Fat",
-    "calories": 897.0,
-    "protein": 0.0,
-    "carbs": 0.0,
-    "fat": 99.7,
-    "calorie_to_protein_ratio": null,
-    "default_weight": 10
+    "id": "chocolate_muesli",
+    "name": "Yogabar Muesli",
+    "calories": 408.0,
+    "protein": 12.0,
+    "carbs": 69.0,
+    "fat": 11.6,
+    "fiber": 10.0,
+    "calorie_to_protein_ratio": 34.0,
+    "default_weight": 40
   },
   {
     "id": "oats",
@@ -118,6 +152,17 @@
     "fat": 9.5,
     "fiber": 10.0,
     "calorie_to_protein_ratio": 34.49,
+    "default_weight": 50
+  },
+  {
+    "id": "onion",
+    "name": "Onion",
+    "calories": 40.0,
+    "protein": 1.1,
+    "carbs": 9.3,
+    "fat": 0.1,
+    "fiber": 1.7,
+    "calorie_to_protein_ratio": 36.36,
     "default_weight": 50
   },
   {
@@ -143,14 +188,34 @@
     "default_weight": 61
   },
   {
-    "id": "cucumber",
-    "name": "Cucumber",
-    "calories": 15.0,
-    "protein": 0.65,
-    "carbs": 3.63,
-    "fat": 0.11,
-    "fiber": 0.5,
-    "calorie_to_protein_ratio": 23.08,
-    "default_weight": 301
+    "id": "rice",
+    "name": "Rice",
+    "calories": 360.0,
+    "protein": 6.0,
+    "carbs": 80.0,
+    "fat": 1.0,
+    "calorie_to_protein_ratio": 60.0,
+    "default_weight": 100
+  },
+  {
+    "id": "idli",
+    "name": "Idli",
+    "calories": 138.7,
+    "protein": 1.74,
+    "carbs": 29.32,
+    "fat": 1.61,
+    "fiber": 1.85,
+    "calorie_to_protein_ratio": 79.71,
+    "default_weight": 300
+  },
+  {
+    "id": "fat",
+    "name": "Fat",
+    "calories": 897.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 99.7,
+    "calorie_to_protein_ratio": null,
+    "default_weight": 10
   }
 ]
