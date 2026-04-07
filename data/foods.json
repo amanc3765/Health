@@ -7,7 +7,8 @@
     "carbs": 16.2,
     "fat": 5.51,
     "calorie_to_protein_ratio": 5.63,
-    "default_weight": 36
+    "default_weight": 36,
+    "price": 350
   },
   {
     "id": "soyabean",
@@ -17,7 +18,8 @@
     "carbs": 33.5,
     "fat": 0.8,
     "calorie_to_protein_ratio": 6.66,
-    "default_weight": 25
+    "default_weight": 25,
+    "price": 10
   },
   {
     "id": "paneer",
@@ -27,7 +29,8 @@
     "carbs": 6.7,
     "fat": 7.0,
     "calorie_to_protein_ratio": 7.59,
-    "default_weight": 100
+    "default_weight": 100,
+    "price": 40
   },
   {
     "id": "yoghurt",
@@ -37,7 +40,8 @@
     "carbs": 9.5,
     "fat": 1.5,
     "calorie_to_protein_ratio": 8.6,
-    "default_weight": 112.5
+    "default_weight": 112.5,
+    "price": 15
   },
   {
     "id": "dal",
@@ -47,7 +51,8 @@
     "carbs": 65.0,
     "fat": 1.0,
     "calorie_to_protein_ratio": 15.91,
-    "default_weight": 25
+    "default_weight": 25,
+    "price": 12
   },
   {
     "id": "pintola_muesli",
@@ -58,7 +63,8 @@
     "fat": 8.0,
     "fiber": 10.0,
     "calorie_to_protein_ratio": 16.25,
-    "default_weight": 50
+    "default_weight": 50,
+    "price": 70.8
   },
   {
     "id": "besan",
@@ -68,7 +74,8 @@
     "carbs": 59.15,
     "fat": 6.56,
     "calorie_to_protein_ratio": 17.44,
-    "default_weight": 100
+    "default_weight": 100,
+    "price": 10
   },
   {
     "id": "sattoo",
@@ -78,7 +85,8 @@
     "carbs": 66.1,
     "fat": 4.8,
     "calorie_to_protein_ratio": 17.64,
-    "default_weight": 75
+    "default_weight": 75,
+    "price": 15
   },
   {
     "id": "amul_milk",
@@ -88,7 +96,8 @@
     "carbs": 4.7,
     "fat": 3.0,
     "calorie_to_protein_ratio": 18.125,
-    "default_weight": 200
+    "default_weight": 200,
+    "price": 6
   },
   {
     "id": "akshayakalpa_milk",
@@ -98,7 +107,8 @@
     "carbs": 4.45,
     "fat": 3.6,
     "calorie_to_protein_ratio": 19.45,
-    "default_weight": 100
+    "default_weight": 100,
+    "price": 10.6
   },
   {
     "id": "tomato",
@@ -109,7 +119,8 @@
     "fat": 0.2,
     "fiber": 1.2,
     "calorie_to_protein_ratio": 20.0,
-    "default_weight": 50
+    "default_weight": 50,
+    "price": 4
   },
   {
     "id": "peanuts",
@@ -120,7 +131,8 @@
     "fat": 49.2,
     "fiber": 8.5,
     "calorie_to_protein_ratio": 21.97,
-    "default_weight": 30
+    "default_weight": 30,
+    "price": 15
   },
   {
     "id": "cucumber",
@@ -131,7 +143,8 @@
     "fat": 0.11,
     "fiber": 0.5,
     "calorie_to_protein_ratio": 23.08,
-    "default_weight": 301
+    "default_weight": 301,
+    "price": 4
   },
   {
     "id": "aata",
@@ -141,7 +154,8 @@
     "carbs": 71.8,
     "fat": 1.9,
     "calorie_to_protein_ratio": 23.33,
-    "default_weight": 100
+    "default_weight": 100,
+    "price": 5
   },
   {
     "id": "vegetable",
@@ -151,7 +165,8 @@
     "carbs": 13,
     "fat": 5,
     "calorie_to_protein_ratio": 31.43,
-    "default_weight": 200
+    "default_weight": 200,
+    "price": 5
   },
   {
     "id": "chocolate_muesli",
@@ -162,7 +177,8 @@
     "fat": 11.6,
     "fiber": 10.0,
     "calorie_to_protein_ratio": 34.0,
-    "default_weight": 40
+    "default_weight": 40,
+    "price": 70.8
   },
   {
     "id": "oats",
@@ -173,7 +189,8 @@
     "fat": 9.5,
     "fiber": 10.0,
     "calorie_to_protein_ratio": 34.49,
-    "default_weight": 50
+    "default_weight": 50,
+    "price": 18
   },
   {
     "id": "onion",
@@ -184,7 +201,8 @@
     "fat": 0.1,
     "fiber": 1.7,
     "calorie_to_protein_ratio": 36.36,
-    "default_weight": 50
+    "default_weight": 50,
+    "price": 4
   },
   {
     "id": "dry_fruits",
@@ -195,7 +213,8 @@
     "fat": 39.8,
     "fiber": 7.0,
     "calorie_to_protein_ratio": 36.43,
-    "default_weight": 30
+    "default_weight": 30,
+    "price": 90
   },
   {
     "id": "carrot",
@@ -206,7 +225,8 @@
     "fat": 0.2,
     "fiber": 2.8,
     "calorie_to_protein_ratio": 45.56,
-    "default_weight": 61
+    "default_weight": 61,
+    "price": 5
   },
   {
     "id": "rice",
@@ -216,7 +236,8 @@
     "carbs": 80.0,
     "fat": 1.0,
     "calorie_to_protein_ratio": 60.0,
-    "default_weight": 100
+    "default_weight": 100,
+    "price": 7
   },
   {
     "id": "idli",
@@ -227,7 +248,8 @@
     "fat": 1.61,
     "fiber": 1.85,
     "calorie_to_protein_ratio": 79.71,
-    "default_weight": 300
+    "default_weight": 300,
+    "price": 6
   },
   {
     "id": "fat",
@@ -237,6 +259,7 @@
     "carbs": 0.0,
     "fat": 99.7,
     "calorie_to_protein_ratio": null,
-    "default_weight": 10
+    "default_weight": 10,
+    "price": 18
   }
 ]

@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             calories: document.getElementById('summary-calories'),
             protein: document.getElementById('summary-protein'),
             carbs: document.getElementById('summary-carbs'),
-            fat: document.getElementById('summary-fat')
+            fat: document.getElementById('summary-fat'),
+            price: document.getElementById('summary-price-value')
         },
         btnCalculate: document.getElementById('btn-calculate'),
         btnReset: document.getElementById('btn-reset'),
@@ -397,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateTotals() {
-        const daily = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+        const daily = { calories: 0, protein: 0, carbs: 0, fat: 0, price: 0 };
         const mealTotals = {
             breakfast: { calories: 0, protein: 0, carbs: 0, fat: 0 },
             lunch: { calories: 0, protein: 0, carbs: 0, fat: 0 },
@@ -415,6 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     daily.protein += macros.protein;
                     daily.carbs += macros.carbs;
                     daily.fat += macros.fat;
+                    daily.price += macros.price;
 
                     mealTotals[mealType].calories += macros.calories;
                     mealTotals[mealType].protein += macros.protein;
@@ -442,6 +444,10 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSummaryRow(elements.summaries.protein, daily.protein, state.goals.protein, 'g');
         updateSummaryRow(elements.summaries.carbs, daily.carbs, state.goals.carbs, 'g');
         updateSummaryRow(elements.summaries.fat, daily.fat, state.goals.fat, 'g');
+        
+        if (elements.summaries.price) {
+            elements.summaries.price.textContent = `₹${Math.round(daily.price)}`;
+        }
     }
 
     function updateSummaryRow(element, current, goal, unit) {
@@ -485,7 +491,8 @@ document.addEventListener('DOMContentLoaded', () => {
             calories: food.calories * ratio,
             protein: food.protein * ratio,
             carbs: food.carbs * ratio,
-            fat: food.fat * ratio
+            fat: food.fat * ratio,
+            price: (food.price || 0) * ratio
         };
     }
 
