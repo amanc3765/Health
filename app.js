@@ -368,7 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         mealType: mealType,
                         index: index,
                         foodId: item.foodId,
-                        weight: item.weight
+                        weight: item.weight,
+                        splitDay: item.splitDay
                     }));
                     e.dataTransfer.effectAllowed = 'copy';
                 });
@@ -383,7 +384,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         mealType: mealType,
                         index: index,
                         foodId: item.foodId,
-                        weight: item.weight
+                        weight: item.weight,
+                        splitDay: item.splitDay
                     }));
                     e.dataTransfer.effectAllowed = 'move';
                     card.classList.add('dragging');
@@ -616,7 +618,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Copy Logic
                             state.meals[targetMealType].push({
                                 foodId: data.foodId,
-                                weight: data.weight
+                                weight: data.weight,
+                                splitDay: data.splitDay
                             });
                         } else if (data.type === 'move') {
                             // Move Logic
@@ -625,7 +628,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             state.meals[targetMealType].push({
                                 foodId: data.foodId,
-                                weight: data.weight
+                                weight: data.weight,
+                                splitDay: data.splitDay
                             });
                         }
                     } catch (e) { console.log('JSON parse error', e); }
