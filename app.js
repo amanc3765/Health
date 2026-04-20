@@ -277,23 +277,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const c = food.carbs;
             const f = food.fat;
 
-            // Usage Chip (Bottom Right)
-            let usageLabel = '';
-            if (usage > 0) {
-                usageLabel = `<div class="food-usage-chip-abs">${Math.round(usage)}g used</div>`;
-            }
+            const isUsed = usage > 0;
+            const tintedClass = isUsed ? 'tinted-blue' : '';
 
             return `
-            <div class="food-item" draggable="true" data-id="${food.id}">
+            <div class="food-item ${tintedClass}" draggable="true" data-id="${food.id}">
                 <div class="food-item-name">${food.name}</div>
 
                 <button class="food-info-btn-abs" onclick="toggleMacroPopover(event, '${food.id}', ${cals}, ${p}, ${c}, ${f})" title="Macro Info">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
-
-                ${usageLabel}
-
-                ${usageLabel}
             </div>
             `;
         }).join('');

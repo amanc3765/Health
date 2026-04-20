@@ -385,6 +385,7 @@ h6 {
         /* Sufficient height for top/bottom corner elements */
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .food-item:hover {
@@ -392,6 +393,19 @@ h6 {
     /* transform: translateY(-2px); REMOVED to prevent z-index flicker loop */
     box-shadow: var(--elevation-1);
     border-color: rgba(255, 255, 255, 0.1);
+}
+
+.food-item.tinted-blue {
+    background: #006FFF;
+    border-color: #006FFF;
+}
+
+.food-item.tinted-blue .food-item-name {
+    color: white;
+}
+
+.food-item.tinted-blue .food-info-btn-abs {
+    color: white;
 }
 
 .food-item-name {
