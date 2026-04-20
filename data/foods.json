@@ -23,7 +23,7 @@
   },
   {
     "id": "paneer",
-    "name": "Paneer",
+    "name": "Milky Mist High Protein Paneer",
     "calories": 189.8,
     "protein": 25.0,
     "carbs": 6.7,
@@ -34,7 +34,7 @@
   },
   {
     "id": "yoghurt",
-    "name": "Yoghurt",
+    "name": "Milky Mist Skyr Cup",
     "calories": 96.3,
     "protein": 11.2,
     "carbs": 9.5,
@@ -42,6 +42,29 @@
     "calorie_to_protein_ratio": 8.6,
     "default_weight": 112.5,
     "price": 15
+  },
+  {
+    "id": "idli",
+    "name": "High Protein Idli",
+    "calories": 177.36,
+    "protein": 15.24,
+    "carbs": 28.38,
+    "fat": 0.32,
+    "fiber": 2.9,
+    "calorie_to_protein_ratio": 11.64,
+    "default_weight": 250,
+    "price": 6
+  },
+  {
+    "id": "safal_green_peas",
+    "name": "Safal Frozen Green Peas",
+    "calories": 84.0,
+    "protein": 6.5,
+    "carbs": 14.3,
+    "fat": 0.1,
+    "calorie_to_protein_ratio": 12.92,
+    "default_weight": 100,
+    "price": 12
   },
   {
     "id": "dal",
@@ -63,8 +86,20 @@
     "fat": 8.0,
     "fiber": 10.0,
     "calorie_to_protein_ratio": 16.25,
-    "default_weight": 50,
+    "default_weight": 100,
     "price": 70.8
+  },
+  {
+    "id": "roasted_chana",
+    "name": "Roasted Chana",
+    "calories": 374.5,
+    "protein": 22.5,
+    "carbs": 61.0,
+    "fat": 4.5,
+    "fiber": 12.0,
+    "calorie_to_protein_ratio": 16.64,
+    "default_weight": 20,
+    "price": 4
   },
   {
     "id": "besan",
@@ -107,7 +142,7 @@
     "carbs": 4.45,
     "fat": 3.6,
     "calorie_to_protein_ratio": 19.45,
-    "default_weight": 100,
+    "default_weight": 250,
     "price": 10.6
   },
   {
@@ -169,6 +204,18 @@
     "price": 5
   },
   {
+    "id": "vegetable_salad",
+    "name": "Vegetable Salad",
+    "calories": 28.5,
+    "protein": 0.9,
+    "carbs": 6.6,
+    "fat": 0.2,
+    "fiber": 1.6,
+    "calorie_to_protein_ratio": 31.67,
+    "default_weight": 100,
+    "price": 5
+  },
+  {
     "id": "chocolate_muesli",
     "name": "Yogabar Muesli",
     "calories": 408.0,
@@ -179,18 +226,6 @@
     "calorie_to_protein_ratio": 34.0,
     "default_weight": 40,
     "price": 70.8
-  },
-  {
-    "id": "oats",
-    "name": "Oats",
-    "calories": 407.0,
-    "protein": 11.8,
-    "carbs": 68.5,
-    "fat": 9.5,
-    "fiber": 10.0,
-    "calorie_to_protein_ratio": 34.49,
-    "default_weight": 50,
-    "price": 18
   },
   {
     "id": "onion",
@@ -217,6 +252,18 @@
     "price": 90
   },
   {
+    "id": "oats",
+    "name": "Multigrain Quaker Oats",
+    "calories": 407.0,
+    "protein": 11.1,
+    "carbs": 71.0,
+    "fat": 9.0,
+    "fiber": 12.0,
+    "calorie_to_protein_ratio": 36.67,
+    "default_weight": 50,
+    "price": 18
+  },
+  {
     "id": "carrot",
     "name": "Carrot",
     "calories": 41.0,
@@ -227,6 +274,17 @@
     "calorie_to_protein_ratio": 45.56,
     "default_weight": 61,
     "price": 5
+  },
+  {
+    "id": "potato",
+    "name": "Potato",
+    "calories": 87.0,
+    "protein": 1.9,
+    "carbs": 20.1,
+    "fat": 0.1,
+    "calorie_to_protein_ratio": 45.79,
+    "default_weight": 100,
+    "price": 3
   },
   {
     "id": "rice",
@@ -240,16 +298,16 @@
     "price": 7
   },
   {
-    "id": "idli",
-    "name": "Idli",
-    "calories": 138.7,
-    "protein": 1.74,
-    "carbs": 29.32,
-    "fat": 1.61,
-    "fiber": 1.85,
-    "calorie_to_protein_ratio": 79.71,
-    "default_weight": 300,
-    "price": 6
+    "id": "banana",
+    "name": "Banana",
+    "calories": 89.0,
+    "protein": 1.1,
+    "carbs": 22.8,
+    "fat": 0.3,
+    "fiber": 2.6,
+    "calorie_to_protein_ratio": 80.91,
+    "default_weight": 100,
+    "price": 5
   },
   {
     "id": "fat",

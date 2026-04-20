@@ -327,7 +327,7 @@ h6 {
 /* Main Layout Grid */
 .main-layout {
     display: grid;
-    grid-template-columns: 280px 1fr 320px;
+    grid-template-columns: 280px 1fr 260px 260px;
     gap: var(--space-4);
     flex: 1;
     min-height: 0;
@@ -436,10 +436,9 @@ h6 {
 }
 
 /* Meal Planner (Center) */
-/* Meal Planner (Center) */
 .meal-planner-panel {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     padding: var(--space-3);
     gap: var(--space-3);
     background: transparent;
@@ -525,23 +524,46 @@ h6 {
                                     display: block;
                                 }
                 
-                                /* Row 2: Quantity/Input */
+                                /* Row 2: Quantity & Actions */
                                 .meal-food-quantity-row {
                                     display: flex;
-    align-items: center;
-        width: 100%;
-}
-.meal-food-input-group {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 4px 8px;
-        border-radius: var(--radius-sm);
-        border: 1px solid var(--border-subtle);
-        width: 100%;
-        /* Full width or auto? User wants 3 rows, maybe full width looks better for input */
-    }
+                                    align-items: center;
+                                    gap: 6px;
+                                    width: 100%;
+                                }
+
+                                .meal-food-input-group {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 6px;
+                                    background: rgba(0, 0, 0, 0.2);
+                                    padding: 4px 8px;
+                                    border-radius: var(--radius-sm);
+                                    border: 1px solid var(--border-subtle);
+                                    flex: 4; /* 40% */
+                                }
+
+                                .meal-food-quantity-row .icon-btn {
+                                    flex: 2; /* 20% */
+                                    display: flex;
+                                    justify-content: center;
+                                    background: rgba(255, 255, 255, 0.03);
+                                    border: 1px solid transparent;
+                                    padding: 6px;
+                                    border-radius: var(--radius-sm);
+                                }
+
+                                .meal-food-quantity-row .icon-btn:hover {
+                                    background: var(--bg-surface-hover);
+                                    border-color: var(--border-highlight);
+                                    color: var(--text-primary);
+                                }
+
+                                .meal-food-quantity-row .danger-icon-btn:hover {
+                                    background: var(--danger-bg);
+                                    border-color: var(--danger);
+                                    color: var(--danger);
+                                }
     
                                                                 .meal-food-input-group input {
                                                                     width: 100%;
@@ -565,40 +587,7 @@ h6 {
             color: var(--text-tertiary);
             font-weight: 600;
         }
-                /* Row 3: Actions */
-                .meal-food-actions-row {
-                    display: flex;
-            align-items: center;
-                justify-content: space-between;
-                /* Spread them out or keep them tight? "Control Buttons" usually clustered */
-                gap: 8px;
-                margin-top: 0;
-                border-top: none;
-                padding-top: 0;
-            }
-    
-                                                                /* Specific button styles for the card */
-                                                                .meal-food-actions-row .icon-btn {
-                                                                    padding: 6px;
-                                                                    border-radius: var(--radius-sm);
-                                                                    flex: 1;
-                                                                    /* Make them equal width for symmetry */
-                                                                    display: flex;
-                                                                    justify-content: center;
-                                                                    background: rgba(255, 255, 255, 0.03);
-                                                                    border: 1px solid transparent;
-                                                                }
-                                
-                                                                .meal-food-actions-row .icon-btn:hover {
-                                                                    background: var(--bg-surface-hover);
-                                                                    border-color: var(--border-highlight);
-                                                                    color: var(--text-primary);
-                                                                }
-                                                                .meal-food-actions-row .danger-icon-btn:hover {
-                                                                    background: var(--danger-bg);
-                                                                    border-color: var(--danger);
-                                                                    color: var(--danger);
-                                                                }
+
                                 
                                                                 .meal-food-input-group input {
                                                                     width: 70px;

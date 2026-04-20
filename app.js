@@ -6,10 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPlanName: null,
         foods: [],
         meals: {
-            breakfast: [],
-            lunch: [],
-            snacks: [],
-            dinner: []
+            meal1: [],
+            meal2: []
         },
         goals: {
             calories: 2130,
@@ -157,7 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function applyState(parsed) {
-        if (parsed.meals) state.meals = parsed.meals;
+        if (parsed.meals) {
+            // Migrate old structure if needed
+            if (parsed.meals.breakfast || parsed.meals.lunch || parsed.meals.snacks || parsed.meals.dinner) {
+                state.meals = {
+                    meal1: [],
+                    meal2: []
+                };
+                if (parsed.meals.breakfast) state.meals.meal1.push(...parsed.meals.breakfast);
+                if (parsed.meals.lunch) state.meals.meal1.push(...parsed.meals.lunch);
+                if (parsed.meals.snacks) state.meals.meal2.push(...parsed.meals.snacks);
+                if (parsed.meals.dinner) state.meals.meal2.push(...parsed.meals.dinner);
+            } else {
+                state.meals = parsed.meals;
+            }
+        }
         if (parsed.goals) state.goals = parsed.goals;
         if (parsed.profile) state.profile = parsed.profile;
 
@@ -178,10 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function resetPlanner() {
         state.meals = {
-            breakfast: [],
-            lunch: [],
-            snacks: [],
-            dinner: []
+            meal1: [],
+            meal2: []
         };
         saveToLocalStorage();
         renderMeals();
@@ -330,9 +340,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="number" value="${item.weight}" min="0" onchange="updateFoodWeight('${mealType}', ${index}, this.value)">
                             <span class="unit-label">g</span>
                         </div>
-                    </div>
-
-                    <div class="meal-food-actions-row">
                          <button class="icon-btn" onclick="toggleMacroPopover(event, 'meal-${mealType}-${index}', ${cals}, ${p}, ${c}, ${f})" title="Macro Info">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                          </button>
@@ -400,10 +407,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTotals() {
         const daily = { calories: 0, protein: 0, carbs: 0, fat: 0, price: 0 };
         const mealTotals = {
-            breakfast: { calories: 0, protein: 0, carbs: 0, fat: 0 },
-            lunch: { calories: 0, protein: 0, carbs: 0, fat: 0 },
-            snacks: { calories: 0, protein: 0, carbs: 0, fat: 0 },
-            dinner: { calories: 0, protein: 0, carbs: 0, fat: 0 }
+            meal1: { calories: 0, protein: 0, carbs: 0, fat: 0 },
+            meal2: { calories: 0, protein: 0, carbs: 0, fat: 0 }
         };
 
         // Calculate totals
