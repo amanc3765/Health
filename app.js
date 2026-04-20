@@ -331,6 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const f = Math.round(macros.fat);
 
                 card.innerHTML = `
+                    <button class="split-day-btn ${item.splitDay ? 'active' : ''}" onclick="toggleSplitDay('${mealType}', ${index})" title="Split Day"></button>
                     <div class="meal-food-name-row">
                         <span class="meal-food-name" title="${food.name}">${food.name}</span>
                     </div>
@@ -488,7 +489,14 @@ document.addEventListener('DOMContentLoaded', () => {
         renderFoodList();
     };
 
-
+    window.toggleSplitDay = (mealType, index) => {
+        const item = state.meals[mealType][index];
+        item.splitDay = !item.splitDay;
+        saveToLocalStorage();
+        renderMeals();
+        updateTotals();
+        renderFoodList();
+    };
 
     function calculateMacros(food, weight) {
         const ratio = weight / 100;
@@ -651,7 +659,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         state.meals[mealType].push({
             foodId,
-            weight: defaultWeight // Use the defined default weight
+            weight: defaultWeight, // Use the defined default weight
+            splitDay: false
         });
         saveToLocalStorage();
         renderMeals();
