@@ -33,6 +33,18 @@
     "price": 40
   },
   {
+    "id": "spinach",
+    "name": "Spinach",
+    "calories": 23.0,
+    "protein": 2.9,
+    "carbs": 3.6,
+    "fat": 0.4,
+    "fiber": 2.2,
+    "calorie_to_protein_ratio": 7.93,
+    "default_weight": 100,
+    "price": 10
+  },
+  {
     "id": "yoghurt",
     "name": "Milky Mist Skyr Cup",
     "calories": 96.3,
@@ -111,6 +123,17 @@
     "calorie_to_protein_ratio": 17.44,
     "default_weight": 100,
     "price": 10
+  },
+  {
+    "id": "paneer_normal",
+    "name": "Paneer (Normal)",
+    "calories": 283.0,
+    "protein": 16.1,
+    "carbs": 5.1,
+    "fat": 22.0,
+    "calorie_to_protein_ratio": 17.58,
+    "default_weight": 100,
+    "price": 40
   },
   {
     "id": "sattoo",

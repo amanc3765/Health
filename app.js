@@ -324,6 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const f = Math.round(macros.fat);
 
                 card.innerHTML = `
+                    <button class="buy-btn ${item.buy ? 'active' : ''}" onclick="toggleBuy('${mealType}', ${index})" title="To Buy"></button>
                     <button class="split-day-btn ${item.splitDay ? 'active' : ''}" onclick="toggleSplitDay('${mealType}', ${index})" title="Split Day"></button>
                     <div class="meal-food-name-row">
                         <span class="meal-food-name" title="${food.name}">${food.name}</span>
@@ -487,6 +488,15 @@ document.addEventListener('DOMContentLoaded', () => {
     window.toggleSplitDay = (mealType, index) => {
         const item = state.meals[mealType][index];
         item.splitDay = !item.splitDay;
+        saveToLocalStorage();
+        renderMeals();
+        updateTotals();
+        renderFoodList();
+    };
+
+    window.toggleBuy = (mealType, index) => {
+        const item = state.meals[mealType][index];
+        item.buy = !item.buy;
         saveToLocalStorage();
         renderMeals();
         updateTotals();
@@ -657,7 +667,8 @@ document.addEventListener('DOMContentLoaded', () => {
         state.meals[mealType].push({
             foodId,
             weight: defaultWeight, // Use the defined default weight
-            splitDay: false
+            splitDay: false,
+            buy: false
         });
         saveToLocalStorage();
         renderMeals();
