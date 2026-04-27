@@ -239,6 +239,18 @@
     "price": 5
   },
   {
+    "id": "tata_soulfull_masala_oats",
+    "name": "Tata Soulfull Masala Oats",
+    "calories": 372.0,
+    "protein": 11.4,
+    "carbs": 66.4,
+    "fat": 6.7,
+    "fiber": 10.4,
+    "calorie_to_protein_ratio": 32.63,
+    "default_weight": 38,
+    "price": 20
+  },
+  {
     "id": "chocolate_muesli",
     "name": "Yogabar Muesli",
     "calories": 408.0,
