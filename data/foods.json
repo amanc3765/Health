@@ -22,6 +22,18 @@
     "price": 10
   },
   {
+    "id": "mushroom",
+    "name": "Mushroom",
+    "calories": 22.0,
+    "protein": 3.1,
+    "carbs": 3.3,
+    "fat": 0.3,
+    "fiber": 1.0,
+    "calorie_to_protein_ratio": 7.1,
+    "default_weight": 100,
+    "price": 20
+  },
+  {
     "id": "paneer",
     "name": "Milky Mist High Protein Paneer",
     "calories": 189.8,
@@ -47,11 +59,11 @@
   {
     "id": "yoghurt",
     "name": "Milky Mist Skyr Cup",
-    "calories": 96.3,
-    "protein": 11.2,
+    "calories": 101.0,
+    "protein": 11.0,
     "carbs": 9.5,
-    "fat": 1.5,
-    "calorie_to_protein_ratio": 8.6,
+    "fat": 2.1,
+    "calorie_to_protein_ratio": 9.18,
     "default_weight": 225,
     "price": 15
   },
@@ -171,15 +183,15 @@
   },
   {
     "id": "chickpeas",
-    "name": "Boiled Chickpeas",
-    "calories": 164.0,
-    "protein": 8.9,
-    "carbs": 27.4,
-    "fat": 2.6,
-    "fiber": 7.6,
-    "calorie_to_protein_ratio": 18.43,
+    "name": "Raw Chickpeas",
+    "calories": 364.0,
+    "protein": 19.3,
+    "carbs": 60.6,
+    "fat": 6.0,
+    "fiber": 17.4,
+    "calorie_to_protein_ratio": 18.86,
     "default_weight": 100,
-    "price": 8
+    "price": 10
   },
   {
     "id": "cabbage",
@@ -266,12 +278,11 @@
   {
     "id": "safal_sweet_corn",
     "name": "Safal Frozen Sweet Corn",
-    "calories": 86.0,
-    "protein": 3.27,
-    "carbs": 19.0,
-    "fat": 1.4,
-    "fiber": 2.0,
-    "calorie_to_protein_ratio": 26.3,
+    "calories": 113.0,
+    "protein": 4.5,
+    "carbs": 24.5,
+    "fat": 1.1,
+    "calorie_to_protein_ratio": 25.11,
     "default_weight": 100,
     "price": 18
   },
@@ -286,6 +297,40 @@
     "calorie_to_protein_ratio": 26.88,
     "default_weight": 100,
     "price": 5
+  },
+  {
+    "id": "wheat_pasta",
+    "name": "Whole Wheat Pasta",
+    "calories": 330.0,
+    "protein": 12.0,
+    "carbs": 63.0,
+    "fat": 3.3,
+    "fiber": 9.0,
+    "calorie_to_protein_ratio": 27.5,
+    "default_weight": 100,
+    "price": 130
+  },
+  {
+    "id": "mustard_sauce",
+    "name": "American Mustard Sauce",
+    "calories": 80.60,
+    "protein": 2.80,
+    "carbs": 10.60,
+    "fat": 3.00,
+    "calorie_to_protein_ratio": 28.79,
+    "default_weight": 15,
+    "price": 55
+  },
+  {
+    "id": "pasta",
+    "name": "Pasta",
+    "calories": 357.0,
+    "protein": 12.0,
+    "carbs": 75.0,
+    "fat": 1.0,
+    "calorie_to_protein_ratio": 29.75,
+    "default_weight": 100,
+    "price": 130
   },
   {
     "id": "vegetable",
@@ -403,6 +448,18 @@
     "calorie_to_protein_ratio": 48.71,
     "default_weight": 55,
     "price": 30
+  },
+  {
+    "id": "sweet_potato",
+    "name": "Sweet Potato",
+    "calories": 86.0,
+    "protein": 1.6,
+    "carbs": 20.1,
+    "fat": 0.1,
+    "fiber": 3.0,
+    "calorie_to_protein_ratio": 53.75,
+    "default_weight": 100,
+    "price": 5
   },
   {
     "id": "rice",

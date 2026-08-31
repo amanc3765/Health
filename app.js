@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         foods: [],
         meals: {
             meal1: [],
-            meal2: []
+            meal2: [],
+            meal3: []
         },
         goals: {
             calories: 2130,
@@ -160,14 +161,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (parsed.meals.breakfast || parsed.meals.lunch || parsed.meals.snacks || parsed.meals.dinner) {
                 state.meals = {
                     meal1: [],
-                    meal2: []
+                    meal2: [],
+                    meal3: []
                 };
                 if (parsed.meals.breakfast) state.meals.meal1.push(...parsed.meals.breakfast);
                 if (parsed.meals.lunch) state.meals.meal1.push(...parsed.meals.lunch);
                 if (parsed.meals.snacks) state.meals.meal2.push(...parsed.meals.snacks);
                 if (parsed.meals.dinner) state.meals.meal2.push(...parsed.meals.dinner);
             } else {
-                state.meals = parsed.meals;
+                state.meals = {
+                    meal1: [],
+                    meal2: [],
+                    meal3: [],
+                    ...parsed.meals
+                };
             }
         }
         if (parsed.goals) state.goals = parsed.goals;
@@ -191,7 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetPlanner() {
         state.meals = {
             meal1: [],
-            meal2: []
+            meal2: [],
+            meal3: []
         };
         saveToLocalStorage();
         renderMeals();
@@ -405,7 +413,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const daily = { calories: 0, protein: 0, carbs: 0, fat: 0, price: 0 };
         const mealTotals = {
             meal1: { calories: 0, protein: 0, carbs: 0, fat: 0 },
-            meal2: { calories: 0, protein: 0, carbs: 0, fat: 0 }
+            meal2: { calories: 0, protein: 0, carbs: 0, fat: 0 },
+            meal3: { calories: 0, protein: 0, carbs: 0, fat: 0 }
         };
 
         // Calculate totals

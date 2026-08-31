@@ -145,56 +145,66 @@
                         <span>0 kcal</span>
                     </div>
                 </div>
-            </section>
-
-            <!-- Totals (Right) -->
-            <section class="panel totals-panel">
-                <div class="panel-header-row">
-                    <h2>Daily Totals</h2>
-                    </div>
-                <div class="daily-summary">
-                    <div class="macro-row" id="summary-calories">
-                        <span class="label">Calories</span>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill"></div>
-                        </div>
-                        <span class="value">0 / 2000</span>
-                    </div>
-                    <div class="macro-row" id="summary-protein">
-                        <span class="label">Protein</span>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill"></div>
-                        </div>
-                        <span class="value">0 / 150g</span>
-                    </div>
-                    <div class="macro-row" id="summary-carbs">
-                        <span class="label">Carbs</span>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill"></div>
-                        </div>
-                        <span class="value">0 / 200g</span>
-                    </div>
-                    <div class="macro-row" id="summary-fat">
-                        <span class="label">Fat</span>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill"></div>
-                        </div>
-                        <span class="value">0 / 65g</span>
-                    </div>
-                    <div class="macro-row" id="summary-price">
-                        <span class="label">Total Cost</span>
-                        <span class="value" id="summary-price-value">₹0</span>
+                <div class="meal-column" data-meal="meal3">
+                    <h3>Meal 3</h3>
+                    <div class="meal-items" id="meal-meal3"></div>
+                    <div class="meal-totals" id="total-meal3">
+                        <span>0 kcal</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Saved Plans (Extreme Right) -->
-            <section class="panel saved-plans-panel">
-                <h2>Saved Plans</h2>
-                <div id="saved-plans-list" class="saved-plans-list">
-                    <!-- Plans injected here -->
-                </div>
-            </section>
+            <!-- Right Sidebar: Totals & Saved Plans -->
+            <div class="right-panel-column">
+                <!-- Totals (Upper 75%) -->
+                <section class="panel totals-panel">
+                    <div class="panel-header-row">
+                        <h2>Daily Totals</h2>
+                    </div>
+                    <div class="daily-summary">
+                        <div class="macro-row" id="summary-calories">
+                            <span class="label">Calories</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="value">0 / 2000</span>
+                        </div>
+                        <div class="macro-row" id="summary-protein">
+                            <span class="label">Protein</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="value">0 / 150g</span>
+                        </div>
+                        <div class="macro-row" id="summary-carbs">
+                            <span class="label">Carbs</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="value">0 / 200g</span>
+                        </div>
+                        <div class="macro-row" id="summary-fat">
+                            <span class="label">Fat</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="value">0 / 65g</span>
+                        </div>
+                        <div class="macro-row" id="summary-price">
+                            <span class="label">Total Cost</span>
+                            <span class="value" id="summary-price-value">₹0</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Saved Plans (Lower 25%) -->
+                <section class="panel saved-plans-panel">
+                    <h2>Saved Plans</h2>
+                    <div id="saved-plans-list" class="saved-plans-list">
+                        <!-- Plans injected here -->
+                    </div>
+                </section>
+            </div>
         </main>
     </div>
 
