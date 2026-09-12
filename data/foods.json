@@ -496,6 +496,18 @@
     "price": 7
   },
   {
+    "id": "avocado",
+    "name": "Avocado",
+    "calories": 160.0,
+    "protein": 2.0,
+    "carbs": 8.5,
+    "fat": 14.7,
+    "fiber": 6.7,
+    "calorie_to_protein_ratio": 80.0,
+    "default_weight": 100,
+    "price": 60
+  },
+  {
     "id": "banana",
     "name": "Banana",
     "calories": 89.0,
