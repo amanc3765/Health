@@ -588,8 +588,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (elements.saveExistingPlanSelect) {
             elements.saveExistingPlanSelect.addEventListener('change', (e) => {
-                if (e.target.value && elements.planNameInput) {
-                    elements.planNameInput.value = e.target.value;
+                if (elements.planNameInput) {
+                    elements.planNameInput.value = e.target.value || '';
                 }
             });
         }
@@ -726,7 +726,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openSaveModal() {
+        loadFromLocalStorage();
         loadSavedPlans();
+
+        const currentSelectedPlan = (window.TableModule && window.TableModule.DataStore)
+            ? window.TableModule.DataStore.getSelectedPlanKey()
+            : state.currentPlanName;
+
+        const defaultName = (currentSelectedPlan && currentSelectedPlan !== '__current__')
+            ? currentSelectedPlan
+            : (state.currentPlanName || "My Plan");
 
         // Populate existing plans dropdown
         if (elements.saveExistingPlanSelect) {
@@ -738,14 +747,13 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.saveExistingPlanSelect.innerHTML = optionsHTML;
 
             // Pre-select if current plan matches
-            if (state.currentPlanName && plans.some(p => p.name === state.currentPlanName)) {
-                elements.saveExistingPlanSelect.value = state.currentPlanName;
+            if (defaultName && plans.some(p => p.name === defaultName)) {
+                elements.saveExistingPlanSelect.value = defaultName;
             } else {
                 elements.saveExistingPlanSelect.value = '';
             }
         }
 
-        const defaultName = state.currentPlanName || "My Plan";
         if (elements.planNameInput) {
             elements.planNameInput.value = defaultName;
         }
@@ -789,26 +797,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function executeSave(name, existingIndex) {
         let currentTableFoods = [];
-        try {
-            const activeState = JSON.parse(localStorage.getItem('mealPlannerState') || '{}');
-            if (Array.isArray(activeState.tableFoods)) {
-                currentTableFoods = activeState.tableFoods;
+        let currentMeals = state.meals;
+
+        // If TableModule is active, capture latest foods and meals from table
+        if (window.TableModule && window.TableModule.DataStore) {
+            const tf = window.TableModule.DataStore.getTableFoods();
+            if (Array.isArray(tf)) {
+                currentTableFoods = [...tf];
+                const mealsObj = { meal1: [], meal2: [], meal3: [] };
+                currentTableFoods.forEach(item => {
+                    const mealKey = item.mealType || 'meal1';
+                    if (!mealsObj[mealKey]) mealsObj[mealKey] = [];
+                    mealsObj[mealKey].push({
+                        foodId: item.foodId,
+                        weight: item.weight,
+                        buy: !!item.buy,
+                        splitDay: !!item.splitDay
+                    });
+                });
+                currentMeals = mealsObj;
+                state.meals = mealsObj;
             }
-        } catch (e) {}
+        } else {
+            try {
+                const activeState = JSON.parse(localStorage.getItem('mealPlannerState') || '{}');
+                if (Array.isArray(activeState.tableFoods)) {
+                    currentTableFoods = activeState.tableFoods;
+                }
+            } catch (e) {}
+        }
 
         const newPlan = {
             name: name,
             date: new Date().toISOString(),
-            meals: state.meals,
-            tableFoods: currentTableFoods.length > 0 ? currentTableFoods : undefined,
+            meals: currentMeals,
+            tableFoods: currentTableFoods,
             goals: state.goals,
             profile: state.profile
         };
 
         if (existingIndex >= 0) {
-            if (!newPlan.tableFoods && state.savedPlans[existingIndex].tableFoods) {
-                newPlan.tableFoods = state.savedPlans[existingIndex].tableFoods;
-            }
             state.savedPlans[existingIndex] = newPlan;
         } else {
             state.savedPlans.push(newPlan);
@@ -829,6 +857,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderSavedPlans();
 
+        if (window.TableModule && window.TableModule.DataStore) {
+            window.TableModule.DataStore.loadFromStorage();
+            window.TableModule.DataStore.setSelectedPlanKey(name);
+        }
         if (window.MealPlanTable && typeof window.MealPlanTable.refresh === 'function') {
             window.MealPlanTable.refresh();
         }

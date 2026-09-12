@@ -265,21 +265,32 @@ window.TableModule.DataStore = (function () {
         }
 
         let newTableFoods = [];
-        let newMeals = { meal1: [], meal2: [], meal3: [] };
 
-        if (copyCurrent) {
+        // If overwriting an existing plan OR copyCurrent is selected, capture the current table foods
+        if ((existingIndex >= 0 && overwrite) || copyCurrent) {
             newTableFoods = [...getTableFoods()];
-            newMeals = JSON.parse(JSON.stringify(state.currentActiveMeals));
-        } else if (existingIndex >= 0 && state.savedPlans[existingIndex].tableFoods) {
-            newTableFoods = state.savedPlans[existingIndex].tableFoods;
-            newMeals = state.savedPlans[existingIndex].meals || { meal1: [], meal2: [], meal3: [] };
+        } else {
+            newTableFoods = [];
         }
+
+        // Synchronize meal buckets from table foods
+        const mealsObj = { meal1: [], meal2: [], meal3: [] };
+        newTableFoods.forEach(item => {
+            const mealKey = item.mealType || 'meal1';
+            if (!mealsObj[mealKey]) mealsObj[mealKey] = [];
+            mealsObj[mealKey].push({
+                foodId: item.foodId,
+                weight: item.weight,
+                buy: !!item.buy,
+                splitDay: !!item.splitDay
+            });
+        });
 
         const planData = {
             name: existingIndex >= 0 ? state.savedPlans[existingIndex].name : trimmed,
             date: new Date().toISOString(),
             tableFoods: newTableFoods,
-            meals: newMeals,
+            meals: mealsObj,
             goals: (existingIndex >= 0 && state.savedPlans[existingIndex].goals) || { calories: 2000, protein: 150, carbs: 200, fat: 65 }
         };
 

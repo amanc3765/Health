@@ -24,11 +24,18 @@ window.TableModule.Modals = (function () {
                 optionsHTML += `<option value="${DataStore.escapeHTML(plan.name)}">${DataStore.escapeHTML(plan.name)}</option>`;
             });
             selectExisting.innerHTML = optionsHTML;
-            selectExisting.value = '';
+
+            const currentKey = DataStore.getSelectedPlanKey();
+            if (currentKey && currentKey !== '__current__' && savedPlans.some(p => p.name === currentKey)) {
+                selectExisting.value = currentKey;
+                if (input) input.value = currentKey;
+            } else {
+                selectExisting.value = '';
+                if (input) input.value = '';
+            }
         }
 
-        if (input) input.value = '';
-        if (copyCheck) copyCheck.checked = false;
+        if (copyCheck) copyCheck.checked = true;
         if (modal) modal.classList.remove('hidden');
         setTimeout(() => input && input.focus(), 50);
     }
@@ -50,12 +57,13 @@ window.TableModule.Modals = (function () {
         }
 
         const { DataStore, ColumnSort } = window.TableModule;
+        const shouldCopy = copyCheck ? copyCheck.checked : true;
 
         try {
-            const result = DataStore.createOrUpdatePlan(name, copyCheck ? copyCheck.checked : false, false);
+            const result = DataStore.createOrUpdatePlan(name, shouldCopy, false);
             if (result.exists) {
                 if (confirm(`Plan "${name}" already exists. Overwrite?`)) {
-                    DataStore.createOrUpdatePlan(name, copyCheck ? copyCheck.checked : false, true);
+                    DataStore.createOrUpdatePlan(name, shouldCopy, true);
                 } else {
                     return;
                 }
@@ -64,6 +72,9 @@ window.TableModule.Modals = (function () {
             closeCreatePlan();
             if (typeof onPlanUpdatedCallback === 'function') {
                 onPlanUpdatedCallback();
+            }
+            if (window.renderSavedPlans) {
+                window.renderSavedPlans();
             }
         } catch (err) {
             alert(err.message || 'Failed to save meal plan.');
@@ -141,8 +152,8 @@ window.TableModule.Modals = (function () {
         const selectExistingPlan = document.getElementById('table-existing-plan-select');
         if (selectExistingPlan) {
             selectExistingPlan.addEventListener('change', (e) => {
-                if (e.target.value && inputPlanName) {
-                    inputPlanName.value = e.target.value;
+                if (inputPlanName) {
+                    inputPlanName.value = e.target.value || '';
                 }
             });
         }
