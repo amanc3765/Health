@@ -322,9 +322,15 @@
     <div id="save-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <h3>Save Meal Plan</h3>
+            <div class="input-group" id="save-existing-plan-group">
+                <label for="save-existing-plan-select">Existing Plans (Choose to Overwrite)</label>
+                <select id="save-existing-plan-select" class="table-plan-select" style="width: 100%;">
+                    <option value="">-- Or select an existing plan --</option>
+                </select>
+            </div>
             <div class="input-group">
                 <label for="plan-name-input">Plan Name</label>
-                <input type="text" id="plan-name-input" placeholder="e.g. Bulking Day 1">
+                <input type="text" id="plan-name-input" placeholder="e.g. Bulking Day 1" autocomplete="off">
             </div>
             <div class="modal-actions">
                 <button id="btn-cancel-save" class="icon-btn">Cancel</button>
@@ -349,9 +355,15 @@
     <div id="table-create-plan-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <h3>Create New Meal Plan</h3>
+            <div class="input-group" id="table-existing-plan-group">
+                <label for="table-existing-plan-select">Existing Plans (Choose to Overwrite)</label>
+                <select id="table-existing-plan-select" class="table-plan-select" style="width: 100%;">
+                    <option value="">-- Or select an existing plan --</option>
+                </select>
+            </div>
             <div class="input-group">
                 <label for="table-new-plan-name-input">Plan Name</label>
-                <input type="text" id="table-new-plan-name-input" placeholder="e.g. High Protein Day 1">
+                <input type="text" id="table-new-plan-name-input" placeholder="e.g. High Protein Day 1" autocomplete="off">
             </div>
             <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
                 <input type="checkbox" id="table-copy-active-plan-check" style="cursor: pointer;">
@@ -361,7 +373,7 @@
             </div>
             <div class="modal-actions">
                 <button type="button" id="btn-cancel-create-table-plan" class="icon-btn">Cancel</button>
-                <button type="button" id="btn-confirm-create-table-plan" class="action-btn">Create Plan</button>
+                <button type="button" id="btn-confirm-create-table-plan" class="action-btn">Save Plan</button>
             </div>
         </div>
     </div>

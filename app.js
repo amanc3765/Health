@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         savedPlansList: document.getElementById('saved-plans-list'),
         // Modal
         saveModal: document.getElementById('save-modal'),
+        saveExistingPlanSelect: document.getElementById('save-existing-plan-select'),
+        saveExistingPlanGroup: document.getElementById('save-existing-plan-group'),
         planNameInput: document.getElementById('plan-name-input'),
         btnCancelSave: document.getElementById('btn-cancel-save'),
         btnConfirmSave: document.getElementById('btn-confirm-save'),
@@ -577,6 +579,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (e.key === 'Enter') confirmSave();
                 if (e.key === 'Escape') closeSaveModal();
             });
+            elements.planNameInput.addEventListener('input', (e) => {
+                if (!elements.saveExistingPlanSelect) return;
+                const val = e.target.value.trim().toLowerCase();
+                const match = (state.savedPlans || []).find(p => p.name.toLowerCase() === val);
+                elements.saveExistingPlanSelect.value = match ? match.name : '';
+            });
+        }
+        if (elements.saveExistingPlanSelect) {
+            elements.saveExistingPlanSelect.addEventListener('change', (e) => {
+                if (e.target.value && elements.planNameInput) {
+                    elements.planNameInput.value = e.target.value;
+                }
+            });
         }
 
         // Confirm Modal Listeners
@@ -700,11 +715,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function escapeHTML(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
     function openSaveModal() {
+        loadSavedPlans();
+
+        // Populate existing plans dropdown
+        if (elements.saveExistingPlanSelect) {
+            const plans = state.savedPlans || [];
+            let optionsHTML = '<option value="">-- Or choose an existing plan to overwrite --</option>';
+            plans.forEach(plan => {
+                optionsHTML += `<option value="${escapeHTML(plan.name)}">${escapeHTML(plan.name)}</option>`;
+            });
+            elements.saveExistingPlanSelect.innerHTML = optionsHTML;
+
+            // Pre-select if current plan matches
+            if (state.currentPlanName && plans.some(p => p.name === state.currentPlanName)) {
+                elements.saveExistingPlanSelect.value = state.currentPlanName;
+            } else {
+                elements.saveExistingPlanSelect.value = '';
+            }
+        }
+
         const defaultName = state.currentPlanName || "My Plan";
         if (elements.planNameInput) {
             elements.planNameInput.value = defaultName;
-            elements.planNameInput.focus();
         }
         if (elements.saveModal) elements.saveModal.classList.remove('hidden');
         // Auto-focus input
@@ -745,15 +788,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function executeSave(name, existingIndex) {
+        let currentTableFoods = [];
+        try {
+            const activeState = JSON.parse(localStorage.getItem('mealPlannerState') || '{}');
+            if (Array.isArray(activeState.tableFoods)) {
+                currentTableFoods = activeState.tableFoods;
+            }
+        } catch (e) {}
+
         const newPlan = {
             name: name,
             date: new Date().toISOString(),
             meals: state.meals,
+            tableFoods: currentTableFoods.length > 0 ? currentTableFoods : undefined,
             goals: state.goals,
             profile: state.profile
         };
 
         if (existingIndex >= 0) {
+            if (!newPlan.tableFoods && state.savedPlans[existingIndex].tableFoods) {
+                newPlan.tableFoods = state.savedPlans[existingIndex].tableFoods;
+            }
             state.savedPlans[existingIndex] = newPlan;
         } else {
             state.savedPlans.push(newPlan);
@@ -773,6 +828,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         renderSavedPlans();
+
+        if (window.MealPlanTable && typeof window.MealPlanTable.refresh === 'function') {
+            window.MealPlanTable.refresh();
+        }
+
+        alert(`Plan "${name}" saved!`);
     }
 
     function renderSavedPlans() {

@@ -253,12 +253,15 @@ window.TableModule.DataStore = (function () {
         return false;
     }
 
-    // Create a new meal plan
-    function createPlan(name, copyCurrent = false) {
+    // Create or update a meal plan (supports overwriting existing)
+    function createOrUpdatePlan(name, copyCurrent = false, overwrite = false) {
         const trimmed = name.trim();
         if (!trimmed) throw new Error('Plan name cannot be empty.');
-        if (trimmed === '__current__' || state.savedPlans.some(p => p.name.toLowerCase() === trimmed.toLowerCase())) {
-            throw new Error('A meal plan with this name already exists.');
+        if (trimmed === '__current__') throw new Error('Cannot use "__current__" as a plan name.');
+
+        const existingIndex = state.savedPlans.findIndex(p => p.name.toLowerCase() === trimmed.toLowerCase());
+        if (existingIndex >= 0 && !overwrite) {
+            return { exists: true, planName: state.savedPlans[existingIndex].name };
         }
 
         let newTableFoods = [];
@@ -267,20 +270,32 @@ window.TableModule.DataStore = (function () {
         if (copyCurrent) {
             newTableFoods = [...getTableFoods()];
             newMeals = JSON.parse(JSON.stringify(state.currentActiveMeals));
+        } else if (existingIndex >= 0 && state.savedPlans[existingIndex].tableFoods) {
+            newTableFoods = state.savedPlans[existingIndex].tableFoods;
+            newMeals = state.savedPlans[existingIndex].meals || { meal1: [], meal2: [], meal3: [] };
         }
 
-        const newPlan = {
-            name: trimmed,
+        const planData = {
+            name: existingIndex >= 0 ? state.savedPlans[existingIndex].name : trimmed,
             date: new Date().toISOString(),
             tableFoods: newTableFoods,
             meals: newMeals,
-            goals: { calories: 2000, protein: 150, carbs: 200, fat: 65 }
+            goals: (existingIndex >= 0 && state.savedPlans[existingIndex].goals) || { calories: 2000, protein: 150, carbs: 200, fat: 65 }
         };
 
-        state.savedPlans.push(newPlan);
+        if (existingIndex >= 0) {
+            state.savedPlans[existingIndex] = planData;
+        } else {
+            state.savedPlans.push(planData);
+        }
+
         localStorage.setItem(STORAGE_KEY_SAVED, JSON.stringify(state.savedPlans));
-        setSelectedPlanKey(trimmed);
-        return newPlan;
+        setSelectedPlanKey(planData.name);
+        return { exists: false, plan: planData };
+    }
+
+    function createPlan(name, copyCurrent = false) {
+        return createOrUpdatePlan(name, copyCurrent, false);
     }
 
     // Delete a saved meal plan
@@ -381,8 +396,8 @@ window.TableModule.DataStore = (function () {
         reorderFoods,
         addFood,
         updateFoodWeight,
-        removeFood,
         createPlan,
+        createOrUpdatePlan,
         deletePlan,
         setActivePlan,
         calculateRowNutrition,

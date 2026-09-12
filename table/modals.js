@@ -13,6 +13,18 @@ window.TableModule.Modals = (function () {
         const modal = document.getElementById('table-create-plan-modal');
         const input = document.getElementById('table-new-plan-name-input');
         const copyCheck = document.getElementById('table-copy-active-plan-check');
+        const selectExisting = document.getElementById('table-existing-plan-select');
+        const { DataStore } = window.TableModule;
+
+        if (selectExisting) {
+            const savedPlans = DataStore.getSavedPlans() || [];
+            let optionsHTML = '<option value="">-- Or select an existing plan to overwrite --</option>';
+            savedPlans.forEach(plan => {
+                optionsHTML += `<option value="${DataStore.escapeHTML(plan.name)}">${DataStore.escapeHTML(plan.name)}</option>`;
+            });
+            selectExisting.innerHTML = optionsHTML;
+            selectExisting.value = '';
+        }
 
         if (input) input.value = '';
         if (copyCheck) copyCheck.checked = false;
@@ -28,24 +40,32 @@ window.TableModule.Modals = (function () {
     function confirmCreatePlan() {
         const input = document.getElementById('table-new-plan-name-input');
         const copyCheck = document.getElementById('table-copy-active-plan-check');
-        const name = input ? input.value.trim() : '';
+        const selectExisting = document.getElementById('table-existing-plan-select');
+        const name = (input ? input.value.trim() : '') || (selectExisting ? selectExisting.value.trim() : '');
 
         if (!name) {
-            alert('Please enter a name for the new meal plan.');
+            alert('Please enter or select a name for the meal plan.');
             return;
         }
 
         const { DataStore, ColumnSort } = window.TableModule;
 
         try {
-            DataStore.createPlan(name, copyCheck ? copyCheck.checked : false);
+            const result = DataStore.createOrUpdatePlan(name, copyCheck ? copyCheck.checked : false, false);
+            if (result.exists) {
+                if (confirm(`Plan "${name}" already exists. Overwrite?`)) {
+                    DataStore.createOrUpdatePlan(name, copyCheck ? copyCheck.checked : false, true);
+                } else {
+                    return;
+                }
+            }
             if (ColumnSort) ColumnSort.reset();
             closeCreatePlan();
             if (typeof onPlanUpdatedCallback === 'function') {
                 onPlanUpdatedCallback();
             }
         } catch (err) {
-            alert(err.message || 'Failed to create meal plan.');
+            alert(err.message || 'Failed to save meal plan.');
         }
     }
 
@@ -117,10 +137,26 @@ window.TableModule.Modals = (function () {
         if (btnCancelCreate) btnCancelCreate.addEventListener('click', closeCreatePlan);
         if (btnConfirmCreate) btnConfirmCreate.addEventListener('click', confirmCreatePlan);
 
+        const selectExistingPlan = document.getElementById('table-existing-plan-select');
+        if (selectExistingPlan) {
+            selectExistingPlan.addEventListener('change', (e) => {
+                if (e.target.value && inputPlanName) {
+                    inputPlanName.value = e.target.value;
+                }
+            });
+        }
+
         if (inputPlanName) {
             inputPlanName.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') confirmCreatePlan();
                 if (e.key === 'Escape') closeCreatePlan();
+            });
+            inputPlanName.addEventListener('input', (e) => {
+                if (!selectExistingPlan) return;
+                const val = e.target.value.trim().toLowerCase();
+                const { DataStore } = window.TableModule;
+                const matching = (DataStore.getSavedPlans() || []).find(p => p.name.toLowerCase() === val);
+                selectExistingPlan.value = matching ? matching.name : '';
             });
         }
         if (modalCreate) {
