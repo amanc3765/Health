@@ -731,7 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Populate existing plans dropdown
         if (elements.saveExistingPlanSelect) {
             const plans = state.savedPlans || [];
-            let optionsHTML = '<option value="">-- Or choose an existing plan to overwrite --</option>';
+            let optionsHTML = '<option value="">Choose plan</option>';
             plans.forEach(plan => {
                 optionsHTML += `<option value="${escapeHTML(plan.name)}">${escapeHTML(plan.name)}</option>`;
             });

@@ -133,7 +133,7 @@ window.TableModule.TableRenderer = (function () {
 
                 <!-- Action: Remove Row -->
                 <td class="col-action">
-                    <button type="button" class="btn-table-remove" onclick="window.removeFoodFromTablePlan(${index})" title="Remove item from plan">
+                    <button type="button" class="btn-table-remove" data-index="${index}" draggable="false" onclick="window.removeFoodFromTablePlan(${index})" title="Remove item from plan" aria-label="Remove item">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -220,8 +220,12 @@ window.TableModule.TableRenderer = (function () {
     }
 
     function removeFood(index) {
+        const idx = typeof index === 'number' ? index : parseInt(index, 10);
+        if (isNaN(idx) || idx < 0) return;
         const { DataStore } = window.TableModule;
-        DataStore.removeFood(index);
+        if (DataStore && typeof DataStore.removeFood === 'function') {
+            DataStore.removeFood(idx);
+        }
         editingIndex = null;
         render();
     }
@@ -230,7 +234,10 @@ window.TableModule.TableRenderer = (function () {
     window.startInlineWeight = (arg1, arg2) => startInlineWeight(arg2 !== undefined ? arg2 : arg1);
     window.saveInlineWeight = (arg1, arg2) => saveInlineWeight(arg2 !== undefined ? arg2 : arg1);
     window.cancelInlineWeight = cancelInlineWeight;
-    window.removeFoodFromTablePlan = (arg1, arg2) => removeFood(arg2 !== undefined ? arg2 : arg1);
+    window.removeFoodFromTablePlan = (arg1, arg2) => {
+        const target = arg2 !== undefined ? arg2 : arg1;
+        removeFood(target);
+    };
 
     return {
         render,

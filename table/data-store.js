@@ -129,7 +129,7 @@ window.TableModule.DataStore = (function () {
             }
         }
 
-        if (Array.isArray(items) && items.length > 0) {
+        if (Array.isArray(items)) {
             return [...items];
         }
 
@@ -396,6 +396,7 @@ window.TableModule.DataStore = (function () {
         reorderFoods,
         addFood,
         updateFoodWeight,
+        removeFood,
         createPlan,
         createOrUpdatePlan,
         deletePlan,

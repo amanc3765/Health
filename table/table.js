@@ -25,11 +25,9 @@ window.TableModule.Controller = (function () {
 
         select.innerHTML = optionsHTML;
 
-        // Toggle "Set as Active" and "Delete" button visibility
+        // Toggle "Delete" button visibility
         const isSavedPlan = currentKey !== '__current__';
-        const btnSetActive = document.getElementById('btn-table-set-active');
         const btnDeletePlan = document.getElementById('btn-table-delete-plan');
-        if (btnSetActive) btnSetActive.style.display = isSavedPlan ? 'inline-flex' : 'none';
         if (btnDeletePlan) btnDeletePlan.style.display = isSavedPlan ? 'inline-flex' : 'none';
     }
 
@@ -74,19 +72,6 @@ window.TableModule.Controller = (function () {
             });
         }
 
-        // "Set as Active" button
-        const btnSetActive = document.getElementById('btn-table-set-active');
-        if (btnSetActive) {
-            btnSetActive.addEventListener('click', () => {
-                const currentKey = DataStore.getSelectedPlanKey();
-                if (currentKey === '__current__') return;
-
-                if (DataStore.setActivePlan(currentKey)) {
-                    if (ColumnSort) ColumnSort.reset();
-                    refreshView();
-                }
-            });
-        }
 
         // "Delete Plan" button
         const btnDeletePlan = document.getElementById('btn-table-delete-plan');

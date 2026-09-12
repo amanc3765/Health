@@ -24,6 +24,15 @@
     background: var(--accent-hover);
 }
 
+.icon-only-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .icon-btn {
     background: transparent;
     border: 1px solid transparent;

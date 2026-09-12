@@ -73,13 +73,6 @@
                         <select id="table-plan-select" class="table-plan-select" aria-label="Select Meal Plan">
                             <option value="__current__">Current Active Plan</option>
                         </select>
-                        <button id="btn-table-new-plan" class="action-btn" title="Create New Meal Plan" aria-label="Create Plan">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                            <span>New Meal Plan</span>
-                        </button>
                     </div>
 
                     <button id="btn-table-add-food" class="btn-secondary-action">
@@ -93,18 +86,17 @@
                 </div>
 
                 <div class="table-toolbar-right">
-                    <button id="btn-table-set-active" class="btn-secondary-action" style="display: none;" title="Set this saved plan as current active plan">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
+                    <button id="btn-table-new-plan" class="action-btn icon-only-btn" title="Create New Meal Plan" aria-label="Create Plan">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
-                        <span>Set as Active</span>
                     </button>
-                    <button id="btn-table-delete-plan" class="btn-danger-action" style="display: none;" title="Delete this saved plan">
+                    <button id="btn-table-delete-plan" class="btn-danger-action icon-only-btn" style="display: none;" title="Delete this saved plan" aria-label="Delete Plan">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="3 6 5 6 21 6"></polyline>
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                         </svg>
-                        <span>Delete Plan</span>
                     </button>
                 </div>
             </section>
@@ -142,9 +134,9 @@
         <div class="modal-content">
             <h3>Create New Meal Plan</h3>
             <div class="input-group" id="table-existing-plan-group">
-                <label for="table-existing-plan-select">Existing Plans (Choose to Overwrite)</label>
+                <label for="table-existing-plan-select">Existing Plans</label>
                 <select id="table-existing-plan-select" class="table-plan-select" style="width: 100%;">
-                    <option value="">-- Or select an existing plan --</option>
+                    <option value="">Choose plan</option>
                 </select>
             </div>
             <div class="input-group">

@@ -438,6 +438,10 @@ body:has(#view-table:not(.hidden)) .app-container {
     background: var(--danger-bg);
 }
 
+.btn-table-remove svg {
+    pointer-events: none;
+}
+
 /* Sticky Grand Totals Footer */
 .table-grand-totals-row td {
     background: rgba(15, 23, 42, 0.95);

@@ -17,8 +17,9 @@ window.TableModule.Modals = (function () {
         const { DataStore } = window.TableModule;
 
         if (selectExisting) {
+            DataStore.loadFromStorage();
             const savedPlans = DataStore.getSavedPlans() || [];
-            let optionsHTML = '<option value="">-- Or select an existing plan to overwrite --</option>';
+            let optionsHTML = '<option value="">Choose plan</option>';
             savedPlans.forEach(plan => {
                 optionsHTML += `<option value="${DataStore.escapeHTML(plan.name)}">${DataStore.escapeHTML(plan.name)}</option>`;
             });
