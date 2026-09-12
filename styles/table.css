@@ -1,0 +1,591 @@
+/**
+ * Meal Plan Table View Component Styles
+ */
+
+/* Full Space Viewport Layout */
+body.table-page,
+body.table-view-active {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body.table-page .app-container,
+body:has(#view-table:not(.hidden)) .app-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100vh !important;
+    padding: 10px 20px !important;
+    gap: 10px !important;
+}
+
+.table-view-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* Toolbar */
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding: 10px 16px;
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-inner), var(--shadow-sm);
+    flex-shrink: 0;
+}
+
+.table-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.table-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.plan-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.plan-select-wrapper label {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.06em;
+}
+
+.table-plan-select {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-medium);
+    min-width: 220px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.table-plan-select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* Table Container & Scroll Area */
+.meal-plan-table-container {
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-inner), var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+}
+
+.table-scroll-wrapper {
+    overflow-x: auto;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+/* Table Elements */
+.meal-plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.meal-plan-table th {
+    background: rgba(15, 23, 42, 0.85);
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.06em;
+    padding: 12px 14px;
+    text-align: right;
+    border-bottom: 2px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+.meal-plan-table th.col-left {
+    text-align: left;
+}
+
+.meal-plan-table th.col-center {
+    text-align: center;
+}
+
+.meal-plan-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.meal-plan-table th.sortable:hover {
+    color: var(--accent-primary);
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.meal-plan-table th.sortable.active-sort {
+    color: var(--accent-primary);
+}
+
+.meal-plan-table th.sortable .sort-indicator {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 10px;
+    color: var(--accent-primary);
+}
+
+.meal-plan-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-subtle);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    vertical-align: middle;
+}
+
+.meal-plan-table td.col-left {
+    text-align: left;
+}
+
+.meal-plan-table td.col-center {
+    text-align: center;
+}
+
+.meal-plan-table tbody tr.food-row:hover {
+    background: rgba(51, 65, 85, 0.35);
+}
+
+/* Column Dimensions & Styling */
+.col-food {
+    width: 35%;
+    min-width: 220px;
+}
+
+.col-weight {
+    width: 13%;
+    min-width: 110px;
+}
+
+.col-cal {
+    width: 10%;
+    min-width: 85px;
+    color: var(--macro-cal);
+    font-weight: var(--font-weight-medium);
+}
+
+.col-pro {
+    width: 10%;
+    min-width: 85px;
+    color: var(--macro-pro);
+    font-weight: var(--font-weight-medium);
+}
+
+.col-carb {
+    width: 10%;
+    min-width: 85px;
+    color: var(--macro-carb);
+    font-weight: var(--font-weight-medium);
+}
+
+.col-fat {
+    width: 10%;
+    min-width: 85px;
+    color: var(--macro-fat);
+    font-weight: var(--font-weight-medium);
+}
+
+.col-fiber {
+    width: 10%;
+    min-width: 85px;
+    color: #34D399;
+    font-weight: var(--font-weight-medium);
+}
+
+.col-action {
+    width: 44px;
+    min-width: 44px;
+    text-align: center;
+}
+
+/* Drag-and-Drop Reordering */
+.drag-handle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 20px;
+    cursor: grab;
+    color: var(--text-tertiary);
+    opacity: 0.5;
+    transition: opacity 0.2s, color 0.2s;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+.drag-handle:hover {
+    opacity: 1;
+    color: var(--accent-primary);
+}
+
+.food-row.dragging {
+    opacity: 0.4;
+    background: rgba(59, 130, 246, 0.15) !important;
+}
+
+.food-row.drag-over-top td {
+    border-top: 2px solid var(--accent-primary) !important;
+}
+
+.food-row.drag-over-bottom td {
+    border-bottom: 2px solid var(--accent-primary) !important;
+}
+
+/* Food Cell with Small 'i' Button at Start */
+.food-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.food-info-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    background: var(--bg-element);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.food-info-btn:hover {
+    background: var(--accent-primary);
+    color: #ffffff;
+    border-color: var(--accent-primary);
+    transform: scale(1.15);
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.food-title {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+/* Inline Weight Editing */
+.weight-cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.weight-val {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+}
+
+.btn-edit-weight {
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-edit-weight:hover {
+    color: var(--accent-primary);
+    background: var(--bg-element);
+    transform: scale(1.1);
+}
+
+.weight-edit-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.weight-input-inline {
+    width: 68px;
+    padding: 4px 6px;
+    background: var(--bg-main);
+    border: 1.5px solid var(--border-focus);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    text-align: right;
+    font-family: inherit;
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.weight-edit-inline .unit-text {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+.btn-save-weight {
+    background: #10B981;
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+}
+
+.btn-save-weight:hover {
+    background: #059669;
+}
+
+.btn-cancel-weight {
+    background: var(--bg-element);
+    border: none;
+    color: var(--text-secondary);
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s;
+}
+
+.btn-cancel-weight:hover {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+/* Row Action: Remove */
+.btn-table-remove {
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-table-remove:hover {
+    color: var(--danger);
+    background: var(--danger-bg);
+}
+
+/* Sticky Grand Totals Footer */
+.table-grand-totals-row td {
+    background: rgba(15, 23, 42, 0.95);
+    padding: 16px 14px;
+    border-top: 2px solid var(--border-focus);
+    border-bottom: none;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-black);
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    backdrop-filter: blur(12px);
+}
+
+.grand-total-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: var(--font-size-base);
+    color: var(--accent-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.price-pill {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10B981;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+}
+
+.dash-text {
+    color: var(--text-tertiary);
+}
+
+/* 100g Nutrition Popover */
+.food-100g-popover {
+    position: fixed;
+    background: #1E293B;
+    border: 1.5px solid var(--border-focus);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3) var(--space-4);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 16px rgba(59, 130, 246, 0.25);
+    z-index: 10000;
+    width: 290px;
+    color: var(--text-primary);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+
+.food-100g-popover.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.popover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 8px;
+}
+
+.popover-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin-bottom: 2px;
+}
+
+.popover-badge {
+    font-size: var(--font-size-3xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.popover-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.popover-close-btn:hover {
+    color: var(--text-primary);
+}
+
+.popover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.popover-stat-card {
+    background: var(--bg-element);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+}
+
+.popover-stat-val {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-black);
+    font-variant-numeric: tabular-nums;
+}
+
+.popover-stat-lbl {
+    font-size: var(--font-size-3xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+}
+
+.popover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 8px;
+}
+
+.popover-footer strong {
+    color: var(--text-primary);
+}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meal Planner & Macro Tracker</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="styles/main.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -13,7 +13,7 @@
         rel="stylesheet">
 </head>
 
-<body>
+<body class="table-page">
     <div class="app-container">
         <!-- Header / User Profile -->
         <header class="app-header">
@@ -28,7 +28,37 @@
                     </svg>
                     <h1>Meal Planner</h1>
                 </div>
+
+                <!-- Navigation Tabs (Meal Plan Table is First and Default) -->
+                <nav class="app-nav-tabs" aria-label="Main Navigation">
+                    <button type="button" id="tab-btn-table" class="nav-tab active" title="Meal Plan Table View">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                            <line x1="9" y1="3" x2="9" y2="21"></line>
+                        </svg>
+                        <span>Meal Plan Table</span>
+                    </button>
+                    <button type="button" id="tab-btn-planner" class="nav-tab" title="Drag & Drop Board Planner">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>Planner</span>
+                    </button>
+                </nav>
+
                 <div class="header-actions">
+                    <a href="table/index.html" target="_blank" class="icon-btn" title="Open Meal Plan Table in New Window / Tab" aria-label="Open Table in New Window">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
                     <button id="btn-save-plan" class="icon-btn" aria-label="Save Plan" title="Save Plan">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -119,93 +149,170 @@
             </div>
         </header>
 
-        <!-- Main Content -->
-        <main class="main-layout">
-            <!-- Food List (Left) -->
-            <section class="panel food-list-panel">
-                <h2>Foods</h2>
-                <div id="food-list" class="food-list-container">
-                    <!-- Food items injected here -->
-                </div>
-            </section>
+        <!-- Main Content Views -->
+        <div id="view-planner" class="view-container hidden">
+            <main class="main-layout">
+                <!-- Food List (Left) -->
+                <section class="panel food-list-panel">
+                    <h2>Foods</h2>
+                    <div id="food-list" class="food-list-container">
+                        <!-- Food items injected here -->
+                    </div>
+                </section>
 
-            <!-- Meal Planner (Center) -->
-            <section class="panel meal-planner-panel">
-                <div class="meal-column" data-meal="meal1">
-                    <h3>Meal 1</h3>
-                    <div class="meal-items" id="meal-meal1"></div>
-                    <div class="meal-totals" id="total-meal1">
-                        <span>0 kcal</span>
-                    </div>
-                </div>
-                <div class="meal-column" data-meal="meal2">
-                    <h3>Meal 2</h3>
-                    <div class="meal-items" id="meal-meal2"></div>
-                    <div class="meal-totals" id="total-meal2">
-                        <span>0 kcal</span>
-                    </div>
-                </div>
-                <div class="meal-column" data-meal="meal3">
-                    <h3>Meal 3</h3>
-                    <div class="meal-items" id="meal-meal3"></div>
-                    <div class="meal-totals" id="total-meal3">
-                        <span>0 kcal</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Right Sidebar: Totals & Saved Plans -->
-            <div class="right-panel-column">
-                <!-- Totals (Upper 75%) -->
-                <section class="panel totals-panel">
-                    <div class="panel-header-row">
-                        <h2>Daily Totals</h2>
-                    </div>
-                    <div class="daily-summary">
-                        <div class="macro-row" id="summary-calories">
-                            <span class="label">Calories</span>
-                            <div class="progress-bar-bg">
-                                <div class="progress-bar-fill"></div>
-                            </div>
-                            <span class="value">0 / 2000</span>
+                <!-- Meal Planner (Center) -->
+                <section class="panel meal-planner-panel">
+                    <div class="meal-column" data-meal="meal1">
+                        <h3>Meal 1</h3>
+                        <div class="meal-items" id="meal-meal1"></div>
+                        <div class="meal-totals" id="total-meal1">
+                            <span>0 kcal</span>
                         </div>
-                        <div class="macro-row" id="summary-protein">
-                            <span class="label">Protein</span>
-                            <div class="progress-bar-bg">
-                                <div class="progress-bar-fill"></div>
-                            </div>
-                            <span class="value">0 / 150g</span>
+                    </div>
+                    <div class="meal-column" data-meal="meal2">
+                        <h3>Meal 2</h3>
+                        <div class="meal-items" id="meal-meal2"></div>
+                        <div class="meal-totals" id="total-meal2">
+                            <span>0 kcal</span>
                         </div>
-                        <div class="macro-row" id="summary-carbs">
-                            <span class="label">Carbs</span>
-                            <div class="progress-bar-bg">
-                                <div class="progress-bar-fill"></div>
-                            </div>
-                            <span class="value">0 / 200g</span>
-                        </div>
-                        <div class="macro-row" id="summary-fat">
-                            <span class="label">Fat</span>
-                            <div class="progress-bar-bg">
-                                <div class="progress-bar-fill"></div>
-                            </div>
-                            <span class="value">0 / 65g</span>
-                        </div>
-                        <div class="macro-row" id="summary-price">
-                            <span class="label">Total Cost</span>
-                            <span class="value" id="summary-price-value">₹0</span>
+                    </div>
+                    <div class="meal-column" data-meal="meal3">
+                        <h3>Meal 3</h3>
+                        <div class="meal-items" id="meal-meal3"></div>
+                        <div class="meal-totals" id="total-meal3">
+                            <span>0 kcal</span>
                         </div>
                     </div>
                 </section>
 
-                <!-- Saved Plans (Lower 25%) -->
-                <section class="panel saved-plans-panel">
-                    <h2>Saved Plans</h2>
-                    <div id="saved-plans-list" class="saved-plans-list">
-                        <!-- Plans injected here -->
+                <!-- Right Sidebar: Totals & Saved Plans -->
+                <div class="right-panel-column">
+                    <!-- Totals (Upper 75%) -->
+                    <section class="panel totals-panel">
+                        <div class="panel-header-row">
+                            <h2>Daily Totals</h2>
+                        </div>
+                        <div class="daily-summary">
+                            <div class="macro-row" id="summary-calories">
+                                <span class="label">Calories</span>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill"></div>
+                                </div>
+                                <span class="value">0 / 2000</span>
+                            </div>
+                            <div class="macro-row" id="summary-protein">
+                                <span class="label">Protein</span>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill"></div>
+                                </div>
+                                <span class="value">0 / 150g</span>
+                            </div>
+                            <div class="macro-row" id="summary-carbs">
+                                <span class="label">Carbs</span>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill"></div>
+                                </div>
+                                <span class="value">0 / 200g</span>
+                            </div>
+                            <div class="macro-row" id="summary-fat">
+                                <span class="label">Fat</span>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill"></div>
+                                </div>
+                                <span class="value">0 / 65g</span>
+                            </div>
+                            <div class="macro-row" id="summary-price">
+                                <span class="label">Total Cost</span>
+                                <span class="value" id="summary-price-value">₹0</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Saved Plans (Lower 25%) -->
+                    <section class="panel saved-plans-panel">
+                        <h2>Saved Plans</h2>
+                        <div id="saved-plans-list" class="saved-plans-list">
+                            <!-- Plans injected here -->
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <!-- Meal Plan Table Tab View (Default View) -->
+        <div id="view-table" class="view-container">
+            <main class="table-view-container">
+                <!-- Toolbar -->
+                <section class="table-toolbar">
+                    <div class="table-toolbar-left">
+                        <div class="plan-select-wrapper">
+                            <label for="table-plan-select">Select Meal Plan:</label>
+                            <select id="table-plan-select" class="table-plan-select" aria-label="Select Meal Plan">
+                                <option value="__current__">Current Active Plan</option>
+                            </select>
+                            <button id="btn-table-new-plan" class="action-btn" title="Create New Meal Plan" aria-label="Create Plan">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>New Meal Plan</span>
+                            </button>
+                        </div>
+
+                        <button id="btn-table-add-food" class="btn-secondary-action">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            <span>Add Food</span>
+                        </button>
+                    </div>
+
+                    <div class="table-toolbar-right">
+                        <button id="btn-table-set-active" class="btn-secondary-action" style="display: none;" title="Set this saved plan as current active plan">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Set as Active</span>
+                        </button>
+                        <button id="btn-table-delete-plan" class="btn-danger-action" style="display: none;" title="Delete this saved plan">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                            <span>Delete Plan</span>
+                        </button>
                     </div>
                 </section>
-            </div>
-        </main>
+
+                <!-- Table Container -->
+                <section class="meal-plan-table-container">
+                    <div id="table-content-wrapper" class="table-scroll-wrapper">
+                        <table class="meal-plan-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-left col-food sortable" data-sort="food" title="Click to sort by Food">Food<span class="sort-indicator"></span></th>
+                                    <th class="col-weight sortable" data-sort="weight" title="Click to sort by Weight">Weight<span class="sort-indicator"></span></th>
+                                    <th class="col-cal sortable" data-sort="calories" title="Click to sort by Calories">Calories<span class="sort-indicator"></span></th>
+                                    <th class="col-pro sortable" data-sort="protein" title="Click to sort by Protein">Protein<span class="sort-indicator"></span></th>
+                                    <th class="col-carb sortable" data-sort="carbs" title="Click to sort by Carbs">Carbs<span class="sort-indicator"></span></th>
+                                    <th class="col-fat sortable" data-sort="fat" title="Click to sort by Fat">Fat<span class="sort-indicator"></span></th>
+                                    <th class="col-fiber sortable" data-sort="fiber" title="Click to sort by Fiber">Fiber<span class="sort-indicator"></span></th>
+                                    <th class="col-action"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Injected by table.js -->
+                            </tbody>
+                            <tfoot id="table-foot">
+                                <!-- Grand Totals injected by table.js -->
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
 
     <!-- Drag Image (Hidden) -->
@@ -238,7 +345,57 @@
         </div>
     </div>
 
-    <script src="app.js?v=2"></script>
+    <!-- Modal: Create New Meal Plan (Table View) -->
+    <div id="table-create-plan-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Create New Meal Plan</h3>
+            <div class="input-group">
+                <label for="table-new-plan-name-input">Plan Name</label>
+                <input type="text" id="table-new-plan-name-input" placeholder="e.g. High Protein Day 1">
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+                <input type="checkbox" id="table-copy-active-plan-check" style="cursor: pointer;">
+                <label for="table-copy-active-plan-check" style="font-size: var(--font-size-sm); color: var(--text-secondary); cursor: pointer;">
+                    Copy foods from current active plan
+                </label>
+            </div>
+            <div class="modal-actions">
+                <button type="button" id="btn-cancel-create-table-plan" class="icon-btn">Cancel</button>
+                <button type="button" id="btn-confirm-create-table-plan" class="action-btn">Create Plan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Add Food to Plan (Table View) -->
+    <div id="table-add-food-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Add Food to Meal Plan</h3>
+            <div class="input-group">
+                <label for="table-add-food-select">Select Food</label>
+                <select id="table-add-food-select" class="table-plan-select">
+                    <!-- Populated dynamically -->
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="table-add-food-weight">Weight (grams)</label>
+                <input type="number" id="table-add-food-weight" value="100" min="1" max="5000" step="1">
+            </div>
+            <div class="modal-actions">
+                <button type="button" id="btn-cancel-table-add-food" class="icon-btn">Cancel</button>
+                <button type="button" id="btn-confirm-table-add-food" class="action-btn">Add to Plan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modular Table Scripts -->
+    <script src="table/data-store.js?v=4"></script>
+    <script src="table/nutrition-popover.js?v=4"></script>
+    <script src="table/column-sort.js?v=4"></script>
+    <script src="table/drag-drop.js?v=4"></script>
+    <script src="table/table-renderer.js?v=4"></script>
+    <script src="table/modals.js?v=4"></script>
+    <script src="table/table.js?v=4"></script>
+    <script src="app.js?v=4"></script>
 </body>
 
 </html>

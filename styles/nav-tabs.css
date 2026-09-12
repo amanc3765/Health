@@ -1,0 +1,63 @@
+/**
+ * Navigation Tabs & View Containers
+ */
+
+.app-nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 4px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+}
+
+.nav-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    user-select: none;
+}
+
+.nav-tab:hover {
+    color: var(--text-primary);
+    background: var(--bg-element);
+    border-color: var(--border-subtle);
+}
+
+.nav-tab.active {
+    background: var(--accent-primary);
+    color: #ffffff;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+}
+
+.nav-tab svg {
+    flex-shrink: 0;
+}
+
+/* View Switcher Containers */
+.view-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+.view-container.hidden {
+    display: none !important;
+}

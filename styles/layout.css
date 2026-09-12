@@ -1,0 +1,228 @@
+/**
+ * Application Shell & Main Layout Grids
+ */
+
+/* App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: var(--space-4);
+    gap: var(--space-4);
+}
+
+/* Header */
+.app-header {
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-inner), var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    position: relative;
+    z-index: 10;
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-branding {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-icon {
+    color: var(--accent-primary);
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
+.header-main h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-black);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+/* Macro Inputs Bar */
+.user-inputs {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 4px;
+}
+
+.input-group input,
+.input-group select {
+    background: var(--bg-main);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    transition: all 0.2s ease;
+    min-width: 110px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Settings Dropdown Panel */
+.settings-panel {
+    background: var(--bg-surface);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    margin-top: var(--space-2);
+}
+
+.settings-panel.hidden {
+    display: none;
+}
+
+.settings-grid {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+/* Main Layout Grid (Board Planner) */
+.main-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr 300px;
+    gap: var(--space-4);
+    flex: 1;
+    min-height: 0;
+}
+
+.right-panel-column {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    gap: var(--space-4);
+    height: 100%;
+    min-height: 0;
+}
+
+/* Common Card Panel Style */
+.panel {
+    background: var(--bg-surface);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-inner), var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.panel h2 {
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    padding: var(--space-3);
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(15, 23, 42, 0.3);
+    margin-bottom: 0;
+}
+
+.panel-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(15, 23, 42, 0.3);
+}
+
+.panel-header-row h2 {
+    border-bottom: none;
+    background: transparent;
+    flex: 1;
+}
+
+.panel-header-row .icon-btn {
+    margin-right: var(--space-3);
+    color: var(--accent-primary);
+}
+
+.panel-header-row .icon-btn:hover {
+    background: var(--accent-primary);
+    color: white;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+    :root {
+        --font-size-base: 0.9375rem;
+    }
+    .meal-planner-panel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    :root {
+        --font-size-base: 0.875rem;
+    }
+    .main-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        overflow-y: auto;
+    }
+    body {
+        overflow: auto;
+        height: auto;
+    }
+    .app-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    .meal-planner-panel {
+        display: flex;
+        flex-direction: column;
+    }
+}

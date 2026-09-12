@@ -909,10 +909,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sync saved plans across tabs
     window.addEventListener('storage', (e) => {
-        if (e.key === 'mealPlannerSavedPlans') {
+        if (!e.key || e.key === 'mealPlannerSavedPlans') {
             loadSavedPlans();
             renderSavedPlans();
         }
+        if (!e.key || e.key === 'mealPlannerState') {
+            loadFromLocalStorage();
+            renderMeals();
+            updateTotals();
+            renderFoodList();
+        }
     });
 
+    // --- Tab Navigation: Planner vs Meal Plan Table ---
+    const tabBtnPlanner = document.getElementById('tab-btn-planner');
+    const tabBtnTable = document.getElementById('tab-btn-table');
+    const viewPlanner = document.getElementById('view-planner');
+    const viewTable = document.getElementById('view-table');
+
+    function switchViewTab(tab) {
+        if (tab === 'table') {
+            document.body.classList.add('table-page');
+            if (tabBtnTable) tabBtnTable.classList.add('active');
+            if (tabBtnPlanner) tabBtnPlanner.classList.remove('active');
+            if (viewTable) viewTable.classList.remove('hidden');
+            if (viewPlanner) viewPlanner.classList.add('hidden');
+            if (window.MealPlanTable) {
+                window.MealPlanTable.refresh();
+            }
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, '', '#table');
+            }
+        } else {
+            document.body.classList.remove('table-page');
+            if (tabBtnPlanner) tabBtnPlanner.classList.add('active');
+            if (tabBtnTable) tabBtnTable.classList.remove('active');
+            if (viewPlanner) viewPlanner.classList.remove('hidden');
+            if (viewTable) viewTable.classList.add('hidden');
+            loadFromLocalStorage();
+            renderMeals();
+            updateTotals();
+            renderFoodList();
+            renderSavedPlans();
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, '', '#planner');
+            }
+        }
+    }
+
+    if (tabBtnPlanner) tabBtnPlanner.addEventListener('click', () => switchViewTab('planner'));
+    if (tabBtnTable) tabBtnTable.addEventListener('click', () => switchViewTab('table'));
+
+    // Check hash on startup (Meal Plan Table is default unless #planner is specified)
+    if (window.location.hash === '#planner') {
+        switchViewTab('planner');
+    } else {
+        switchViewTab('table');
+    }
 });

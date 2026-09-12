@@ -1,0 +1,95 @@
+/**
+ * Design Tokens & CSS Custom Properties
+ * Color system, typography scale, spacing, elevation, and component tokens.
+ */
+
+:root {
+    /* Color System - Cool Slate Palette */
+    --bg-main: #0F172A;
+    --bg-surface: rgba(30, 41, 59, 0.7);
+    --bg-surface-hover: rgba(51, 65, 85, 0.8);
+    --bg-surface-active: rgba(71, 85, 105, 0.9);
+    --bg-element: rgba(51, 65, 85, 0.5);
+    --bg-glass: rgba(15, 23, 42, 0.6);
+
+    /* Borders & Bevels */
+    --border-subtle: rgba(148, 163, 184, 0.1);
+    --border-highlight: rgba(255, 255, 255, 0.08);
+    --border-focus: #3B82F6;
+
+    /* Text */
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-tertiary: #64748B;
+
+    /* Semantic Macros */
+    --macro-cal: #F59E0B;
+    --macro-cal-bg: rgba(245, 158, 11, 0.1);
+    --macro-pro: #14B8A6;
+    --macro-pro-bg: rgba(20, 184, 166, 0.1);
+    --macro-carb: #3B82F6;
+    --macro-carb-bg: rgba(59, 130, 246, 0.1);
+    --macro-fat: #A78BFA;
+    --macro-fat-bg: rgba(167, 139, 250, 0.1);
+
+    /* Actions & States */
+    --accent-primary: #3B82F6;
+    --accent-hover: #60A5FA;
+    --danger: #EF4444;
+    --danger-bg: rgba(239, 68, 68, 0.15);
+    --success: #10B981;
+    --success-bg: rgba(16, 185, 129, 0.15);
+
+    /* Typography Families */
+    --font-heading: 'Barlow', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+    /* Typography Scale (Base 16px) */
+    --font-size-3xs: 0.625rem;  /* 10px */
+    --font-size-2xs: 0.75rem;   /* 12px */
+    --font-size-xs: 0.8125rem;  /* 13px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 2rem;      /* 32px */
+    --font-size-4xl: 2.5rem;    /* 40px */
+    --font-size-5xl: 3rem;      /* 48px */
+
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+    --font-weight-black: 700;
+
+    /* Line Heights */
+    --lh-tight: 1.1;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.6;
+
+    /* Border Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-pill: 9999px;
+
+    /* Spacing Scale */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 32px;
+
+    /* Shadows & Elevation */
+    --shadow-inner: inset 0 1px 0 0 var(--border-highlight);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 8px 16px -4px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.3), 0 12px 20px -8px rgba(0, 0, 0, 0.2);
+    --shadow-float: 0 24px 48px -12px rgba(0, 0, 0, 0.4);
+
+    --elevation-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --elevation-2: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    --glow-pro: 0 0 20px rgba(20, 184, 166, 0.15);
+}

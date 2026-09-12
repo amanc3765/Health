@@ -1,0 +1,180 @@
+/**
+ * Shared UI Components
+ * Buttons, modal dialogs, and macro chips.
+ */
+
+/* Action Buttons */
+.action-btn {
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-btn:hover {
+    background: var(--accent-hover);
+}
+
+.icon-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: var(--bg-element);
+    color: var(--text-primary);
+}
+
+.danger-icon-btn:hover {
+    color: var(--danger);
+    background: var(--danger-bg);
+}
+
+.btn-secondary-action {
+    background: var(--bg-element);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.btn-secondary-action:hover {
+    background: var(--bg-surface-hover);
+    border-color: var(--accent-primary);
+}
+
+.btn-danger-action {
+    background: var(--danger-bg);
+    color: var(--danger);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-danger-action:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* Modal Dialogs */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-float);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transform: translateY(0);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: translateY(20px);
+}
+
+.modal-content h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+}
+
+/* Macro Chip Badges */
+.chip {
+    padding: 4px 8px;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-2xs);
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25;
+    min-width: 0;
+    box-shadow: var(--shadow-inner), 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-variant-numeric: tabular-nums;
+    border: 1px solid transparent;
+}
+
+.chip-cal {
+    background-color: var(--macro-cal-bg);
+    color: var(--macro-cal);
+}
+
+.chip-pro {
+    background-color: var(--macro-pro-bg);
+    color: var(--macro-pro);
+}
+
+.chip-carb {
+    background-color: var(--macro-carb-bg);
+    color: var(--macro-carb);
+}
+
+.chip-fat {
+    background-color: var(--macro-fat-bg);
+    color: var(--macro-fat);
+}
