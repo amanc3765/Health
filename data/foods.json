@@ -57,6 +57,18 @@
     "price": 10
   },
   {
+    "id": "milld_high_protein_atta",
+    "name": "MillD High Protein Atta",
+    "calories": 387.44,
+    "protein": 46.16,
+    "carbs": 45.48,
+    "fat": 2.32,
+    "fiber": 9.0,
+    "calorie_to_protein_ratio": 8.39,
+    "default_weight": 100,
+    "price": 25
+  },
+  {
     "id": "high_protein_bread",
     "name": "The Health Factory High Protein Bread",
     "calories": 214.0,

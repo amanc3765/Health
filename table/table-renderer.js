@@ -22,6 +22,17 @@ window.TableModule.TableRenderer = (function () {
         const { DataStore, DragDrop, ColumnSort } = window.TableModule;
         const items = DataStore.getTableFoods();
 
+        // Update Left Panel Header Display
+        const currentPlanDisplayName = document.getElementById('current-plan-display-name');
+        if (currentPlanDisplayName) {
+            const currentKey = DataStore.getSelectedPlanKey();
+            currentPlanDisplayName.textContent = currentKey === '__current__' ? 'Current Active Plan' : currentKey;
+        }
+        const currentPlanItemCount = document.getElementById('current-plan-item-count');
+        if (currentPlanItemCount) {
+            currentPlanItemCount.textContent = `${items.length} ${items.length === 1 ? 'food' : 'foods'}`;
+        }
+
         // Empty state
         if (items.length === 0) {
             tableBody.innerHTML = `
@@ -33,6 +44,7 @@ window.TableModule.TableRenderer = (function () {
             `;
             tableFoot.innerHTML = '';
             if (ColumnSort) ColumnSort.updateHeaderUI();
+            renderCompareTable();
             return;
         }
 
@@ -190,6 +202,87 @@ window.TableModule.TableRenderer = (function () {
                 });
             }
         }
+
+        // Render Right Comparison Table (All Meal Plans)
+        renderCompareTable();
+    }
+
+    function renderCompareTable() {
+        const compareTableBody = document.getElementById('compare-table-body');
+        if (!compareTableBody) return;
+
+        const { DataStore, ColumnSort } = window.TableModule;
+        if (!DataStore || typeof DataStore.getAllPlansSummary !== 'function') return;
+
+        let allPlans = DataStore.getAllPlansSummary();
+        const countBadge = document.getElementById('all-plans-count-badge');
+        if (countBadge) {
+            countBadge.textContent = `${allPlans.length} ${allPlans.length === 1 ? 'plan' : 'plans'}`;
+        }
+
+        if (allPlans.length === 0) {
+            compareTableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="col-center" style="padding: 40px 16px; color: var(--text-secondary);">
+                        No meal plans available to compare.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        if (ColumnSort && typeof ColumnSort.sortPlansList === 'function') {
+            allPlans = ColumnSort.sortPlansList(allPlans);
+        }
+
+        let rowsHTML = '';
+        allPlans.forEach(plan => {
+            const isSelected = plan.isSelected;
+            const cal = Math.round(plan.totals.calories);
+            const pro = plan.totals.protein.toFixed(1);
+            const carb = plan.totals.carbs.toFixed(1);
+            const fat = plan.totals.fat.toFixed(1);
+            const fiber = plan.totals.fiber > 0 ? plan.totals.fiber.toFixed(1) + 'g' : '<span class="dash-text">—</span>';
+
+            rowsHTML += `
+            <tr class="compare-plan-row ${isSelected ? 'active-plan-row' : ''}" data-plan-key="${DataStore.escapeHTML(plan.key)}" title="Click to view and edit this plan on the left">
+                <td class="col-left col-plan-name">
+                    <div class="compare-plan-name-cell">
+                        <span class="compare-plan-name-text" title="${DataStore.escapeHTML(plan.name)}">${DataStore.escapeHTML(plan.name)}</span>
+                        ${isSelected ? '<span class="compare-active-pill">Active</span>' : ''}
+                    </div>
+                </td>
+                <td class="col-num col-cal">${cal} kcal</td>
+                <td class="col-num col-pro">${pro}g</td>
+                <td class="col-num col-carb">${carb}g</td>
+                <td class="col-num col-fat">${fat}g</td>
+                <td class="col-num col-fiber">${fiber}</td>
+            </tr>
+            `;
+        });
+
+        compareTableBody.innerHTML = rowsHTML;
+
+        // Click row to select plan
+        compareTableBody.querySelectorAll('.compare-plan-row').forEach(row => {
+            row.addEventListener('click', () => {
+                const planKey = row.dataset.planKey;
+                if (planKey && window.MealPlanTable && typeof window.MealPlanTable.setSelectedPlan === 'function') {
+                    window.MealPlanTable.setSelectedPlan(planKey);
+                }
+            });
+        });
+
+        if (ColumnSort && typeof ColumnSort.updateCompareHeaderUI === 'function') {
+            ColumnSort.updateCompareHeaderUI();
+        }
+    }
+
+    function initCompareSortListeners() {
+        const { ColumnSort } = window.TableModule;
+        if (ColumnSort && typeof ColumnSort.initHeaderListeners === 'function') {
+            ColumnSort.initHeaderListeners(render);
+        }
     }
 
     // Inline weight edit actions
@@ -241,6 +334,8 @@ window.TableModule.TableRenderer = (function () {
 
     return {
         render,
+        renderCompareTable,
+        initCompareSortListeners,
         startInlineWeight,
         saveInlineWeight,
         cancelInlineWeight,

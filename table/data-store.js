@@ -393,6 +393,59 @@ window.TableModule.DataStore = (function () {
         return totals;
     }
 
+    // Get comparison summary of all meal plans with aggregated nutrition
+    function getAllPlansSummary() {
+        const plans = [];
+
+        // 1. Current Active Plan
+        let activeFoods = state.currentActiveTableFoods;
+        if (!Array.isArray(activeFoods) || activeFoods.length === 0) {
+            if (state.currentActiveMeals) {
+                const list = [];
+                ['meal1', 'meal2', 'meal3'].forEach(k => {
+                    (state.currentActiveMeals[k] || []).forEach(item => {
+                        list.push({ foodId: item.foodId, weight: item.weight, mealType: k });
+                    });
+                });
+                if (list.length > 0) activeFoods = list;
+            }
+        }
+        const activeTotals = calculateGrandTotals(activeFoods || []);
+        plans.push({
+            key: '__current__',
+            name: 'Current Active Plan',
+            isCurrentActive: true,
+            isSelected: state.selectedPlanKey === '__current__',
+            itemCount: (activeFoods || []).length,
+            totals: activeTotals
+        });
+
+        // 2. Saved Plans
+        (state.savedPlans || []).forEach(p => {
+            let pFoods = p.tableFoods;
+            if ((!Array.isArray(pFoods) || pFoods.length === 0) && p.meals) {
+                const list = [];
+                ['meal1', 'meal2', 'meal3'].forEach(k => {
+                    (p.meals[k] || []).forEach(item => {
+                        list.push({ foodId: item.foodId, weight: item.weight, mealType: k });
+                    });
+                });
+                if (list.length > 0) pFoods = list;
+            }
+            const pTotals = calculateGrandTotals(pFoods || []);
+            plans.push({
+                key: p.name,
+                name: p.name,
+                isCurrentActive: false,
+                isSelected: state.selectedPlanKey === p.name,
+                itemCount: (pFoods || []).length,
+                totals: pTotals
+            });
+        });
+
+        return plans;
+    }
+
     // Public API
     return {
         loadFoods,
@@ -414,6 +467,7 @@ window.TableModule.DataStore = (function () {
         setActivePlan,
         calculateRowNutrition,
         calculateGrandTotals,
+        getAllPlansSummary,
         escapeHTML,
         safeNum
     };

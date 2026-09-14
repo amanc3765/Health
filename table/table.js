@@ -52,6 +52,9 @@ window.TableModule.Controller = (function () {
         // Setup submodules
         NutritionPopover.initEvents();
         ColumnSort.initHeaderListeners(() => TableRenderer.render());
+        if (TableRenderer && typeof TableRenderer.initCompareSortListeners === 'function') {
+            TableRenderer.initCompareSortListeners();
+        }
         Modals.initEvents(refreshView);
 
         setupToolbarEvents();

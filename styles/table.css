@@ -94,6 +94,66 @@ body:has(#view-table:not(.hidden)) .app-container {
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
 }
 
+/* 1x2 Grid Layout for Side-by-Side Tables */
+.table-panels-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .table-panels-grid {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .table-panels-grid .meal-plan-table-container {
+        min-height: 380px;
+    }
+}
+
+/* Panel Header */
+.table-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(15, 23, 42, 0.7);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.table-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-panel-title h3 {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.table-panel-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: var(--font-weight-semibold);
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-primary);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
 /* Table Container & Scroll Area */
 .meal-plan-table-container {
     background: var(--bg-surface);
@@ -115,6 +175,83 @@ body:has(#view-table:not(.hidden)) .app-container {
     overflow-y: auto;
     flex: 1;
     min-height: 0;
+}
+
+/* All Meal Plans Comparison Table */
+.compare-plans-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.compare-plans-table th.sortable-compare {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+}
+
+.compare-plans-table th.sortable-compare:hover {
+    color: var(--accent-primary);
+    background: rgba(59, 130, 246, 0.12);
+}
+
+.compare-plans-table th.sortable-compare.active-sort {
+    color: var(--accent-primary);
+    background: rgba(59, 130, 246, 0.16);
+}
+
+.compare-plans-table th.sortable-compare .sort-indicator {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 11px;
+    color: var(--accent-primary);
+    vertical-align: middle;
+}
+
+.compare-plans-table tbody tr.compare-plan-row {
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.compare-plans-table tbody tr.compare-plan-row:hover {
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.compare-plans-table tbody tr.active-plan-row {
+    background: rgba(59, 130, 246, 0.14);
+}
+
+.compare-plans-table tbody tr.active-plan-row td:first-child {
+    border-left: 3px solid var(--accent-primary);
+}
+
+.compare-plan-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: var(--font-weight-medium);
+}
+
+.compare-plan-name-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 200px;
+}
+
+.compare-active-pill {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 1px 6px;
+    background: var(--accent-primary);
+    color: #ffffff;
+    border-radius: 4px;
+    flex-shrink: 0;
 }
 
 /* Table Elements */

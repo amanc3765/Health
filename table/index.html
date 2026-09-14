@@ -101,31 +101,67 @@
                 </div>
             </section>
 
-            <!-- Table Container -->
-            <section class="meal-plan-table-container">
-                <div id="table-content-wrapper" class="table-scroll-wrapper">
-                    <table class="meal-plan-table">
-                        <thead>
-                            <tr>
-                                <th class="col-left col-food sortable" data-sort="food" title="Click to sort by Food">Food<span class="sort-indicator"></span></th>
-                                <th class="col-weight sortable" data-sort="weight" title="Click to sort by Weight">Weight<span class="sort-indicator"></span></th>
-                                <th class="col-cal sortable" data-sort="calories" title="Click to sort by Calories">Calories<span class="sort-indicator"></span></th>
-                                <th class="col-pro sortable" data-sort="protein" title="Click to sort by Protein">Protein<span class="sort-indicator"></span></th>
-                                <th class="col-carb sortable" data-sort="carbs" title="Click to sort by Carbs">Carbs<span class="sort-indicator"></span></th>
-                                <th class="col-fat sortable" data-sort="fat" title="Click to sort by Fat">Fat<span class="sort-indicator"></span></th>
-                                <th class="col-fiber sortable" data-sort="fiber" title="Click to sort by Fiber">Fiber<span class="sort-indicator"></span></th>
-                                <th class="col-action"></th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
-                            <!-- Injected by TableRenderer -->
-                        </tbody>
-                        <tfoot id="table-foot">
-                            <!-- Grand Totals injected by TableRenderer -->
-                        </tfoot>
-                    </table>
-                </div>
-            </section>
+            <!-- 1x2 Grid: Left (Current Meal Plan) & Right (All Meal Plans Comparison) -->
+            <div class="table-panels-grid">
+                <!-- Left Panel: Current Meal Plan -->
+                <section class="meal-plan-table-container table-panel-left">
+                    <div class="table-panel-header">
+                        <div class="table-panel-title">
+                            <h3 id="current-plan-display-name">Current Meal Plan</h3>
+                            <span class="table-panel-badge" id="current-plan-item-count">0 foods</span>
+                        </div>
+                    </div>
+                    <div id="table-content-wrapper" class="table-scroll-wrapper">
+                        <table class="meal-plan-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-left col-food sortable" data-sort="food" title="Click to sort by Food">Food<span class="sort-indicator"></span></th>
+                                    <th class="col-weight sortable" data-sort="weight" title="Click to sort by Weight">Weight<span class="sort-indicator"></span></th>
+                                    <th class="col-cal sortable" data-sort="calories" title="Click to sort by Calories">Calories<span class="sort-indicator"></span></th>
+                                    <th class="col-pro sortable" data-sort="protein" title="Click to sort by Protein">Protein<span class="sort-indicator"></span></th>
+                                    <th class="col-carb sortable" data-sort="carbs" title="Click to sort by Carbs">Carbs<span class="sort-indicator"></span></th>
+                                    <th class="col-fat sortable" data-sort="fat" title="Click to sort by Fat">Fat<span class="sort-indicator"></span></th>
+                                    <th class="col-fiber sortable" data-sort="fiber" title="Click to sort by Fiber">Fiber<span class="sort-indicator"></span></th>
+                                    <th class="col-action"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Injected by TableRenderer -->
+                            </tbody>
+                            <tfoot id="table-foot">
+                                <!-- Grand Totals injected by TableRenderer -->
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Right Panel: All Meal Plans Comparison Table -->
+                <section class="meal-plan-table-container table-panel-right">
+                    <div class="table-panel-header">
+                        <div class="table-panel-title">
+                            <h3>All Meal Plans</h3>
+                            <span class="table-panel-badge" id="all-plans-count-badge">0 plans</span>
+                        </div>
+                    </div>
+                    <div id="compare-table-content-wrapper" class="table-scroll-wrapper">
+                        <table class="meal-plan-table compare-plans-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-left col-plan-name sortable-compare" data-compare-sort="name" title="Click to sort by Plan Name">Meal Plan<span class="sort-indicator"></span></th>
+                                    <th class="col-cal sortable-compare active-sort" data-compare-sort="calories" title="Click to sort by Calories">Calories<span class="sort-indicator"> ▼</span></th>
+                                    <th class="col-pro sortable-compare" data-compare-sort="protein" title="Click to sort by Protein">Protein<span class="sort-indicator"></span></th>
+                                    <th class="col-carb sortable-compare" data-compare-sort="carbs" title="Click to sort by Carbs">Carbs<span class="sort-indicator"></span></th>
+                                    <th class="col-fat sortable-compare" data-compare-sort="fat" title="Click to sort by Fat">Fat<span class="sort-indicator"></span></th>
+                                    <th class="col-fiber sortable-compare" data-compare-sort="fiber" title="Click to sort by Fiber">Fiber<span class="sort-indicator"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="compare-table-body">
+                                <!-- Injected by TableRenderer -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
         </main>
     </div>
 
@@ -178,13 +214,13 @@
     </div>
 
     <!-- Modular Table Scripts -->
-    <script src="data-store.js?v=4"></script>
-    <script src="nutrition-popover.js?v=4"></script>
-    <script src="column-sort.js?v=4"></script>
-    <script src="drag-drop.js?v=4"></script>
-    <script src="table-renderer.js?v=4"></script>
-    <script src="modals.js?v=4"></script>
-    <script src="table.js?v=4"></script>
+    <script src="data-store.js?v=5"></script>
+    <script src="nutrition-popover.js?v=5"></script>
+    <script src="column-sort.js?v=5"></script>
+    <script src="drag-drop.js?v=5"></script>
+    <script src="table-renderer.js?v=5"></script>
+    <script src="modals.js?v=5"></script>
+    <script src="table.js?v=5"></script>
 </body>
 
 </html>
