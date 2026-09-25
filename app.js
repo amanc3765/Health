@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
             meal3: []
         },
         goals: {
-            calories: 2130,
+            calories: 2000,
             protein: 130,
-            carbs: 284,
-            fat: 61
+            carbs: 275,
+            fat: 60
         },
         profile: {
             weight: 86,
@@ -97,7 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('dark-mode');
         createGlobalPopover();
 
-        await loadFoods();
+        await Promise.all([
+            loadFoods(),
+            loadGoals()
+        ]);
         setupEventListeners();
 
         loadSavedPlans(); // Load list of saved plans
@@ -121,6 +124,21 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMeals();
         updateTotals();
         renderSavedPlans();
+    }
+
+    async function loadGoals() {
+        try {
+            const response = await fetch(`data/macro_requirements.json?t=${Date.now()}`);
+            if (response.ok) {
+                const data = await response.json();
+                if (data) {
+                    if (data.calories) state.goals.calories = parseFloat(data.calories);
+                    if (data.protein) state.goals.protein = parseFloat(data.protein);
+                    if (data.carbs) state.goals.carbs = parseFloat(data.carbs);
+                    if (data.fat) state.goals.fat = parseFloat(data.fat);
+                }
+            }
+        } catch (e) {}
     }
 
     async function loadFoods() {

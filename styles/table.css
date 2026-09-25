@@ -113,13 +113,47 @@ body:has(#view-table:not(.hidden)) .settings-panel {
     width: 100%;
 }
 
+/* Right Column: Top (All Meal Plans) expands, Bottom (Target Progress) takes minimal compact height */
+.table-panel-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+}
+
+.table-panel-right .table-panel-right-top,
+.table-panel-right-top {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-panel-right .table-panel-right-bottom,
+.table-panel-right-bottom,
+#target-progress-panel {
+    flex: 0 0 auto !important;
+    min-height: auto !important;
+    display: flex;
+    flex-direction: column;
+}
+
 @media (max-width: 1024px) {
     .table-panels-grid {
         grid-template-columns: 1fr;
         overflow-y: auto;
     }
-    .table-panels-grid .meal-plan-table-container {
+    .table-panels-grid .table-panel-left,
+    .table-panels-grid .table-panel-right-top {
         min-height: 380px;
+    }
+    .table-panel-right {
+        height: auto;
+    }
+    #target-progress-panel {
+        min-height: auto !important;
     }
 }
 
@@ -737,4 +771,146 @@ body:has(#view-table:not(.hidden)) .settings-panel {
 
 .popover-footer strong {
     color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Target Progress Panel & Progress Bars (Compact Bottom Right Panel)
+   ========================================================================== */
+
+#target-progress-panel .table-panel-header {
+    padding: 8px 14px;
+}
+
+#target-progress-panel .table-panel-title h3 {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+#target-progress-plan-badge {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: normal;
+    padding: 2px 10px;
+    border-radius: 9999px;
+    background: rgba(59, 130, 246, 0.12);
+    color: #60A5FA;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.target-progress-container {
+    padding: 10px 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.target-progress-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.target-progress-row:hover {
+    background: rgba(15, 23, 42, 0.65);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.target-progress-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.target-progress-name {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+}
+
+.target-progress-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+.target-progress-values {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-body);
+}
+
+.val-current {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: #FFFFFF;
+}
+
+.val-sep {
+    color: var(--text-tertiary);
+    font-size: 12px;
+}
+
+.val-target {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+}
+
+.target-progress-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.target-progress-fill {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.35s ease, background 0.25s ease;
+}
+
+/* Color Coding: Good (Green), Average (Yellow), Deficient (Red) */
+.target-progress-row.status-good {
+    border-left: 3px solid #10B981;
+}
+.target-progress-fill.fill-good {
+    background: #10B981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.45);
+}
+
+.target-progress-row.status-average {
+    border-left: 3px solid #F59E0B;
+}
+.target-progress-fill.fill-average {
+    background: #F59E0B;
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.45);
+}
+
+.target-progress-row.status-deficient {
+    border-left: 3px solid #EF4444;
+}
+.target-progress-fill.fill-deficient {
+    background: #EF4444;
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.45);
 }

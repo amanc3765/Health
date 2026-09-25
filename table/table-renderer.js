@@ -45,6 +45,7 @@ window.TableModule.TableRenderer = (function () {
             tableFoot.innerHTML = '';
             if (ColumnSort) ColumnSort.updateHeaderUI();
             renderCompareTable();
+            renderTargetProgress({ calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, weight: 0, price: 0 });
             return;
         }
 
@@ -203,8 +204,9 @@ window.TableModule.TableRenderer = (function () {
             }
         }
 
-        // Render Right Comparison Table (All Meal Plans)
+        // Render Right Panels: Comparison Table & Target Progress
         renderCompareTable();
+        renderTargetProgress(grandTotals);
     }
 
     function renderCompareTable() {
@@ -278,6 +280,122 @@ window.TableModule.TableRenderer = (function () {
         }
     }
 
+    // Render Bottom Right Target Progress Panel
+    function renderTargetProgress(totals) {
+        const container = document.getElementById('target-progress-container');
+        if (!container) return;
+
+        const { DataStore } = window.TableModule;
+        const requirements = (DataStore && typeof DataStore.getMacroRequirements === 'function')
+            ? DataStore.getMacroRequirements()
+            : { calories: 2000, protein: 130, carbs: 275, fat: 60 };
+
+        const currentKey = DataStore ? DataStore.getSelectedPlanKey() : '__current__';
+        const planTitle = currentKey === '__current__' ? 'Current Active Plan' : currentKey;
+
+        const planNameEl = document.getElementById('target-progress-plan-name');
+        const badgeEl = document.getElementById('target-progress-plan-badge');
+        if (planNameEl) {
+            planNameEl.textContent = 'Target Progress';
+        }
+        if (badgeEl) {
+            badgeEl.textContent = planTitle;
+            badgeEl.title = `Evaluating ${planTitle} against targets`;
+        }
+
+        const currentTotals = totals || { calories: 0, protein: 0, carbs: 0, fat: 0 };
+
+        const metrics = [
+            {
+                key: 'calories',
+                name: 'Calories',
+                icon: '🔥',
+                unit: 'kcal',
+                current: Math.round(currentTotals.calories || 0),
+                target: requirements.calories || 2000,
+                precision: 0
+            },
+            {
+                key: 'protein',
+                name: 'Protein',
+                icon: '💪',
+                unit: 'g',
+                current: parseFloat((currentTotals.protein || 0).toFixed(1)),
+                target: requirements.protein || 130,
+                precision: 1
+            },
+            {
+                key: 'carbs',
+                name: 'Carbs',
+                icon: '🌾',
+                unit: 'g',
+                current: parseFloat((currentTotals.carbs || 0).toFixed(1)),
+                target: requirements.carbs || 275,
+                precision: 1
+            },
+            {
+                key: 'fat',
+                name: 'Fat',
+                icon: '🥑',
+                unit: 'g',
+                current: parseFloat((currentTotals.fat || 0).toFixed(1)),
+                target: requirements.fat || 60,
+                precision: 1
+            }
+        ];
+
+        let html = '';
+
+        metrics.forEach(m => {
+            const pct = m.target > 0 ? (m.current / m.target) * 100 : 0;
+
+            let fillClass = 'fill-good';
+            let statusClass = 'status-good';
+
+            if (pct < 75) {
+                fillClass = 'fill-deficient';
+                statusClass = 'status-deficient';
+            } else if (pct < 90) {
+                fillClass = 'fill-average';
+                statusClass = 'status-average';
+            } else if (pct <= 110) {
+                fillClass = 'fill-good';
+                statusClass = 'status-good';
+            } else if (pct <= 120) {
+                fillClass = 'fill-average';
+                statusClass = 'status-average';
+            } else {
+                fillClass = 'fill-deficient';
+                statusClass = 'status-deficient';
+            }
+
+            const fillWidth = Math.min(Math.max(pct, 0), 100);
+            const currentDisplay = m.precision === 0 ? m.current.toLocaleString() : m.current.toFixed(1);
+            const targetDisplay = m.precision === 0 ? m.target.toLocaleString() : m.target.toString();
+
+            html += `
+            <div class="target-progress-row ${statusClass}">
+                <div class="target-progress-meta">
+                    <div class="target-progress-name">
+                        <span class="target-progress-icon">${m.icon}</span>
+                        <span class="target-progress-title">${m.name}</span>
+                    </div>
+                    <div class="target-progress-values">
+                        <span class="val-current">${currentDisplay}</span>
+                        <span class="val-sep">/</span>
+                        <span class="val-target">${targetDisplay} ${m.unit}</span>
+                    </div>
+                </div>
+                <div class="target-progress-track">
+                    <div class="target-progress-fill ${fillClass}" style="width: ${fillWidth}%;"></div>
+                </div>
+            </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
     function initCompareSortListeners() {
         const { ColumnSort } = window.TableModule;
         if (ColumnSort && typeof ColumnSort.initHeaderListeners === 'function') {
@@ -335,6 +453,7 @@ window.TableModule.TableRenderer = (function () {
     return {
         render,
         renderCompareTable,
+        renderTargetProgress,
         initCompareSortListeners,
         startInlineWeight,
         saveInlineWeight,

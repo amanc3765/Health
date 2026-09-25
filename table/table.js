@@ -39,7 +39,10 @@ window.TableModule.Controller = (function () {
 
     // Initialize the Table module
     async function init() {
-        await DataStore.loadFoods();
+        await Promise.all([
+            DataStore.loadFoods(),
+            DataStore.loadMacroRequirements ? DataStore.loadMacroRequirements() : Promise.resolve()
+        ]);
         DataStore.loadFromStorage();
 
         // Check if a specific plan was requested in URL query params

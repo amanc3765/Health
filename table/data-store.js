@@ -14,6 +14,12 @@ window.TableModule.DataStore = (function () {
     const state = {
         foods: [],
         savedPlans: [],
+        macroRequirements: {
+            calories: 2000,
+            protein: 130,
+            carbs: 275,
+            fat: 60
+        },
         currentActiveMeals: {
             meal1: [],
             meal2: [],
@@ -38,6 +44,23 @@ window.TableModule.DataStore = (function () {
     function safeNum(val, fallback = 0) {
         const num = parseFloat(val);
         return isNaN(num) ? fallback : num;
+    }
+
+    // Backup saved plans to server disk
+    function syncToDisk() {
+        try {
+            fetch('/api/plans', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    savedPlans: state.savedPlans,
+                    activeState: {
+                        meals: state.currentActiveMeals,
+                        tableFoods: state.currentActiveTableFoods
+                    }
+                })
+            }).catch(() => {});
+        } catch (e) {}
     }
 
     // Load Foods Dataset (resolves path regardless of whether in root or /table/)
@@ -65,12 +88,56 @@ window.TableModule.DataStore = (function () {
         return [];
     }
 
+    // Load Macro Requirements from JSON file
+    async function loadMacroRequirements() {
+        const paths = [
+            'data/macro_requirements.json',
+            '../data/macro_requirements.json',
+            '/data/macro_requirements.json'
+        ];
+
+        for (const p of paths) {
+            try {
+                const res = await fetch(`${p}?t=${Date.now()}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && typeof data === 'object') {
+                        state.macroRequirements = {
+                            calories: safeNum(data.calories, 2000),
+                            protein: safeNum(data.protein, 130),
+                            carbs: safeNum(data.carbs, 275),
+                            fat: safeNum(data.fat, 60)
+                        };
+                        return state.macroRequirements;
+                    }
+                }
+            } catch (e) {
+                // Fallback to next path
+            }
+        }
+
+        return state.macroRequirements;
+    }
+
     // Load state from localStorage
     function loadFromStorage() {
         // 1. Saved Plans
         try {
             const saved = localStorage.getItem(STORAGE_KEY_SAVED);
-            state.savedPlans = saved ? JSON.parse(saved) : [];
+            if (saved && saved !== '[]' && saved !== 'null') {
+                state.savedPlans = JSON.parse(saved);
+                syncToDisk();
+            } else {
+                fetch('/api/plans').then(r => r.json()).then(data => {
+                    if (data && data.savedPlans && data.savedPlans.length > 0) {
+                        state.savedPlans = data.savedPlans;
+                        localStorage.setItem(STORAGE_KEY_SAVED, JSON.stringify(state.savedPlans));
+                        if (window.TableModule && window.TableModule.Dropdown && typeof window.TableModule.Dropdown.render === 'function') {
+                            window.TableModule.Dropdown.render();
+                        }
+                    }
+                }).catch(() => {});
+            }
         } catch (e) {
             console.error('Error loading saved plans:', e);
             state.savedPlans = [];
@@ -301,6 +368,7 @@ window.TableModule.DataStore = (function () {
         }
 
         localStorage.setItem(STORAGE_KEY_SAVED, JSON.stringify(state.savedPlans));
+        syncToDisk();
         setSelectedPlanKey(planData.name);
         return { exists: false, plan: planData };
     }
@@ -313,6 +381,7 @@ window.TableModule.DataStore = (function () {
     function deletePlan(name) {
         state.savedPlans = state.savedPlans.filter(p => p.name !== name);
         localStorage.setItem(STORAGE_KEY_SAVED, JSON.stringify(state.savedPlans));
+        syncToDisk();
         if (state.selectedPlanKey === name) {
             setSelectedPlanKey('__current__');
         }
@@ -449,6 +518,8 @@ window.TableModule.DataStore = (function () {
     // Public API
     return {
         loadFoods,
+        loadMacroRequirements,
+        getMacroRequirements: () => ({ ...state.macroRequirements }),
         loadFromStorage,
         getFoods: () => state.foods,
         getFoodById: (id) => state.foods.find(f => f.id === id),
