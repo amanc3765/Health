@@ -311,6 +311,18 @@
     "price": 5
   },
   {
+    "id": "raw_flax_seeds",
+    "name": "Raw Flax Seeds",
+    "calories": 533.0,
+    "protein": 22.2,
+    "carbs": 27.9,
+    "fat": 42.3,
+    "fiber": 23.9,
+    "calorie_to_protein_ratio": 24.01,
+    "default_weight": 28,
+    "price": 20
+  },
+  {
     "id": "safal_sweet_corn",
     "name": "Safal Frozen Sweet Corn",
     "calories": 113.0,
@@ -344,6 +356,18 @@
     "calorie_to_protein_ratio": 27.5,
     "default_weight": 100,
     "price": 130
+  },
+  {
+    "id": "happilo_almonds",
+    "name": "Happilo Almonds",
+    "calories": 627.3,
+    "protein": 22.7,
+    "carbs": 18.7,
+    "fat": 51.3,
+    "fiber": 10.7,
+    "calorie_to_protein_ratio": 27.63,
+    "default_weight": 20,
+    "price": 20
   },
   {
     "id": "mustard_sauce",
@@ -449,6 +473,18 @@
     "calorie_to_protein_ratio": 36.67,
     "default_weight": 50,
     "price": 18
+  },
+  {
+    "id": "happilo_walnut",
+    "name": "Happilo Walnut",
+    "calories": 720.5,
+    "protein": 18.7,
+    "carbs": 10.0,
+    "fat": 67.3,
+    "fiber": 7.3,
+    "calorie_to_protein_ratio": 38.53,
+    "default_weight": 20,
+    "price": 25
   },
   {
     "id": "carrot",
@@ -585,5 +621,16 @@
     "calorie_to_protein_ratio": null,
     "default_weight": 10,
     "price": 18
+  },
+  {
+    "id": "olive_oil",
+    "name": "Borges Olive Oil",
+    "calories": 900.0,
+    "protein": 0.0,
+    "carbs": 0.0,
+    "fat": 100.0,
+    "calorie_to_protein_ratio": null,
+    "default_weight": 14,
+    "price": 20
   }
 ]

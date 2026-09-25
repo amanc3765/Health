@@ -495,8 +495,50 @@
           "mealType": "meal1"
         },
         {
-          "foodId": "oats",
-          "weight": 25,
+          "foodId": "raw_flax_seeds",
+          "weight": 20,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "happilo_almonds",
+          "weight": 20,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "happilo_walnut",
+          "weight": 20,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "milld_high_protein_atta",
+          "weight": 200,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "potato",
+          "weight": 250,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "onion",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "olive_oil",
+          "weight": 15,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
@@ -523,8 +565,44 @@
             "splitDay": false
           },
           {
-            "foodId": "oats",
-            "weight": 25,
+            "foodId": "raw_flax_seeds",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_almonds",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_walnut",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "milld_high_protein_atta",
+            "weight": 200,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "potato",
+            "weight": 250,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "onion",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "olive_oil",
+            "weight": 15,
             "buy": false,
             "splitDay": false
           }
