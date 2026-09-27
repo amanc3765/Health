@@ -19,7 +19,7 @@
     "fat": 0.8,
     "calorie_to_protein_ratio": 6.66,
     "default_weight": 25,
-    "price": 10
+    "price": 25
   },
   {
     "id": "mushroom",
@@ -42,7 +42,7 @@
     "fat": 7.0,
     "calorie_to_protein_ratio": 7.59,
     "default_weight": 100,
-    "price": 40
+    "price": 65
   },
   {
     "id": "spinach",
@@ -78,7 +78,7 @@
     "fiber": 11.5,
     "calorie_to_protein_ratio": 9.03,
     "default_weight": 54,
-    "price": 35
+    "price": 37.04
   },
   {
     "id": "yoghurt",
@@ -89,7 +89,7 @@
     "fat": 2.1,
     "calorie_to_protein_ratio": 9.18,
     "default_weight": 225,
-    "price": 15
+    "price": 65.33
   },
   {
     "id": "idli",
@@ -101,7 +101,7 @@
     "fiber": 2.9,
     "calorie_to_protein_ratio": 11.64,
     "default_weight": 250,
-    "price": 6
+    "price": 20
   },
   {
     "id": "broccoli",
@@ -146,7 +146,7 @@
     "fat": 1.0,
     "calorie_to_protein_ratio": 15.91,
     "default_weight": 25,
-    "price": 12
+    "price": 18
   },
   {
     "id": "pintola_muesli",
@@ -181,7 +181,7 @@
     "fat": 6.56,
     "calorie_to_protein_ratio": 17.44,
     "default_weight": 100,
-    "price": 10
+    "price": 12.8
   },
   {
     "id": "paneer_normal",
@@ -226,7 +226,7 @@
     "fiber": 17.4,
     "calorie_to_protein_ratio": 18.86,
     "default_weight": 100,
-    "price": 10
+    "price": 18.2
   },
   {
     "id": "cabbage",
@@ -273,7 +273,7 @@
     "fiber": 8.5,
     "calorie_to_protein_ratio": 21.97,
     "default_weight": 30,
-    "price": 15
+    "price": 22
   },
   {
     "id": "capsicum",
@@ -308,7 +308,7 @@
     "fat": 1.9,
     "calorie_to_protein_ratio": 23.33,
     "default_weight": 100,
-    "price": 5
+    "price": 6
   },
   {
     "id": "raw_flax_seeds",
@@ -320,7 +320,7 @@
     "fiber": 23.9,
     "calorie_to_protein_ratio": 24.01,
     "default_weight": 28,
-    "price": 20
+    "price": 40
   },
   {
     "id": "safal_sweet_corn",
@@ -367,7 +367,7 @@
     "fiber": 10.7,
     "calorie_to_protein_ratio": 27.63,
     "default_weight": 20,
-    "price": 20
+    "price": 147.5
   },
   {
     "id": "mustard_sauce",
@@ -483,7 +483,7 @@
     "fiber": 12.0,
     "calorie_to_protein_ratio": 36.67,
     "default_weight": 50,
-    "price": 18
+    "price": 26.17
   },
   {
     "id": "happilo_walnut",
@@ -495,7 +495,7 @@
     "fiber": 7.3,
     "calorie_to_protein_ratio": 38.53,
     "default_weight": 20,
-    "price": 25
+    "price": 233.5
   },
   {
     "id": "carrot",
@@ -564,7 +564,7 @@
     "fiber": 6.7,
     "calorie_to_protein_ratio": 80.0,
     "default_weight": 100,
-    "price": 60
+    "price": 83.33
   },
   {
     "id": "banana",
@@ -587,7 +587,7 @@
     "fat": 0.3,
     "calorie_to_protein_ratio": 127.8,
     "default_weight": 100,
-    "price": 109.8
+    "price": 108
   },
   {
     "id": "sweet_onion_sauce",
@@ -620,7 +620,7 @@
     "fat": 0.0,
     "calorie_to_protein_ratio": null,
     "default_weight": 15,
-    "price": 15
+    "price": 10
   },
   {
     "id": "fat",
@@ -642,6 +642,6 @@
     "fat": 100.0,
     "calorie_to_protein_ratio": null,
     "default_weight": 14,
-    "price": 20
+    "price": 100
   }
 ]

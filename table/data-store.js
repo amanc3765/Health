@@ -128,15 +128,30 @@ window.TableModule.DataStore = (function () {
                 state.savedPlans = JSON.parse(saved);
                 syncToDisk();
             } else {
-                fetch('/api/plans').then(r => r.json()).then(data => {
-                    if (data && data.savedPlans && data.savedPlans.length > 0) {
-                        state.savedPlans = data.savedPlans;
-                        localStorage.setItem(STORAGE_KEY_SAVED, JSON.stringify(state.savedPlans));
-                        if (window.TableModule && window.TableModule.Dropdown && typeof window.TableModule.Dropdown.render === 'function') {
-                            window.TableModule.Dropdown.render();
+                const planPaths = ['/api/plans', 'data/saved_plans.json', '../data/saved_plans.json'];
+                (async () => {
+                    for (const p of planPaths) {
+                        try {
+                            const r = await fetch(`${p}?t=${Date.now()}`);
+                            if (r.ok) {
+                                const data = await r.json();
+                                if (data && Array.isArray(data.savedPlans) && data.savedPlans.length > 0) {
+                                    state.savedPlans = data.savedPlans;
+                                    localStorage.setItem(STORAGE_KEY_SAVED, JSON.stringify(state.savedPlans));
+                                    if (window.TableModule && window.TableModule.Controller && typeof window.TableModule.Controller.refresh === 'function') {
+                                        window.TableModule.Controller.refresh();
+                                    }
+                                    if (window.TableModule && window.TableModule.Shopping && typeof window.TableModule.Shopping.refresh === 'function') {
+                                        window.TableModule.Shopping.refresh();
+                                    }
+                                    break;
+                                }
+                            }
+                        } catch (err) {
+                            // Try next path
                         }
                     }
-                }).catch(() => {});
+                })();
             }
         } catch (e) {
             console.error('Error loading saved plans:', e);

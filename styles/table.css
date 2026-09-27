@@ -914,3 +914,64 @@ body:has(#view-table:not(.hidden)) .settings-panel {
     background: #EF4444;
     box-shadow: 0 0 6px rgba(239, 68, 68, 0.45);
 }
+
+/* ==========================================================================
+   Shopping Tab Styles
+   ========================================================================== */
+
+.shopping-list-table .col-food {
+    width: 55%;
+    min-width: 220px;
+}
+
+.shopping-list-table .col-weight {
+    width: 20%;
+    min-width: 120px;
+}
+
+.shopping-list-table .col-cost {
+    width: 20%;
+    min-width: 120px;
+    color: #10B981;
+    font-weight: var(--font-weight-semibold);
+}
+
+.cost-val {
+    color: #10B981;
+    font-weight: var(--font-weight-semibold);
+}
+
+.shopping-list-table th.sortable-shopping {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.shopping-list-table th.sortable-shopping:hover {
+    color: var(--accent-primary);
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.shopping-list-table th.sortable-shopping.active-sort {
+    color: var(--accent-primary);
+}
+
+.shopping-list-table th.sortable-shopping .sort-indicator {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 10px;
+    color: var(--accent-primary);
+}
+
+.shopping-plan-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.shopping-include-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+

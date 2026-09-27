@@ -35,6 +35,9 @@ window.TableModule.Controller = (function () {
     function refreshView() {
         renderPlanSelectDropdown();
         TableRenderer.render();
+        if (window.TableModule.Shopping && typeof window.TableModule.Shopping.refresh === 'function') {
+            window.TableModule.Shopping.refresh();
+        }
     }
 
     // Initialize the Table module
@@ -59,6 +62,9 @@ window.TableModule.Controller = (function () {
             TableRenderer.initCompareSortListeners();
         }
         Modals.initEvents(refreshView);
+        if (window.TableModule.Shopping && typeof window.TableModule.Shopping.init === 'function') {
+            window.TableModule.Shopping.init();
+        }
 
         setupToolbarEvents();
         setupStorageSync();

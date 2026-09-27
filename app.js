@@ -1032,48 +1032,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Tab Navigation: Planner vs Meal Plan Table ---
-    const tabBtnPlanner = document.getElementById('tab-btn-planner');
+    // --- Tab Navigation: Meal Plan Table vs Shopping ---
     const tabBtnTable = document.getElementById('tab-btn-table');
-    const viewPlanner = document.getElementById('view-planner');
+    const tabBtnShopping = document.getElementById('tab-btn-shopping');
     const viewTable = document.getElementById('view-table');
+    const viewShopping = document.getElementById('view-shopping');
+    const viewPlanner = document.getElementById('view-planner');
 
     function switchViewTab(tab) {
-        if (tab === 'table') {
-            document.body.classList.add('table-page');
+        document.body.classList.add('table-page');
+        if (viewPlanner) viewPlanner.classList.add('hidden');
+
+        if (tab === 'shopping') {
+            if (tabBtnShopping) tabBtnShopping.classList.add('active');
+            if (tabBtnTable) tabBtnTable.classList.remove('active');
+            if (viewShopping) viewShopping.classList.remove('hidden');
+            if (viewTable) viewTable.classList.add('hidden');
+            if (window.TableModule && window.TableModule.Shopping) {
+                window.TableModule.Shopping.refresh();
+            }
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, '', '#shopping');
+            }
+        } else {
             if (tabBtnTable) tabBtnTable.classList.add('active');
-            if (tabBtnPlanner) tabBtnPlanner.classList.remove('active');
+            if (tabBtnShopping) tabBtnShopping.classList.remove('active');
             if (viewTable) viewTable.classList.remove('hidden');
-            if (viewPlanner) viewPlanner.classList.add('hidden');
+            if (viewShopping) viewShopping.classList.add('hidden');
             if (window.MealPlanTable) {
                 window.MealPlanTable.refresh();
             }
             if (window.history && window.history.replaceState) {
                 window.history.replaceState(null, '', '#table');
             }
-        } else {
-            document.body.classList.remove('table-page');
-            if (tabBtnPlanner) tabBtnPlanner.classList.add('active');
-            if (tabBtnTable) tabBtnTable.classList.remove('active');
-            if (viewPlanner) viewPlanner.classList.remove('hidden');
-            if (viewTable) viewTable.classList.add('hidden');
-            loadFromLocalStorage();
-            renderMeals();
-            updateTotals();
-            renderFoodList();
-            renderSavedPlans();
-            if (window.history && window.history.replaceState) {
-                window.history.replaceState(null, '', '#planner');
-            }
         }
     }
 
-    if (tabBtnPlanner) tabBtnPlanner.addEventListener('click', () => switchViewTab('planner'));
     if (tabBtnTable) tabBtnTable.addEventListener('click', () => switchViewTab('table'));
+    if (tabBtnShopping) tabBtnShopping.addEventListener('click', () => switchViewTab('shopping'));
 
-    // Check hash on startup (Meal Plan Table is default unless #planner is specified)
-    if (window.location.hash === '#planner') {
-        switchViewTab('planner');
+    // Check hash on startup (Meal Plan Table is default unless #shopping is specified)
+    if (window.location.hash === '#shopping') {
+        switchViewTab('shopping');
     } else {
         switchViewTab('table');
     }

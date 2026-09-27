@@ -49,7 +49,7 @@
           },
           {
             "foodId": "aata",
-            "weight": 30,
+            "weight": 50,
             "buy": false,
             "splitDay": false
           },
@@ -133,7 +133,7 @@
         },
         {
           "foodId": "aata",
-          "weight": 30,
+          "weight": 50,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
@@ -387,13 +387,13 @@
           },
           {
             "foodId": "besan",
-            "weight": 150,
+            "weight": 135,
             "buy": false,
             "splitDay": false
           },
           {
             "foodId": "milld_high_protein_atta",
-            "weight": 25,
+            "weight": 35,
             "buy": false,
             "splitDay": false
           },
@@ -465,14 +465,14 @@
         },
         {
           "foodId": "besan",
-          "weight": 150,
+          "weight": 135,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
         },
         {
           "foodId": "milld_high_protein_atta",
-          "weight": 25,
+          "weight": 35,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
@@ -555,7 +555,7 @@
             "splitDay": false
           },
           {
-            "foodId": "oats",
+            "foodId": "aata",
             "weight": 60,
             "buy": false,
             "splitDay": false
@@ -567,26 +567,44 @@
             "splitDay": false
           },
           {
-            "foodId": "aata",
+            "foodId": "oats",
             "weight": 60,
             "buy": false,
             "splitDay": false
           },
           {
             "foodId": "onion",
-            "weight": 150,
+            "weight": 100,
             "buy": false,
             "splitDay": false
           },
           {
             "foodId": "tomato",
-            "weight": 150,
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "capsicum",
+            "weight": 100,
             "buy": false,
             "splitDay": false
           },
           {
             "foodId": "olive_oil",
             "weight": 15,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "tomato_ketchup",
+            "weight": 25,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "soya_sauce",
+            "weight": 25,
             "buy": false,
             "splitDay": false
           }
@@ -645,7 +663,7 @@
           "mealType": "meal1"
         },
         {
-          "foodId": "oats",
+          "foodId": "aata",
           "weight": 60,
           "buy": false,
           "splitDay": false,
@@ -659,7 +677,7 @@
           "mealType": "meal1"
         },
         {
-          "foodId": "aata",
+          "foodId": "oats",
           "weight": 60,
           "buy": false,
           "splitDay": false,
@@ -667,14 +685,21 @@
         },
         {
           "foodId": "onion",
-          "weight": 150,
+          "weight": 100,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
         },
         {
           "foodId": "tomato",
-          "weight": 150,
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "capsicum",
+          "weight": 100,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
@@ -682,6 +707,20 @@
         {
           "foodId": "olive_oil",
           "weight": 15,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "tomato_ketchup",
+          "weight": 25,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "soya_sauce",
+          "weight": 25,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
