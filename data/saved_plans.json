@@ -1,308 +1,8 @@
 {
   "savedPlans": [
     {
-      "name": "Bread + Besan",
-      "date": "2026-09-12T09:24:05.886Z",
-      "meals": {
-        "meal1": [
-          {
-            "foodId": "yoghurt",
-            "weight": 225,
-            "buy": true,
-            "splitDay": false
-          },
-          {
-            "foodId": "high_protein_bread",
-            "weight": 216,
-            "buy": true,
-            "splitDay": false
-          },
-          {
-            "foodId": "besan",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "avocado",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "onion",
-            "weight": 100,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "tomato",
-            "weight": 100,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "fat",
-            "weight": 10,
-            "buy": false,
-            "splitDay": false
-          }
-        ],
-        "meal2": [
-          {
-            "foodId": "banana",
-            "weight": 150,
-            "buy": true,
-            "splitDay": false
-          },
-          {
-            "foodId": "blueberries",
-            "weight": 100,
-            "buy": true,
-            "splitDay": false
-          }
-        ],
-        "meal3": []
-      },
-      "tableFoods": [
-        {
-          "foodId": "yoghurt",
-          "weight": 225,
-          "splitDay": false,
-          "buy": true,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "banana",
-          "weight": 150,
-          "splitDay": false,
-          "buy": true,
-          "mealType": "meal2"
-        },
-        {
-          "foodId": "blueberries",
-          "weight": 100,
-          "splitDay": false,
-          "buy": true,
-          "mealType": "meal2"
-        },
-        {
-          "foodId": "high_protein_bread",
-          "weight": 216,
-          "splitDay": false,
-          "buy": true,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "besan",
-          "weight": 150,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "avocado",
-          "weight": 150,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "onion",
-          "weight": 100,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "tomato",
-          "weight": 100,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "fat",
-          "weight": 10,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        }
-      ],
-      "goals": {
-        "calories": 2000,
-        "protein": 100,
-        "carbs": 300,
-        "fat": 50
-      },
-      "profile": {
-        "weight": 86,
-        "height": 172,
-        "age": 30,
-        "gender": "male",
-        "activity": "1.2",
-        "goalType": "cut"
-      }
-    },
-    {
-      "name": "Bread + Paneer",
-      "date": "2026-09-14T06:34:24.778Z",
-      "meals": {
-        "meal1": [
-          {
-            "foodId": "yoghurt",
-            "weight": 225,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "banana",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "avocado",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "oats",
-            "weight": 25,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "high_protein_bread",
-            "weight": 216,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "paneer",
-            "weight": 100,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "onion",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "tomato",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "capsicum",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "fat",
-            "weight": 20,
-            "buy": false,
-            "splitDay": false
-          }
-        ],
-        "meal2": [],
-        "meal3": []
-      },
-      "tableFoods": [
-        {
-          "foodId": "yoghurt",
-          "weight": 225,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "banana",
-          "weight": 150,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "avocado",
-          "weight": 150,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "oats",
-          "weight": 25,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "high_protein_bread",
-          "weight": 216,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "paneer",
-          "weight": 100,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "onion",
-          "weight": 150,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "tomato",
-          "weight": 150,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "capsicum",
-          "weight": 150,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "fat",
-          "weight": 20,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        }
-      ],
-      "goals": {
-        "calories": 2000,
-        "protein": 100,
-        "carbs": 300,
-        "fat": 50
-      },
-      "profile": {
-        "weight": 86,
-        "height": 172,
-        "age": 30,
-        "gender": "male",
-        "activity": "1.2",
-        "goalType": "cut"
-      }
-    },
-    {
-      "name": "Roti + Paneer",
-      "date": "2026-09-14T06:38:02.283Z",
+      "name": "1 - Roti + Chole",
+      "date": "2026-09-25T08:22:48.782Z",
       "meals": {
         "meal1": [
           {
@@ -324,50 +24,56 @@
             "splitDay": false
           },
           {
-            "foodId": "oats",
-            "weight": 25,
+            "foodId": "raw_flax_seeds",
+            "weight": 10,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_almonds",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_walnut",
+            "weight": 20,
             "buy": false,
             "splitDay": false
           },
           {
             "foodId": "milld_high_protein_atta",
-            "weight": 100,
+            "weight": 150,
             "buy": false,
             "splitDay": false
           },
           {
             "foodId": "aata",
-            "weight": 100,
+            "weight": 30,
             "buy": false,
             "splitDay": false
           },
           {
-            "foodId": "paneer",
+            "foodId": "chickpeas",
             "weight": 100,
             "buy": false,
             "splitDay": false
           },
           {
             "foodId": "onion",
-            "weight": 150,
+            "weight": 100,
             "buy": false,
             "splitDay": false
           },
           {
             "foodId": "tomato",
-            "weight": 150,
+            "weight": 100,
             "buy": false,
             "splitDay": false
           },
           {
-            "foodId": "capsicum",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "fat",
-            "weight": 20,
+            "foodId": "olive_oil",
+            "weight": 15,
             "buy": false,
             "splitDay": false
           }
@@ -398,28 +104,42 @@
           "mealType": "meal1"
         },
         {
-          "foodId": "oats",
-          "weight": 25,
+          "foodId": "raw_flax_seeds",
+          "weight": 10,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "happilo_almonds",
+          "weight": 20,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "happilo_walnut",
+          "weight": 20,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
         },
         {
           "foodId": "milld_high_protein_atta",
-          "weight": 100,
+          "weight": 150,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
         },
         {
           "foodId": "aata",
-          "weight": 100,
+          "weight": 30,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
         },
         {
-          "foodId": "paneer",
+          "foodId": "chickpeas",
           "weight": 100,
           "buy": false,
           "splitDay": false,
@@ -427,28 +147,21 @@
         },
         {
           "foodId": "onion",
-          "weight": 150,
+          "weight": 100,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
         },
         {
           "foodId": "tomato",
-          "weight": 150,
+          "weight": 100,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
         },
         {
-          "foodId": "capsicum",
-          "weight": 150,
-          "buy": false,
-          "splitDay": false,
-          "mealType": "meal1"
-        },
-        {
-          "foodId": "fat",
-          "weight": 20,
+          "foodId": "olive_oil",
+          "weight": 15,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
@@ -470,8 +183,74 @@
       }
     },
     {
-      "name": "Aloo Paratha",
-      "date": "2026-09-25T05:22:20.409Z",
+      "name": "2 - Idli",
+      "date": "2026-09-25T08:23:06.451Z",
+      "meals": {
+        "meal1": [
+          {
+            "foodId": "yoghurt",
+            "weight": 225,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "banana",
+            "weight": 200,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "blueberries",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "raw_flax_seeds",
+            "weight": 10,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "idli",
+            "weight": 500,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "peanuts",
+            "weight": 40,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "dal",
+            "weight": 60,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "onion",
+            "weight": 150,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "tomato",
+            "weight": 250,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "olive_oil",
+            "weight": 15,
+            "buy": false,
+            "splitDay": false
+          }
+        ],
+        "meal2": [],
+        "meal3": []
+      },
       "tableFoods": [
         {
           "foodId": "yoghurt",
@@ -482,7 +261,7 @@
         },
         {
           "foodId": "banana",
-          "weight": 150,
+          "weight": 200,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
@@ -496,7 +275,696 @@
         },
         {
           "foodId": "raw_flax_seeds",
+          "weight": 10,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "idli",
+          "weight": 500,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "peanuts",
+          "weight": 40,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "dal",
+          "weight": 60,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "onion",
+          "weight": 150,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "tomato",
+          "weight": 250,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "olive_oil",
+          "weight": 15,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        }
+      ],
+      "goals": {
+        "calories": 2000,
+        "protein": 100,
+        "carbs": 300,
+        "fat": 50
+      },
+      "profile": {
+        "weight": 86,
+        "height": 172,
+        "age": 30,
+        "gender": "male",
+        "activity": "1.2",
+        "goalType": "cut"
+      }
+    },
+    {
+      "name": "3 - Bread + Besan",
+      "date": "2026-09-25T08:23:44.440Z",
+      "meals": {
+        "meal1": [
+          {
+            "foodId": "yoghurt",
+            "weight": 225,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "banana",
+            "weight": 200,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "blueberries",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "raw_flax_seeds",
+            "weight": 10,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "avocado",
+            "weight": 150,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "onion",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "tomato",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "besan",
+            "weight": 150,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "milld_high_protein_atta",
+            "weight": 25,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "high_protein_bread",
+            "weight": 216,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "olive_oil",
+            "weight": 15,
+            "buy": false,
+            "splitDay": false
+          }
+        ],
+        "meal2": [],
+        "meal3": []
+      },
+      "tableFoods": [
+        {
+          "foodId": "yoghurt",
+          "weight": 225,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "banana",
+          "weight": 200,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "blueberries",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "raw_flax_seeds",
+          "weight": 10,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "avocado",
+          "weight": 150,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "onion",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "tomato",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "besan",
+          "weight": 150,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "milld_high_protein_atta",
+          "weight": 25,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "high_protein_bread",
+          "weight": 216,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "olive_oil",
+          "weight": 15,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        }
+      ],
+      "goals": {
+        "calories": 2000,
+        "protein": 100,
+        "carbs": 300,
+        "fat": 50
+      },
+      "profile": {
+        "weight": 86,
+        "height": 172,
+        "age": 30,
+        "gender": "male",
+        "activity": "1.2",
+        "goalType": "cut"
+      }
+    },
+    {
+      "name": "4 - Soya Chaap",
+      "date": "2026-09-25T08:23:56.853Z",
+      "meals": {
+        "meal1": [
+          {
+            "foodId": "yoghurt",
+            "weight": 225,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "banana",
+            "weight": 200,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "blueberries",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "raw_flax_seeds",
+            "weight": 10,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_almonds",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_walnut",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "milld_high_protein_atta",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "oats",
+            "weight": 60,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "soyabean",
+            "weight": 60,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "aata",
+            "weight": 60,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "onion",
+            "weight": 150,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "tomato",
+            "weight": 150,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "olive_oil",
+            "weight": 15,
+            "buy": false,
+            "splitDay": false
+          }
+        ],
+        "meal2": [],
+        "meal3": []
+      },
+      "tableFoods": [
+        {
+          "foodId": "yoghurt",
+          "weight": 225,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "banana",
+          "weight": 200,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "blueberries",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "raw_flax_seeds",
+          "weight": 10,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "happilo_almonds",
           "weight": 20,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "happilo_walnut",
+          "weight": 20,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "milld_high_protein_atta",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "oats",
+          "weight": 60,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "soyabean",
+          "weight": 60,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "aata",
+          "weight": 60,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "onion",
+          "weight": 150,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "tomato",
+          "weight": 150,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "olive_oil",
+          "weight": 15,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        }
+      ],
+      "goals": {
+        "calories": 2000,
+        "protein": 100,
+        "carbs": 300,
+        "fat": 50
+      },
+      "profile": {
+        "weight": 86,
+        "height": 172,
+        "age": 30,
+        "gender": "male",
+        "activity": "1.2",
+        "goalType": "cut"
+      }
+    },
+    {
+      "name": "5 - Paneer Paratha",
+      "date": "2026-09-25T08:24:30.016Z",
+      "meals": {
+        "meal1": [
+          {
+            "foodId": "yoghurt",
+            "weight": 225,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "banana",
+            "weight": 200,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "blueberries",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "raw_flax_seeds",
+            "weight": 10,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_almonds",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_walnut",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "aata",
+            "weight": 150,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "milld_high_protein_atta",
+            "weight": 50,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "paneer",
+            "weight": 200,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "onion",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "olive_oil",
+            "weight": 15,
+            "buy": false,
+            "splitDay": false
+          }
+        ],
+        "meal2": [],
+        "meal3": []
+      },
+      "tableFoods": [
+        {
+          "foodId": "yoghurt",
+          "weight": 225,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "banana",
+          "weight": 200,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "blueberries",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "raw_flax_seeds",
+          "weight": 10,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "happilo_almonds",
+          "weight": 20,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "happilo_walnut",
+          "weight": 20,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "aata",
+          "weight": 150,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "milld_high_protein_atta",
+          "weight": 50,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "paneer",
+          "weight": 200,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "onion",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "olive_oil",
+          "weight": 15,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        }
+      ],
+      "goals": {
+        "calories": 2000,
+        "protein": 100,
+        "carbs": 300,
+        "fat": 50
+      },
+      "profile": {
+        "weight": 86,
+        "height": 172,
+        "age": 30,
+        "gender": "male",
+        "activity": "1.2",
+        "goalType": "cut"
+      }
+    },
+    {
+      "name": "6 - Aloo Paratha",
+      "date": "2026-09-25T08:25:04.061Z",
+      "meals": {
+        "meal1": [
+          {
+            "foodId": "yoghurt",
+            "weight": 225,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "banana",
+            "weight": 200,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "blueberries",
+            "weight": 100,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "raw_flax_seeds",
+            "weight": 10,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_almonds",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "happilo_walnut",
+            "weight": 20,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "milld_high_protein_atta",
+            "weight": 200,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "potato",
+            "weight": 300,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "onion",
+            "weight": 150,
+            "buy": false,
+            "splitDay": false
+          },
+          {
+            "foodId": "olive_oil",
+            "weight": 15,
+            "buy": false,
+            "splitDay": false
+          }
+        ],
+        "meal2": [],
+        "meal3": []
+      },
+      "tableFoods": [
+        {
+          "foodId": "yoghurt",
+          "weight": 225,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "banana",
+          "weight": 200,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "blueberries",
+          "weight": 100,
+          "buy": false,
+          "splitDay": false,
+          "mealType": "meal1"
+        },
+        {
+          "foodId": "raw_flax_seeds",
+          "weight": 10,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
@@ -524,14 +992,14 @@
         },
         {
           "foodId": "potato",
-          "weight": 250,
+          "weight": 300,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
         },
         {
           "foodId": "onion",
-          "weight": 100,
+          "weight": 150,
           "buy": false,
           "splitDay": false,
           "mealType": "meal1"
@@ -544,69 +1012,75 @@
           "mealType": "meal1"
         }
       ],
+      "goals": {
+        "calories": 2000,
+        "protein": 100,
+        "carbs": 300,
+        "fat": 50
+      },
+      "profile": {
+        "weight": 86,
+        "height": 172,
+        "age": 30,
+        "gender": "male",
+        "activity": "1.2",
+        "goalType": "cut"
+      }
+    },
+    {
+      "name": "Muli Paratha",
+      "date": "2026-09-26T03:48:27.302Z",
       "meals": {
-        "meal1": [
-          {
-            "foodId": "yoghurt",
-            "weight": 225,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "banana",
-            "weight": 150,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "blueberries",
-            "weight": 100,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "raw_flax_seeds",
-            "weight": 20,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "happilo_almonds",
-            "weight": 20,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "happilo_walnut",
-            "weight": 20,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "milld_high_protein_atta",
-            "weight": 200,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "potato",
-            "weight": 250,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "onion",
-            "weight": 100,
-            "buy": false,
-            "splitDay": false
-          },
-          {
-            "foodId": "olive_oil",
-            "weight": 15,
-            "buy": false,
-            "splitDay": false
-          }
-        ],
+        "meal1": [],
+        "meal2": [],
+        "meal3": []
+      },
+      "tableFoods": [],
+      "goals": {
+        "calories": 2000,
+        "protein": 100,
+        "carbs": 300,
+        "fat": 50
+      },
+      "profile": {
+        "weight": 86,
+        "height": 172,
+        "age": 30,
+        "gender": "male",
+        "activity": "1.2",
+        "goalType": "cut"
+      }
+    },
+    {
+      "name": "Palak Paratha",
+      "date": "2026-09-26T03:48:36.273Z",
+      "meals": {
+        "meal1": [],
+        "meal2": [],
+        "meal3": []
+      },
+      "tableFoods": [],
+      "goals": {
+        "calories": 2000,
+        "protein": 100,
+        "carbs": 300,
+        "fat": 50
+      },
+      "profile": {
+        "weight": 86,
+        "height": 172,
+        "age": 30,
+        "gender": "male",
+        "activity": "1.2",
+        "goalType": "cut"
+      }
+    },
+    {
+      "name": "Momo",
+      "date": "2026-09-26T03:48:51.296Z",
+      "tableFoods": [],
+      "meals": {
+        "meal1": [],
         "meal2": [],
         "meal3": []
       },
@@ -615,6 +1089,30 @@
         "protein": 150,
         "carbs": 200,
         "fat": 65
+      }
+    },
+    {
+      "name": "Dal Pitthi",
+      "date": "2026-09-26T03:49:08.525Z",
+      "meals": {
+        "meal1": [],
+        "meal2": [],
+        "meal3": []
+      },
+      "tableFoods": [],
+      "goals": {
+        "calories": 2000,
+        "protein": 100,
+        "carbs": 300,
+        "fat": 50
+      },
+      "profile": {
+        "weight": 86,
+        "height": 172,
+        "age": 30,
+        "gender": "male",
+        "activity": "1.2",
+        "goalType": "cut"
       }
     }
   ],

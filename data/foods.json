@@ -439,6 +439,17 @@
     "price": 70.8
   },
   {
+    "id": "soya_sauce",
+    "name": "Soya Sauce",
+    "calories": 69.0,
+    "protein": 1.9,
+    "carbs": 15.3,
+    "fat": 0.1,
+    "calorie_to_protein_ratio": 36.32,
+    "default_weight": 7,
+    "price": 28
+  },
+  {
     "id": "onion",
     "name": "Onion",
     "calories": 40.0,
