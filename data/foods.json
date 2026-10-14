@@ -311,6 +311,18 @@
     "price": 6
   },
   {
+    "id": "peanut_butter",
+    "name": "Peanut Butter Regular Crunchy",
+    "calories": 619.0,
+    "protein": 26.0,
+    "carbs": 22.7,
+    "fat": 48.0,
+    "fiber": 4.0,
+    "calorie_to_protein_ratio": 23.81,
+    "default_weight": 30,
+    "price": 35
+  },
+  {
     "id": "raw_flax_seeds",
     "name": "Raw Flax Seeds",
     "calories": 533.0,
